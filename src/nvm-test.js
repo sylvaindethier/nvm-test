@@ -1,4 +1,4 @@
-import program from 'commander'
+import program from './commander'
 import { log, loggable, logInit } from './utils'
 import { version } from '../package'
 
@@ -7,7 +7,7 @@ import { version } from '../package'
 // make program loggable
 loggable(program, 'silly')
   .version(version)
-  .command('exec [versions...]', 'execute test for a list of Node versions', {isDefault: true})
+  .command('exec [versions...]', 'execute test for a list of Node versions', {isDefault: false})
   .parse(process.argv)
 
 // output help if no arguments

@@ -1,4 +1,4 @@
-import program from 'commander'
+import program from './commander'
 import child_process from 'child_process'
 import { log, loggable, logInit } from './utils'
 
