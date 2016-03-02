@@ -1,12 +1,12 @@
 import './commander-option-log'
 import program from 'commander'
 import logger from './utils/logger'
-import nvmTestVersion from './commands/nvm-test-version'
+import nvmTestVersions from './commands/nvm-test-versions'
 
 program
   .version('0.0.1')
-  .description('Execute test for a Node version')
-  .arguments('<version>')
+  .description('Execute test for a list of Node version')
+  .arguments('[versions...]')
   .optionLog() // bug from commander: program.log is always defaultValue
   .option('-D, --dry-run', 'execute a dry run test')
   .parse(process.argv)
@@ -17,15 +17,14 @@ if (!program.args.length) program.help()
 logger.set({ level: program.optsLog(), heading: program.name() })
 logger.silly('program', 'options:', program.opts())
 
-// get the <version> arguments
-const version = program.args[0]
+// get the [versions...] argument, restablish the correct order
+const versions = program.args.reverse()
 
 // get the --dry-run option
 const dryRun = program.dryRun
 
-// exec for version
-logger.info('nvm test version', version)
-nvmTestVersion(version, dryRun)
+logger.verbose('nvm test versions', versions)
+nvmTestVersions(versions, dryRun)
 
 // then exit with code on resolve and reject
 .then(process.exit, process.exit)

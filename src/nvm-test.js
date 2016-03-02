@@ -1,17 +1,18 @@
-import program from './commander'
-import { log, loggable, logInit } from './utils'
+import './commander-option-log'
+import program from 'commander'
+import logger from './utils/logger'
 import { version } from '../package'
 
-// const file = resolve(__dirname, '../srcipts/nvm-test.sh')
-
-// make program loggable
-loggable(program, 'silly')
+// option log
+program
   .version(version)
-  .command('exec [versions...]', 'execute test for a list of Node versions', {isDefault: false})
+  .command('exec <version>', 'execute test for a Node version', { isDefault: false })
+  .command('versions [versions...]', 'execute test for a list of Node version')
+  .optionLog()
   .parse(process.argv)
 
 // output help if no arguments
 if (!program.args.length) program.help()
 
-logInit(program)
-log.silly('command', 'options', program.opts())
+logger.set({ level: program.optsLog(), heading: program.name() })
+logger.silly('program', 'options:', program.opts())
