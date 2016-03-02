@@ -5,7 +5,7 @@ export default async function nvmTestVersions (versions, dryRun) {
   let code = 0
   const len = versions.length
   for (let i = 0; i < len; ++i) {
-    // exec for version
+    // nvm test version
     let version = versions[i]
     try {
       logger.info('nvm test version', version)
