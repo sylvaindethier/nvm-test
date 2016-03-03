@@ -59,13 +59,24 @@ module.exports = {
 
   plugins: [
     'promise',
-    'standard'
+    'standard',
   ],
 
   extends: [
     'eslint:recommended',
-    'standard'
+    'standard',
   ],
 
-  // rules: {},
+  rules: {
+    'brace-style': [2, '1tbs', { allowSingleLine: true }],
+    'comma-dangle': [2, 'always-multiline'],
+    'no-multiple-empty-lines': [2, { max: 2, maxEOF: 1 }],
+    'object-curly-spacing': [2, 'always'],
+    'require-jsdoc': [2, { 'require': {
+      'FunctionDeclaration': true,
+      'MethodDefinition': true,
+      'ClassDeclaration': true
+    } }],
+    'valid-jsdoc': 2,
+  },
 };
