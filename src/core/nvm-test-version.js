@@ -1,13 +1,13 @@
 import nvmInstall from './nvm-install'
 import nvmTest from './nvm-test'
-import logger from '../utils/logger'
+import log from '../utils/log'
 
 export default async function nvmTestVersion (version, dryRun) {
   // install version
-  logger.verbose('nvm install', version)
-  await nvmInstall(version)
+  log.verbose('nvm install', version)
+  foo(await nvmInstall(version))
 
   // test version
-  logger.verbose('nvm test', version)
+  log.verbose('nvm test', version)
   return await nvmTest(version, dryRun)
 }

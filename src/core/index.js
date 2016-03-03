@@ -7,7 +7,7 @@ if (!exists()) {
   process.exit(127) // ENOENT: no such file or directory
 }
 
-export { default as default } from './nvm'
+export { default as nvm } from './nvm'
 export { default as nvmInstall } from './nvm-install'
 export { default as nvmTest } from './nvm-test'
 export { default as nvmTestVersion } from './nvm-test-version'
