@@ -9,11 +9,11 @@
     "start": "babel-node ./src/nvm-test.js",
     "clean": "rimraf lib coverage",
     "prebuild": "npm run clean && eslint ./",
-    "build": "babel src -d lib",
+    "build": "npm run build:lib",
+    "build:lib": "babel src -d lib",
     "postbuild": "npm run test+coverage",
     "test": "mocha --compilers js:babel-core/register --recursive",
-    "coverage": "rimraf coverage && istanbul cover _mocha -- -R spec --compilers js:babel-core/register --recursive",
-    "test+coverage": "npm run test && npm run coverage",
+    "test+coverage": "rimraf coverage && istanbul cover _mocha -- -R spec --compilers js:babel-core/register --recursive",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
