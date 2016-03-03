@@ -1,6 +1,6 @@
 import './commander-option-log'
 import program from 'commander'
-import logger from './utils/logger'
+import log from './utils/log'
 import nvmTestVersion from './commands/nvm-test-version'
 
 program
@@ -14,8 +14,8 @@ program
 // output help if no arguments
 if (!program.args.length) program.help()
 
-logger.set({ level: program.optsLog(), heading: program.name() })
-logger.silly('program', 'options:', program.opts())
+log.set({ level: program.optsLog(), heading: program.name() })
+log.silly('program', 'options:', program.opts())
 
 // get the <version> arguments
 const version = program.args[0]
@@ -24,7 +24,7 @@ const version = program.args[0]
 const dryRun = program.dryRun
 
 // exec for version
-logger.info('nvm test version', version)
+log.info('nvm test version', version)
 nvmTestVersion(version, dryRun)
 
 // then exit with code on resolve and reject

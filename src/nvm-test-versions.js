@@ -1,6 +1,6 @@
 import './commander-option-log'
 import program from 'commander'
-import logger from './utils/logger'
+import log from './utils/log'
 import nvmTestVersions from './commands/nvm-test-versions'
 
 program
@@ -14,8 +14,8 @@ program
 // output help if no arguments
 if (!program.args.length) program.help()
 
-logger.set({ level: program.optsLog(), heading: program.name() })
-logger.silly('program', 'options:', program.opts())
+log.set({ level: program.optsLog(), heading: program.name() })
+log.silly('program', 'options:', program.opts())
 
 // get the [versions...] argument, restablish the correct order
 const versions = program.args.reverse()
@@ -23,7 +23,7 @@ const versions = program.args.reverse()
 // get the --dry-run option
 const dryRun = program.dryRun
 
-logger.verbose('nvm test versions', versions)
+log.verbose('nvm test versions', versions)
 nvmTestVersions(versions, dryRun)
 
 // then exit with code on resolve and reject

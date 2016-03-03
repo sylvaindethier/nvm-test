@@ -1,6 +1,6 @@
 import './commander-option-log'
 import program from 'commander'
-import logger from './utils/logger'
+import log from './utils/log'
 import { version } from '../package'
 
 // option log
@@ -14,5 +14,5 @@ program
 // output help if no arguments
 if (!program.args.length) program.help()
 
-logger.set({ level: program.optsLog(), heading: program.name() })
-logger.silly('program', 'options:', program.opts())
+log.set({ level: program.optsLog(), heading: program.name() })
+log.silly('program', 'options:', program.opts())
