@@ -3,3 +3,4 @@
 .travis*
 test*
 scripts
+!lib
