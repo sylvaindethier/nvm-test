@@ -6,11 +6,12 @@
     "nvm-test": "./bin/nvm-test.js"
   },
   "scripts": {
-    "start": "babel-node ./src/nvm-test.js",
+    "start": "NODE_ENV=development babel-node ./src/nvm-test.js",
     "clean": "rimraf lib coverage",
-    "prebuild": "npm run clean && eslint ./",
+    "lint": "eslint ./",
+    "prebuild": "npm run clean && npm run lint",
     "build": "npm run build:lib",
-    "build:lib": "babel src -d lib",
+    "build:lib": "NODE_ENV=production babel src -d lib",
     "postbuild": "npm run test+coverage",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test+coverage": "rimraf coverage && istanbul cover _mocha -- -R spec --compilers js:babel-core/register --recursive",

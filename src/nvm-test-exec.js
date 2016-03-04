@@ -1,20 +1,20 @@
-import './commander-option-log'
-import program from 'commander'
-import log from './utils/log'
+import log, { logProgram } from './commander-npmlog'
+import { Command } from 'commander'
 import nvmTestVersion from './commands/nvm-test-version'
 
+const program = new Command('nvm-test-exec')
 program
   .version('0.0.1')
   .description('Execute test for a Node version')
   .arguments('<version>')
-  .optionLog() // bug from commander: program.log is always defaultValue
+  .optionLog() // bug from commander ?: program.log is always 'defaultValue'
   .option('-D, --dry-run', 'execute a dry run test')
   .parse(process.argv)
 
 // output help if no arguments
 if (!program.args.length) program.help()
 
-log.set({ level: program.optsLog(), heading: program.name() })
+logProgram(program)
 log.silly('program', 'options:', program.opts())
 
 // get the <version> arguments

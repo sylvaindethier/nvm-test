@@ -1,8 +1,8 @@
-import './commander-option-log'
-import program from 'commander'
-import log from './utils/log'
+import log, { logProgram } from './commander-npmlog'
+import { Command } from 'commander'
 import nvmTestVersions from './commands/nvm-test-versions'
 
+const program = new Command('nvm-test-versions')
 program
   .version('0.0.1')
   .description('Execute test for a list of Node version')
@@ -14,7 +14,7 @@ program
 // output help if no arguments
 if (!program.args.length) program.help()
 
-log.set({ level: program.optsLog(), heading: program.name() })
+logProgram(program)
 log.silly('program', 'options:', program.opts())
 
 // get the [versions...] argument, restablish the correct order
