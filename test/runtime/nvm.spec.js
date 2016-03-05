@@ -1,6 +1,6 @@
 import expect from 'expect'
 import { execSync, ChildProcess } from 'child_process'
-import nvm, {exists, shell} from '../../src/commands/nvm'
+import nvmHook, { nvm, exists, shell } from '../../src/runtime/nvm'
 
 describe('exists', function () {
   it('should be a function', function () {
@@ -38,5 +38,28 @@ describe('nvm', function () {
 
   it('should return a Promise', function () {
     expect(nvm('echo "nvm test" > /dev/null')).toBeA(Promise)
+  })
+
+  it('should reject the Promise on error', function () {
+    return nvm('bad-command 2> /dev/null')
+      .then((code) => {
+        throw new Error('nvm Promise was resolved, it should NOT')
+      })
+      .catch((code) => {
+        expect(code).toNotEqual(0)
+      })
+  })
+
+  it('should resolve the Promise on close', function () {
+    return nvm('nvm --version > /dev/null')
+      .then((code) => {
+        expect(code).toEqual(0)
+      })
+  })
+})
+
+describe('hook nvm', function () {
+  it('should be function', function () {
+    expect(nvmHook).toBeA('function')
   })
 })
