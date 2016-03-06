@@ -8,8 +8,7 @@ import hook from './hook'
  * @param {Object} $hooks - Some hooks ('$pre', '$post', '$error')
  * @return {Promise} - The async Promise nvm install
  */
-function nvmInstall (version = config.version, $hooks) {
-  version = version || ''
+function nvmInstall (version = config.version || '', $hooks) {
   const which = `nvm which ${version} &> /dev/null` // no output, no err
   const install = `nvm install ${version}`
 
