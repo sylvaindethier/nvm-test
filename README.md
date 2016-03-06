@@ -1,8 +1,8 @@
-# NVM test
-> Test using differents Node versions with NVM.
+# nvm-test
+> Test using differents Node versions with nvm.
 
 Extensible `nvm-test` command that runs your tests using differents
-Node versions with NVM
+Node versions with nvm
 
 [npm-url]: https://www.npmjs.org/package/nvm-test
 [npm-image]: https://nodei.co/npm/nvm-test.svg?downloads=true&stars=true
