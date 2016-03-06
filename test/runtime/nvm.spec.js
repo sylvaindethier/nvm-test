@@ -53,7 +53,7 @@ describe('shell', function () {
 
   it('should execute with success', function (done) {
     // close with done function
-    shell().on('close', done)
+    shell('echo "shell test" > /dev/null').on('close', done)
   })
 })
 

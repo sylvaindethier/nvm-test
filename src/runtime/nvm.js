@@ -2,7 +2,7 @@ import { spawn } from 'child_process'
 import { statSync } from 'fs'
 import hook from './hook'
 
-const sh = `${process.env.NVM_DIR}/nvm.sh`
+const bin = process.env.NVM_DIR + '/nvm.sh'
 const options = {
   cwd: process.cwd(),
   env: process.env,
@@ -11,12 +11,12 @@ const options = {
 }
 
 /**
- * Wether or not nvm shell exists
- * @return {Boolean} - Wether or not nvm shell exists
+ * Wether or not nvm exists
+ * @return {Boolean} - Wether or not nvm exists
  */
 function exists () {
   try {
-    return statSync(sh).isFile()
+    return statSync(bin).isFile()
   } catch (e) { return false }
 }
 
@@ -25,10 +25,14 @@ function exists () {
  * @param {String} command - A shell command to spawn
  * @return {ChildProcess} - The spawned nvm command
  */
-function shell (command) {
-  // invoke shell command (-c); source nvm shell before
-  const args = ['-c', `. ${sh}; ( ${command} )`]
-  return spawn(process.env.SHELL, args, options)
+function shell (command = '') {
+  let cmd = `. ${bin}` + (command ? ` && ${command}` : '')
+  // the hole command has to be quoted in Node v5
+  // doing this in version below will fail
+  if (/^v5/.test(process.version)) cmd = `'${cmd}'`
+
+  // invoke shell command (-c)
+  return spawn(process.env.SHELL, ['-c', cmd], options)
 }
 
 /**
