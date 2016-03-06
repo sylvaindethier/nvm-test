@@ -11,4 +11,4 @@ branches:
     - master
 
 # coveralls on success
-after_success: "npm run coveralls"
+after_success: "npm run test+coverage; npm run coveralls"
