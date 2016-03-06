@@ -1,7 +1,7 @@
 # nvm-test
 > Test using differents Node versions with nvm.
 
-Extensible `nvm-test` command that runs your tests using differents
+Extensible (comming soon !) `nvm-test` command that runs your tests using differents
 Node versions with nvm
 
 [npm-url]: https://www.npmjs.org/package/nvm-test
@@ -34,12 +34,13 @@ Instal via npm: `npm install --save-dev nvm-test`.
   * Optional `[version]` argument
 A Node version to use, default from the `.nvmrc` file.
 
-  * Option `-r, --run <command>`
-A test command to run, default from `run` field of `.nvmrc.test.json` file
-or to `npm prune && npm install && npm test`.
+  * Option `-t, --test <command>`
+A test command, default from `test` field of `.nvmrc.test.json` file
+or to `npm test`.
 
   * Option `-d, --dry-run`
-Whether or not to dry run the test, default to `false`.
+Whether or not to dry run the test, default to `false`. For now it will
+just `echo` the test command
 
   * Option `-L, --log <level>`
 A log level, one of [ `error` | `warn` | `info` | `verbose` | `silly` ],
@@ -50,3 +51,8 @@ default to `info`, `silly` when `NODE_ENV=development`.
 Some Node verions to use, default from the one in the `.nvmrc` file.
 
   * Options are the same as `nvm-test-exec` command
+
+## CLI: `nvm-test-<plugin-command>` [options] [arguments]
+  * Comming soon: Further command will be plugable to `nvm-test`
+With such in mind, one can make a `nvm-test-travis` command that will run the
+test according to the `.travis.yml` file

@@ -7,7 +7,7 @@ program
 .version('0.0.1')
 .description('Execute test for a Node version')
 .arguments('[version]')
-.option('-r, --run <command>', 'specify the command to run test')
+.option('-t, --test <command>', 'specify the command test')
 .option('-d, --dry-run', 'execute a dry run test')
 .optionLog() // bug from commander?: program.log is always defaultValue
 .parse(process.argv)
@@ -36,12 +36,12 @@ const $test = {
 
 // get the [version] arguments
 const version = program.args[0]
-// get the --run <command> option
-const run = program.run
+// get the --test <command> option
+const test = program.test
 // get the --dry-run option
 const dryRun = program.dryRun
 
 // nvm test version
-nvmTestVersion(version, run, dryRun, { $install, $test })({ $pre, $error })
+nvmTestVersion(version, test, dryRun, { $install, $test })({ $pre, $error })
 // exit with code on resolve and reject
 .then(process.exit, process.exit)

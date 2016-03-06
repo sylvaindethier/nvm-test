@@ -5,14 +5,14 @@ import hook from './hook'
 /**
  * Run test using a list of Node versions with nvm
  * @param {Array} versions - A list of Node versions to use with nvm
- * @param {String} run - A command that run test
+ * @param {String} test - A test command
  * @param {Boolean} dryRun - Wheter or not to dry run the test
  * @param {Object} $hooks - Some hooks ('$nvmTestVersion', '$testVersion')
  * @return {Number} - The nvmTestVersion result code
  */
 async function nvmTestVersions (
   versions = [config.version],
-  run,
+  test,
   dryRun,
   { $nvmTestVersion, $testVersion } = {}
 ) {
@@ -22,7 +22,7 @@ async function nvmTestVersions (
     let version = versions[i]
     try {
       // await for nvm test version
-      await nvmTestVersion(version, run, dryRun, $nvmTestVersion)($testVersion)
+      await nvmTestVersion(version, test, dryRun, $nvmTestVersion)($testVersion)
     } catch ($code) {
       // set code
       code = $code

@@ -5,19 +5,19 @@ import hook from './hook'
 /**
  * Test using a Node version with nvm
  * @param {String} version - A Node version to use with nvm
- * @param {String} run - A command that run test
+ * @param {String} test - A test command
  * @param {Boolean} dryRun - Wheter or not to dry run the test
  * @param {Object} $hooks - Some hooks ('$pre', '$post', '$error')
  * @return {Promise} - The async Promise nvm test run
  */
 function nvmTest (
   version = config.version || '',
-  run = config.run || 'npm test',
+  test = config.test || 'npm test',
   dryRun = config.dryRun,
   $hooks
 ) {
   const use = `nvm use ${version}`
-  const cmd = dryRun ? `echo "Dry run: ${run}"` : run
+  const cmd = dryRun ? `echo "Dry run: ${test}"` : test
 
   // 'use' version AND 'cmd'
   return nvm(`${use} && ( ${cmd} )`)($hooks)
