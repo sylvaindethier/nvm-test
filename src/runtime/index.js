@@ -1,11 +1,8 @@
 import { exists } from './nvm'
 
-// immediately check if exists, exit otherwise
-if (!exists()) {
-  // eslint-disable-next-line no-console
-  console.error('Please install nvm from http://nvm.sh')
-  process.exit(127) // ENOENT: no such file or directory
-}
+// immediately check if exists, throw error otherwise
+/* istanbul ignore if */
+if (!exists()) throw new Error('Please install from http://nvm.sh')
 
 export { default as config } from './config'
 export { default as nvm } from './nvm'
