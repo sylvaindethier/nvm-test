@@ -11,15 +11,13 @@ import hook from './hook'
  * @return {Promise} - The async Promise nvm test run
  */
 function nvmTest (
-  version = config.version,
-  run = config.run,
+  version = config.version || '',
+  run = config.run || 'npm test',
   dryRun = config.dryRun,
   $hooks
 ) {
-  version = version || ''
-  run = run || 'npm prune && npm install && npm test'
   const use = `nvm use ${version}`
-  const cmd = dryRun ? `echo "Dry run: '${run}'"` : `${run}`
+  const cmd = dryRun ? `echo "Dry run: ${run}"` : run
 
   // 'use' version AND 'cmd'
   return nvm(`${use} && ( ${cmd} )`)($hooks)
