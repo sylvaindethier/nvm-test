@@ -27,8 +27,10 @@ function exists () {
  */
 function shell (command = '') {
   let cmd = `. ${bin}` + (command ? ` && ${command}` : '')
+
   // the hole command has to be quoted in Node v5
-  // doing this in version below will fail
+  // doing this in versions below will fail
+  /* istanbul ignore else: difficult to test */
   if (/^v5/.test(process.version)) cmd = `'${cmd}'`
 
   // invoke shell command (-c)
@@ -54,7 +56,7 @@ function nvm (command) {
     .on('error', /* istanbul ignore next */ (error) => { reject(error.code || 1) })
 
     // resolve if code is 0, reject otherwise
-    .on('close', (code) => { code === 0 ? resolve(code) : reject(code) })
+    .on('close', (code) => { (code === 0 ? resolve : reject)(code) })
   })
 }
 

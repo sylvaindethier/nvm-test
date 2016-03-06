@@ -17,10 +17,6 @@ describe('Node used import', function () {
   it('fs.statSync should exists', function () {
     expect(statSync).toExist()
   })
-
-  it('fs.renameSync should exists', function () {
-    expect(renameSync).toExist()
-  })
 })
 
 describe('exists', function () {
