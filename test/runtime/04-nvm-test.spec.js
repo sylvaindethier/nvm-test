@@ -44,13 +44,4 @@ describe('nvmTest', function () {
       done()
     })
   })
-
-  it('should dry run the test', function (done) {
-    this.timeout(5000)
-    return nvmTest(process.version, undefined, true)
-    .then((code) => {
-      expect(code).toEqual(0)
-      done()
-    })
-  })
 })
