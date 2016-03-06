@@ -31,7 +31,7 @@ function shell (command = '') {
   // the hole command has to be quoted in Node v5
   // doing this in versions below will fail
   /* istanbul ignore next: difficult to test */
-  // if (/^v5/.test(process.version)) cmd = `'${cmd}'`
+  if (/^v5/.test(process.version)) cmd = "'" + cmd + "'"
 
   // invoke shell command (-c)
   return spawn(process.env.SHELL, ['-c', cmd], options)
