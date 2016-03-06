@@ -30,7 +30,7 @@ function shell (command = '') {
 
   // the hole command has to be quoted in Node v5
   // doing this in versions below will fail
-  /* istanbul ignore else: difficult to test */
+  /* istanbul ignore next: difficult to test */
   if (/^v5/.test(process.version)) cmd = `'${cmd}'`
 
   // invoke shell command (-c)
