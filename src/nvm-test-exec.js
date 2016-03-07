@@ -17,31 +17,43 @@ logProgram(program)
 log.silly('program', 'args: %j; opts: %j', program.args, program.opts())
 
 // hooks
-const $pre = (...args) => { log.verbose('nvm test version', ...args) }
-const $error = (code, ...args) => {
-  log.error('nvm test version', 'error code:', code, '; arguments:', ...args)
+const $pre = (version, test, dryRun) => {
+  log.verbose('nvm test version', version, test, dryRun)
+}
+const $error = (code, version) => {
+  log.error('nvm test version', 'error code %s for version', code, version)
 }
 const $install = {
-  $pre: (...args) => { log.verbose('nvm install', ...args) },
-  $error: (code, ...args) => {
-    log.error('nvm install', 'error code:', code, '; arguments:', ...args)
+  $pre: (version) => {
+    log.verbose('nvm install', version)
+  },
+  $error: (code, version) => {
+    log.error('nvm install', 'error code %s for version', code, version)
   },
 }
 const $test = {
-  $pre: (...args) => { log.verbose('nvm test', ...args) },
-  $error: (code, ...args) => {
-    log.error('nvm test', 'error code:', code, '; arguments:', ...args)
+  $pre: (version, test, dryRun) => {
+    log.verbose('nvm test', version, test, dryRun)
+  },
+  $error: (code, version) => {
+    log.error('nvm test', 'error code %s for version', code, version)
   },
 }
 
-// get the [version] arguments
-const version = program.args[0]
-// get the --test <command> option
-const test = program.test
-// get the --dry-run option
-const dryRun = program.dryRun
-
 // nvm test version
-nvmTestVersion(version, test, dryRun, { $install, $test })({ $pre, $error })
+nvmTestVersion(
+  // get the [version] arguments
+  program.args[0],
+
+  // get the --test <command> option
+  program.test,
+
+  // get the --dry-run option
+  program.dryRun,
+
+  // hooks
+  { $install, $test }
+)({ $pre, $error })
+
 // exit with code on resolve and reject
 .then(process.exit, process.exit)

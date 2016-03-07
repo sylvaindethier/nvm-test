@@ -17,25 +17,35 @@ logProgram(program)
 log.silly('program', 'args: %j; opts: %j', program.args, program.opts())
 
 // hooks
-const $pre = (...args) => { log.verbose('nvm test versions', ...args) }
-const $error = (code, ...args) => {
-  log.error('nvm test versions', 'error code:', code, '; arguments:', ...args)
+const $pre = (versions, test, dryRun) => {
+  log.verbose('nvm test versions', versions, test, dryRun)
+}
+const $error = (code) => {
+  log.error('nvm test versions', 'error code', code)
 }
 const $testVersion = {
-  $pre: (...args) => { log.verbose('nvm test version', ...args) },
-  $error: (code, ...args) => {
-    log.error('nvm test version', 'error code:', code, '; arguments:', ...args)
+  $pre: (version, test, dryRun) => {
+    log.verbose('nvm test version', version, test, dryRun)
+  },
+  $error: (code, version) => {
+    log.error('nvm test version', 'error code %s for version', code, version)
   },
 }
 
-// get the [versions...] arguments
-const versions = program.args
-// get the --test <command> option
-const test = program.test
-// get the --dry-run option
-const dryRun = program.dryRun
-
 // nvm test versions
-nvmTestVersions(versions, test, dryRun, { $testVersion })({ $pre, $error })
+nvmTestVersions(
+  // get the [versions...] arguments
+  program.args,
+
+  // get the --test <command> option
+  program.test,
+
+  // get the --dry-run option
+  program.dryRun,
+
+  // hooks
+  { $testVersion }
+)({ $pre, $error })
+
 // then exit with code on resolve and reject
 .then(process.exit, process.exit)
