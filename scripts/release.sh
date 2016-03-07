@@ -9,9 +9,6 @@ script='scripts/release.sh'
 ## run the build
 npm run build
 
-## run nvm test
-./scripts/nvm-test.sh
-
 ## get the current version from package
 current_version=$(node --print "require('./package').version")
 
