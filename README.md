@@ -1,8 +1,13 @@
 # nvm-test
 > Test using differents Node versions with nvm.
 
-Extensible (comming soon !) `nvm-test` command that runs your tests using differents
-Node versions with nvm
+Extensible (comming soon !) `nvm-test` command that runs your tests using
+differents Node versions with nvm
+
+Basiclly it's a command shortcut where `<test-command>` defaults to `npm test`
+```sh
+$ nvm install [versions...] && nvm use [versions...] && <test-command>
+```
 
 [npm-url]: https://www.npmjs.org/package/nvm-test
 [npm-image]: https://nodei.co/npm/nvm-test.svg?downloads=true&stars=true
