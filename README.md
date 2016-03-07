@@ -37,22 +37,27 @@ Instal via npm: `npm install --save-dev nvm-test`.
 
 ## CLI: (default) `nvm-test-exec` [options] [version]
   * Optional `[version]` argument
+
 A Node version to use, default from the `.nvmrc` file.
 
   * Option `-t, --test <command>`
+
 A test command, default from `test` field of `.nvmrc.test.json` file
 or to `npm test`.
 
   * Option `-d, --dry-run`
+
 Whether or not to dry run the test, default to `false`. For now it will
 just `echo` the test command
 
   * Option `-L, --log <level>`
+
 A log level, one of [ `error` | `warn` | `info` | `verbose` | `silly` ],
 default to `info`, `silly` when `NODE_ENV=development`.
 
 ## CLI: `nvm-test-versions` [options] [versions...]
   * Optional `[versions...]` arguments
+
 Some Node verions to use, default from the one in the `.nvmrc` file.
 
   * Options are the same as `nvm-test-exec` command
