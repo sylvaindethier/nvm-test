@@ -1,5 +1,6 @@
 import { spawn } from 'child_process'
 import { statSync } from 'fs'
+import semver from 'semver'
 import hook from './hook'
 
 const bin = process.env.NVM_DIR + '/nvm.sh'
@@ -26,15 +27,17 @@ function exists () {
  * @return {ChildProcess} - The spawned nvm command
  */
 function shell (command = '') {
-  let cmd = `. ${bin}` + (command ? ` && ${command}` : '')
+  // source (period command) nvm before running the command
+  const cmd = `. ${bin}` + (command ? ` && ${command}` : '')
 
-  // the hole command has to be quoted in Node v5
-  // doing this in versions below will fail
+  // the hole command has to be quoted starting Node v5.7.0
+  // doing so in versions under <=v5.6.0 will fail
   /* istanbul ignore next: difficult to test */
-  if (/^v5/.test(process.version)) cmd = "'" + cmd + "'"
+  const cmdfix = semver.satisfies(process.version, '>=5.7.0') ? `'${cmd}'` : cmd
 
-  // invoke shell command (-c)
-  return spawn(process.env.SHELL, ['-c', cmd], options)
+  // invoke fixed shell command (-c)
+  const args = ['-c', cmdfix]
+  return spawn(process.env.SHELL, args, options)
 }
 
 /**
