@@ -1,4 +1,4 @@
-module.exports = {
+{
   env: {
     // browser: true, // browser global variables.
     node: true, // Node.js global variables and Node.js scoping.
@@ -27,4 +27,4 @@ module.exports = {
   rules: {
     'max-len': [1, 100, 4],
   },
-};
+}

@@ -14,10 +14,12 @@ $ nvm install [versions...] && nvm use [versions...] && <test-command>
 [npm-version-image]: https://img.shields.io/npm/v/nvm-test.svg?style=flat-square
 [build-url]: https://travis-ci.org/sylvaindethier/nvm-test
 [build-image]: https://img.shields.io/travis/sylvaindethier/nvm-test/master.svg?style=flat-square
-[coverage-url]: https://coveralls.io/r/sylvaindethier/nvm-test?branch=master
-[coverage-image]: https://img.shields.io/coveralls/sylvaindethier/nvm-test.svg?style=flat-square
-[deps-image]: https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square
+[codeclimate-url]: https://codeclimate.com/github/sylvaindethier/nvm-test
+[codeclimate-image]: https://img.shields.io/codeclimate/github/sylvaindethier/nvm-test.svg?style=flat-square
+[coverage-url]: https://codeclimate.com/github/sylvaindethier/nvm-test/coverage
+[coverage-image]: https://img.shields.io/codeclimate/coverage/github/sylvaindethier/nvm-test.svg?style=flat-square
 [deps-url]: https://david-dm.org/sylvaindethier/nvm-test#info=dependencies
+[deps-image]: https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square
 [devDeps-image]: https://img.shields.io/david/dev/sylvaindethier/nvm-test.svg?style=flat-square
 [devDeps-url]: https://david-dm.org/sylvaindethier/nvm-test#info=devDependencies
 
@@ -25,11 +27,13 @@ $ nvm install [versions...] && nvm use [versions...] && <test-command>
 [![NPM Package Stats][npm-image]][npm-url]
 
 [![NPM Version][npm-version-image]][npm-url]
+[![Build Status][build-image]][build-url]
+[![Code Climate][codeclimate-image]][codeclimate-url]
+[![Coverage Status][coverage-image]][coverage-url]
+
 [![Dependencies][deps-image]][deps-url]
 [![Dev Dependencies][devDeps-image]][devDeps-url]
 
-[![Build Status][build-image]][build-url]
-[![Coverage Status][coverage-image]][coverage-url]
 
 
 ## Install

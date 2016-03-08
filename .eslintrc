@@ -1,4 +1,4 @@
-module.exports = {
+{
   root: true,
 
   env: {
@@ -78,4 +78,4 @@ module.exports = {
     } }],
     'valid-jsdoc': 2,
   },
-};
+}

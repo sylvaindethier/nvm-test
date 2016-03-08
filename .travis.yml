@@ -10,5 +10,7 @@ branches:
   only:
     - master
 
-# coveralls on success
-after_success: "npm run test+coverage; npm run coveralls"
+# codeclimate after script
+after_script:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info
