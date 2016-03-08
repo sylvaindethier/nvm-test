@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('../lib/nvm-test-versions')
+require('../dist/nvm-test-versions')

@@ -1,6 +1,12 @@
-.babelrc
-.eslint*
-.travis*
-test*
+# Dot files
+.*
+!.npmignore
+
+# Sources
+src
+
+# Tests
+test
+
+# Misc
 scripts
-!lib
