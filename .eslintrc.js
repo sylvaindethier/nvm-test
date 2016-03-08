@@ -74,7 +74,7 @@ module.exports = {
     'require-jsdoc': [2, { 'require': {
       'FunctionDeclaration': true,
       'MethodDefinition': true,
-      'ClassDeclaration': true
+      'ClassDeclaration': true,
     } }],
     'valid-jsdoc': 2,
   },
