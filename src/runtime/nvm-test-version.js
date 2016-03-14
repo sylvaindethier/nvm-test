@@ -7,20 +7,21 @@ import hook from './hook'
  * @param {String} version - A Node version to use with nvm
  * @param {String} test - A test command
  * @param {Boolean} dryRun - Wheter or not to dry run the test
- * @param {Object} $hooks - Some hooks ('$nvmInstall', '$nvmTest', '$install', '$test')
- * @return {Promise} - The await nvmTest promise
+ * @param {Object} hooks.nvmInstallHooks - Some nvm install hooks
+ * @param {Object} hooks.nvmTestHooks - Some nvm test hooks
+ * @return {Promise} - The (await hook) nvmTest Promise
  */
 async function nvmTestVersion (
   version,
   test,
   dryRun,
-  { $nvmInstall, $nvmTest, $install, $test } = {}
+  { nvmInstallHooks, nvmTestHooks } = {}
 ) {
   // await for nvm install
-  await nvmInstall(version, $nvmInstall)($install)
+  await nvmInstall(version, nvmInstallHooks)
 
-  // await for nvm test
-  return await nvmTest(version, test, dryRun, $nvmTest)($test)
+  // await and return for nvm test
+  return await nvmTest(version, test, dryRun, nvmTestHooks)
 }
 
 // hook nvmTestVersion

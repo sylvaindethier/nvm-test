@@ -5,15 +5,18 @@ import hook from './hook'
 /**
  * Install a Node version with nvm if needed
  * @param {String} version - A Node version to install with nvm
- * @param {Object} $hooks - Some hooks ('$pre', '$post', '$error')
- * @return {Promise} - The async Promise nvm install
+ * @param {Object} hooks.nvmHooks - Some nvm hooks
+ * @return {Promise} - The nvm (hook) Promise
  */
-function nvmInstall (version = config.version || '', $hooks) {
+function nvmInstall (
+  version = config.version || '',
+  { nvmHooks } = {}
+) {
   const which = `nvm which ${version} &> /dev/null` // no output, no err
   const install = `nvm install ${version}`
 
   // 'which' version (detect) OR 'install' version
-  return nvm(`${which} || ${install}`)($hooks)
+  return nvm(`${which} || ${install}`, nvmHooks)
 }
 
 // hook nvmInstall

@@ -10,6 +10,9 @@ const options = {
   stdio: 'inherit',
   shell: process.env.SHELL || true,
 }
+// 'shell' option introduced in Node v5.7.0
+const shellOption = semver.satisfies(process.version, '>=5.7.0')
+const sh = process.env.SHELL || 'sh'
 
 /**
  * Wether or not nvm exists
@@ -30,14 +33,13 @@ function shell (command = '') {
   // source (period command) nvm before running the command
   const cmd = `. ${bin}` + (command ? ` && ${command}` : '')
 
-  // the hole command has to be quoted starting Node v5.7.0
-  // doing so in versions under <=v5.6.0 will fail
-  /* istanbul ignore next: difficult to test */
-  const cmdfix = semver.satisfies(process.version, '>=5.7.0') ? `'${cmd}'` : cmd
+  // the hole command has to be quoted starting w/ shell option
+  /* istanbul ignore next: depends on process.version */
+  const shcmd = shellOption ? `'${cmd}'` : cmd
 
-  // invoke fixed shell command (-c)
-  const args = ['-c', cmdfix]
-  return spawn(process.env.SHELL, args, options)
+  // invoke shell command (-c)
+  const args = ['-c', shcmd]
+  return spawn(sh, args, options)
 }
 
 /**
@@ -45,7 +47,7 @@ function shell (command = '') {
  * - It will resolve on 'close' code not equals 0
  * - It will reject on 'error' and 'close' code equals 0
  * @param {String} command - A nvm shell command
- * @return {Promise} - The nvm shell command Promise
+ * @return {Promise} - The nvm shell Promise
  */
 function nvm (command) {
   return new Promise((resolve, reject) => {
