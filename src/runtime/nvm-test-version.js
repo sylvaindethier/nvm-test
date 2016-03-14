@@ -1,5 +1,6 @@
 import nvmInstall from './nvm-install'
 import nvmTest from './nvm-test'
+import { config } from '.'
 import hook from './hook'
 
 /**
@@ -12,9 +13,9 @@ import hook from './hook'
  * @return {Promise} - The (await hook) nvmTest Promise
  */
 async function nvmTestVersion (
-  version,
-  test,
-  dryRun,
+  version = config.version,
+  test = config.test,
+  dryRun = config.dryRun,
   { nvmInstallHooks, nvmTestHooks } = {}
 ) {
   // await for nvm install

@@ -1,5 +1,5 @@
 import nvmTestVersion from './nvm-test-version'
-import config from './config'
+import { config } from '.'
 import hook from './hook'
 
 /**
@@ -12,8 +12,8 @@ import hook from './hook'
  */
 async function nvmTestVersions (
   versions = [config.version],
-  test,
-  dryRun,
+  test = config.test,
+  dryRun = config.dryRun,
   { nvmTestVersionHooks } = {}
 ) {
   let code = 0
