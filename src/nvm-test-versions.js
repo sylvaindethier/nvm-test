@@ -1,6 +1,6 @@
 import log, { logProgram } from './commander-npmlog'
 import { Command } from 'commander'
-import { nvmTestVersions } from './runtime'
+import { nvmTestVersions, Hooks } from './runtime'
 
 const program = new Command('nvm-test-versions')
 program
@@ -17,35 +17,27 @@ logProgram(program)
 log.silly('program', 'args: %j; opts: %j', program.args, program.opts())
 
 // hooks
-const $pre = (versions, test, dryRun) => {
-  log.verbose('nvm test versions', versions, test, dryRun)
-}
-const $error = (code) => {
+const pre = (versions) => { log.info('nvm test versions', versions) }
+const error = (code) => {
   log.error('nvm test versions', 'error code', code)
 }
-const $testVersion = {
-  $pre: (version, test, dryRun) => {
-    log.verbose('nvm test version', version, test, dryRun)
-  },
-  $error: (code, version) => {
+const nvmTestVersionHooks = new Hooks({
+  pre: (...args) => { log.verbose('nvm test version', args) },
+  error: (code, version) => {
     log.error('nvm test version', 'error code %s for version', code, version)
   },
-}
+})
+const hooks = new Hooks({ pre, error, nvmTestVersionHooks })
+
+// get the [versions...] arguments
+const versions = program.args
+// get the --test <command> option
+const test = program.test
+// get the --dry-run option
+const dryRun = program.dryRun
 
 // nvm test versions
-nvmTestVersions(
-  // get the [versions...] arguments
-  program.args,
-
-  // get the --test <command> option
-  program.test,
-
-  // get the --dry-run option
-  program.dryRun,
-
-  // hooks
-  { $testVersion }
-)({ $pre, $error })
+nvmTestVersions(versions, test, dryRun, hooks)
 
 // then exit with code on resolve and reject
 .then(process.exit, process.exit)
