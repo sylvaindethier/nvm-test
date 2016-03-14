@@ -1,30 +1,36 @@
+import Hooks from './Hooks'
+
 /**
- * Make a function hookable ('pre', 'post', 'error')
+ * Makes a function hookable
  * @param {Function} fn - A function to hook
- * @return {Function} The promise to be called with hooks ('$pre', '$post', '$error')
+ * @return {Function} - The hookable function
  */
 export default function hook (fn) {
-  if (typeof fn !== 'function') throw new TypeError('Expected a function')
-  return function (...args) {
-    return async function ({ $pre, $post, $error } = {}) {
-      try {
-        // $pre hook
-        if (typeof $pre === 'function') $pre(...args)
+  return async function hookable (...args) {
+    // remove lastest hooks from args if any
+    const lastest = args[args.length - 1]
+    const hooks = lastest instanceof Hooks ? args.pop() : new Hooks()
+    // get 'pre', 'post', 'error', and function hooks
+    const { pre, post, error, ...fnHooks } = hooks
 
-        // await for function
-        const ret = await fn(...args)
+    try {
+      // pre hook
+      if (typeof pre === 'function') pre(...args)
 
-        // $post hook
-        if (typeof $post === 'function') $post(ret, ...args)
+      // await for function (call w/ function hooks)
+      const value = await fn(...args.concat(fnHooks))
 
-        return ret
-      } catch (e) {
-        // $error hook
-        if (typeof $error === 'function') $error(e, ...args)
+      // post hook
+      if (typeof post === 'function') post(value, ...args)
 
-        // re throw error
-        throw e
-      }
+      // return value from function
+      return value
+    } catch (e) {
+      // error hook
+      if (typeof error === 'function') error(e, ...args)
+
+      // re-throw
+      throw e
     }
   }
 }
