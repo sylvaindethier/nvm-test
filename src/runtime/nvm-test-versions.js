@@ -11,7 +11,7 @@ import { hook } from './hooks'
  * @return {Number} - The process exit code
  */
 async function nvmTestVersions (
-  versions = [config.version],
+  versions = [],
   test = config.test,
   dryRun = config.dryRun,
   { nvmTestVersionHooks } = {}

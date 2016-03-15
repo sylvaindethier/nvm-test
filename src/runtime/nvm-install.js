@@ -1,5 +1,4 @@
 import nvm from './nvm'
-import config from './config'
 import { hook } from './hooks'
 
 /**
@@ -9,7 +8,7 @@ import { hook } from './hooks'
  * @return {Promise} - The nvm (hook) Promise
  */
 function nvmInstall (
-  version = config.version,
+  version = '',
   { nvmHooks } = {}
 ) {
   const which = `nvm which ${version} &> /dev/null` // no output, no err

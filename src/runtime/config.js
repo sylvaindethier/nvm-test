@@ -2,7 +2,6 @@ import { join } from 'path'
 
 // defaults
 const defaults = {
-  version: '',
   test: 'npm test',
   dryRun: false,
 }

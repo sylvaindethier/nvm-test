@@ -13,7 +13,7 @@ import { hook } from './hooks'
  * @return {Promise} - The (await hook) nvmTest Promise
  */
 async function nvmTestVersion (
-  version = config.version,
+  version = '',
   test = config.test,
   dryRun = config.dryRun,
   { nvmInstallHooks, nvmTestHooks } = {}

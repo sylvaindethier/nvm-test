@@ -11,7 +11,7 @@ import { hook } from './hooks'
  * @return {Promise} - The nvm (hook) Promise
  */
 function nvmTest (
-  version = config.version,
+  version = '',
   test = config.test,
   dryRun = config.dryRun,
   { nvmHooks } = {}
