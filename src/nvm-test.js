@@ -1,17 +1,18 @@
-import log, { logProgram } from './commander-npmlog'
+import log from './commander/npmlog'
+import './commander/options'
 import { Command } from 'commander'
-import { name, version } from '../package'
+import pkg from '../package'
 
-const program = new Command(name)
+const program = new Command(pkg.name)
 program
-.version(version)
+.version(pkg.version)
 .command('exec [version]', 'execute test for a Node version', { isDefault: true })
 .command('versions [versions...]', 'execute test for a list of Node version')
-.optionLog()
+.optionLog({ defaultValue: log.level })
 .parse(process.argv)
 
-// initialize log for program
-logProgram(program)
+// initialize log from program
+log.fromProgram(program)
 log.silly('program', 'args: %j; opts: %j', program.args, program.opts())
 
 // output help if no arguments
