@@ -1,6 +1,6 @@
 import nvmInstall from './nvm-install'
 import nvmTest from './nvm-test'
-import { config } from '.'
+import config from './config'
 import hook from './hook'
 
 /**

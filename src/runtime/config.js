@@ -1,5 +1,4 @@
 import { join } from 'path'
-import { readFileSync } from 'fs'
 
 // defaults
 const defaults = {
@@ -9,19 +8,14 @@ const defaults = {
 }
 
 const cwd = process.cwd()
-const rcFile = join(cwd, '.nvmrc')
-const rcFileTest = join(cwd, '.nvmrc.test')
+const file = join(cwd, '.nvmrc.test')
 
-let rc, rcTest
-try {
-  // can not require rcFile as it's a text file
-  rc = { version: readFileSync(rcFile, 'utf8').trim() }
-} catch (e) {} // eslint-disable-line no-empty
+let rc
 try {
   // needed to be resolved at runtime, using require vs. import
-  rcTest = require(rcFileTest)
+  rc = require(file)
 } catch (e) {} // eslint-disable-line no-empty
 
-// merge config files
-const config = Object.assign({}, defaults, rc, rcTest)
+// merge config
+const config = Object.assign({}, defaults, rc)
 export default config

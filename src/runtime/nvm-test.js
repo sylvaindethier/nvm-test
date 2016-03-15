@@ -1,5 +1,5 @@
 import nvm from './nvm'
-import { config } from '.'
+import config from './config'
 import hook from './hook'
 
 /**

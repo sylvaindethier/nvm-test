@@ -1,5 +1,5 @@
 import nvmTestVersion from './nvm-test-version'
-import { config } from '.'
+import config from './config'
 import hook from './hook'
 
 /**
