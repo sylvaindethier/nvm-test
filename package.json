@@ -13,6 +13,7 @@
     "build": "npm run build:dist",
     "build:dist": "NODE_ENV=production babel src -d dist",
     "test": "npm run coverage",
+    "test:only": "mocha --compilers js:babel-core/register --recursive",
     "coverage": "istanbul cover _mocha -- -R spec --compilers js:babel-core/register --recursive",
     "prepublish": "npm run build"
   },
