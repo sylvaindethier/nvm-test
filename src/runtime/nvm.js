@@ -1,7 +1,7 @@
 import { spawn } from 'child_process'
 import { statSync } from 'fs'
 import semver from 'semver'
-import hook from './hook'
+import { hook } from './hooks'
 
 const bin = process.env.NVM_DIR + '/nvm.sh'
 const options = {

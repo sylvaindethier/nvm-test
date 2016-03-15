@@ -1,6 +1,6 @@
 import nvm from './nvm'
 import config from './config'
-import hook from './hook'
+import { hook } from './hooks'
 
 /**
  * Install a Node version with nvm if needed

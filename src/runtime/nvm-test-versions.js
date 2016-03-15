@@ -1,6 +1,6 @@
 import nvmTestVersion from './nvm-test-version'
 import config from './config'
-import hook from './hook'
+import { hook } from './hooks'
 
 /**
  * Run test using a list of Node versions with nvm
