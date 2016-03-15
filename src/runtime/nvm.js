@@ -8,11 +8,11 @@ const options = {
   cwd: process.cwd(),
   env: process.env,
   stdio: 'inherit',
-  shell: process.env.SHELL || true,
+  shell: process.env.SHELL,
 }
+
 // 'shell' option introduced in Node v5.7.0
 const shellOption = semver.satisfies(process.version, '>=5.7.0')
-const sh = process.env.SHELL || 'sh'
 
 /**
  * Wether or not nvm exists
@@ -39,7 +39,7 @@ function shell (command = '') {
 
   // invoke shell command (-c)
   const args = ['-c', shcmd]
-  return spawn(sh, args, options)
+  return spawn(process.env.SHELL, args, options)
 }
 
 /**
