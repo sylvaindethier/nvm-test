@@ -38,7 +38,7 @@ describe('nvmTest', function () {
 
   it('should execute an other test command', function (done) {
     this.timeout(5000)
-    return nvmTest(process.version, 'npm --version', true)
+    return nvmTest(process.version, 'npm --version', true, {})
     .then((code) => {
       expect(code).toEqual(0)
       done()

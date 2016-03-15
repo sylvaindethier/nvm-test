@@ -6,12 +6,20 @@ describe('nvmTestVersions', function () {
     expect(nvmTestVersions).toExist().toBeA('function')
   })
 
-  it('should reject with no Node version', function (done) {
+  it('should resolve with no Node version', function (done) {
     this.timeout(20000)
     return nvmTestVersions()
-    .then(() => { throw new Error('nvmTestVersions was resolved, it should NOT') })
-    .catch((code) => {
-      expect(code).toNotEqual(0)
+    .then((code) => {
+      expect(code).toEqual(0) // version not found (nvm)
+      done()
+    })
+  })
+
+  it('should return error code with an invlid Node version', function (done) {
+    this.timeout(20000)
+    return nvmTestVersions(['foo'])
+    .then((code) => {
+      expect(code).toEqual(3) // version not found (nvm)
       done()
     })
   })
@@ -19,7 +27,7 @@ describe('nvmTestVersions', function () {
   it('should resolve with a valid Node version', function (done) {
     this.timeout(20000)
     // need to dry run here, or endless loop
-    return nvmTestVersions([process.version], undefined, true, {})
+    return nvmTestVersions([process.version], 'npm --version', true, {})
     .then((code) => {
       expect(code).toEqual(0)
       done()

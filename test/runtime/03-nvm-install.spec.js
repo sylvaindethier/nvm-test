@@ -28,7 +28,7 @@ describe('nvmInstall', function () {
 
   it('should resolve with a valid Node version', function (done) {
     this.timeout(5000)
-    return nvmInstall(process.version)
+    return nvmInstall(process.version, {})
     .then((code) => {
       expect(code).toEqual(0)
       done()
