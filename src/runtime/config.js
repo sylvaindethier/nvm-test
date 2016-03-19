@@ -2,8 +2,12 @@ import { join } from 'path'
 
 // defaults
 const defaults = {
+  // install: detect version silently, install version otherwise
+  install: 'nvm which $version &> /dev/null || nvm install $version',
+  // test: just 'npm test'
   test: 'npm test',
   dryRun: false,
+  commands: [],
 }
 
 const cwd = process.cwd()
