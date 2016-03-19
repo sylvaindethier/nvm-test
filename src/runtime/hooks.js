@@ -1,10 +1,13 @@
+const isFunction = (fn) => (typeof fn === 'function')
+
 /**
  * Hooks
  */
 export default class Hooks {
   /**
+   * Create a Hooks
    * @constructor
-   * @param {Object} hooks - Some hooks
+   * @param {Object} [hooks = {}] - Some hooks
    */
   constructor (hooks = {}) {
     // assign hooks to this
@@ -12,20 +15,18 @@ export default class Hooks {
   }
 }
 
-const isFunction = (fn) => (typeof fn === 'function')
-
 /**
  * Makes a function hookable
  * @param {Function} fn - A function to hook
  * @return {Function} - The hookable function
  */
 export function hook (fn) {
-  if (!isFunction(fn)) throw new TypeError('Argument must be Function')
+  if (!isFunction(fn)) throw new TypeError(`Argument must be function, ${typeof fn} given`)
 
   return async function (...args) {
-    // remove lastest hooks from args if any
-    const lastest = args[args.length - 1]
-    const hooks = lastest instanceof Hooks ? args.pop() : new Hooks()
+    // remove latest hooks from args if any
+    const latest = args[args.length - 1]
+    const hooks = latest instanceof Hooks ? args.pop() : new Hooks()
     // get 'pre', 'post', 'error', and function hooks
     const { pre, post, error, ...fnHooks } = hooks
 
