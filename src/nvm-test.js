@@ -1,19 +1,31 @@
-import log from './commander/npmlog'
-import './commander/options'
-import { Command } from 'commander'
-import pkg from '../package'
+import yargs from 'yargs'
+import { config } from './runtime'
+import { buildUsage, patchCommand } from './utils'
 
-const program = new Command(pkg.name)
-program
-.version(pkg.version)
-.command('exec [version]', 'execute test for a Node version', { isDefault: true })
-.command('versions [versions...]', 'execute test for a list of Node version')
-.optionLog({ defaultValue: log.level })
-.parse(process.argv)
+// commands had to be required
+const cmd = require('./command')
+const usage = `Usage:\n` + buildUsage(cmd) + buildUsage({
+  command: '<command>', desc: 'Execute external command',
+})
 
-// initialize log from program
-log.fromProgram(program)
-log.silly('program', 'args: %j; opts: %j', program.args, program.opts())
+yargs
+  // version from package
+  .version().alias('v', 'version')
+  .help('h').alias('h', 'help')
+  .usage(usage, cmd.options)
+  // all options are global
+  .global(Object.keys(cmd.options))
+  // set locale to 'en' for now, TODO: use y18n
+  .locale('en')
 
-// output help if no arguments
-if (!program.args.length) program.help()
+// add config commands
+config.commands.forEach((command) => {
+  const cmd = require(`nvm-test-command-${command}`)
+  yargs.command(patchCommand(cmd))
+})
+
+// get argv
+const argv = yargs.argv
+
+// handle command
+cmd.handler(argv)
