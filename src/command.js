@@ -27,6 +27,7 @@ const builder = {
   'L': {
     alias: 'log-level',
     desc: 'Set the log level',
+    type: 'string',
     // choices: Object.keys(log.levels),
     // default: log.level,
   },
@@ -39,7 +40,7 @@ const handler = (argv) => {
   const { install, test, dryRun, logLevel } = argv
 
   log.level = logLevel
-  log.silly('versions command', 'argv:', argv)
+  log.silly('command', 'argv:', argv)
 
   // define hooks
   const pre = (versions, { install, test, dryRun }) => {

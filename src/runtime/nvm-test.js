@@ -20,10 +20,8 @@ function nvmTest (
   // apply dryRun if required, just echo the command for now
   if (dryRun) test = `echo "Dry run: ${test}"`
 
-  // raw command is nvm-use && test
-  const cmd = `nvm use $version && ( ${test} )`
-  // replace $version
-  const command = cmd.replace(/\$version/g, version)
+  // raw command is test, replace $version
+  const command = test.replace(/\$version/g, version)
   return nvm(command, nvmHooks)
 }
 

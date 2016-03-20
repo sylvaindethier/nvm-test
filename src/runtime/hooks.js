@@ -21,7 +21,7 @@ export default class Hooks {
  * @return {Function} - The hookable function
  */
 export function hook (fn) {
-  if (!isFunction(fn)) throw new TypeError(`Argument must be function, ${typeof fn} given`)
+  if (!isFunction(fn)) throw new TypeError('Argument must be a function')
 
   return async function (...args) {
     // remove latest hooks from args if any

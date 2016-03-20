@@ -16,10 +16,8 @@ function nvmInstall (
   { install = config.install } = {},
   { nvmHooks } = {}
 ) {
-  // raw command is install
-  const cmd = install
-  // replace $version
-  const command = cmd.replace(/\$version/g, version)
+  // raw command is install, replace $version
+  const command = install.replace(/\$version/g, version)
   return nvm(command, nvmHooks)
 }
 
