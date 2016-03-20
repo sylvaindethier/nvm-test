@@ -26,7 +26,7 @@ function exists () {
 
 /**
  * Spawn a shell command with nvm shell
- * @param {String} command - A shell command to spawn
+ * @param {String} [command = ''] - A shell command to spawn
  * @return {ChildProcess} - The spawned nvm command
  */
 function shell (command = '') {
@@ -46,7 +46,7 @@ function shell (command = '') {
  * Process a nvm shell command as a Promise
  * - It will resolve on 'close' code not equals 0
  * - It will reject on 'error' and 'close' code equals 0
- * @param {String} command - A nvm shell command
+ * @param {String} [command] - A nvm shell command
  * @return {Promise} - The nvm shell Promise
  */
 function nvm (command) {

@@ -1,12 +1,20 @@
 # nvm-test
-> Test using differents Node versions with nvm.
+> Test using different Node versions with nvm.
 
-Extensible (comming soon !) `nvm-test` command that runs your tests using
-differents Node versions with nvm
+Configurable & Extensible `npm test` using different Node versions with nvm.
 
-Basiclly it's a command shortcut where `<test-command>` defaults to `npm test`
 ```sh
-$ nvm install [versions...] && nvm use [versions...] && <test-command>
+Usage:
+  nvm-test [versions] [options]  Test using some Node versions
+  nvm-test <command>  [options]  Execute external command
+
+Options:
+  -h, --help       Show help                                           [boolean]
+  -i, --install    Specify the install command                          [string]
+  -t, --test       Specify the test command                             [string]
+  -D, --dry-run    Dry run the test                                    [boolean]
+  -L, --log-level  Set the log level                                    [string]
+  -v, --version    Show version number                                 [boolean]
 ```
 
 [npm-url]: https://www.npmjs.org/package/nvm-test
@@ -35,38 +43,80 @@ $ nvm install [versions...] && nvm use [versions...] && <test-command>
 [![Dev Dependencies][devDeps-image]][devDeps-url]
 
 
-
 ## Install
-Instal via npm: `npm install --save-dev nvm-test`.
+Prefer global install:
+**`npm install nvm-test -g`**
 
-## CLI: (default) `nvm-test-exec` [options] [version]
-  * Optional `[version]` argument
+Or simply use as per project dev dependencies:
+**`npm install --save-dev nvm-test`**
 
-A Node version to use, default from the `.nvmrc` file.
+## Usage:
+  * **nvm-test [versions] [options]**
 
-  * Option `-t, --test <command>`
+Test using some Node versions, `stable` and `v4` here:
+`nvm-test stable v4`
 
-A test command, default from `test` field of `.nvmrc.test.json` file
-or to `npm test`.
+Test using Node version from `.nvmrc` file:
+`nvm-test`
 
-  * Option `-d, --dry-run`
+  * **nvm-test <command> [options]**
 
-Whether or not to dry run the test, default to `false`. For now it will
-just `echo` the test command
+Execute external <command>.
+Which therefore must be available and installed in your project.
 
-  * Option `-L, --log <level>`
+For example install the Travis `nvm-test` command:
+`npm install nvm-test-command-travis`
 
-A log level, one of [ `error` | `warn` | `info` | `verbose` | `silly` ],
-default to `info`, `silly` when `NODE_ENV=development`.
+Add the external command in your `.nvmrc.test.js` file:
+```json
+{
+  "commands": ["travis"]
+}
+```
 
-## CLI: `nvm-test-versions` [options] [versions...]
-  * Optional `[versions...]` arguments
+And run the test using Node versions specified in your `.travis.yml` file:
+`nvm-test travis`
 
-Some Node verions to use, default from the one in the `.nvmrc` file.
+## Options:
+  * **-h, --help**
 
-  * Options are the same as `nvm-test-exec` command
+Show help:
+`nvm-test -h` or `nvm-test --help`
 
-## CLI: `nvm-test-<plugin-command>` [options] [arguments]
-  * Comming soon: Further command will be plugable to `nvm-test`
-With such in mind, one can make a `nvm-test-travis` command that will run the
-test according to the `.travis.yml` file
+Show external <command> help:
+`nvm-test <command> -h` or `nvm-test <command> --help`
+
+> Note about the `install` and `test` options: any `$version` in the command
+string is replaced by the specified version.
+
+  * **-i, --install**
+
+Specify the install command:
+`nvm-test -i "nvm install $version"` or `nvm-test --install "nvm install $version"`
+
+Default: `nvm which $version &> /dev/null || nvm install $version`
+
+The Node version to be tested will be installed if required.
+
+  * **-t, --test**
+
+Specify the test command:
+`nvm-test -t "npm test"` or `nvm-test --test ""`
+
+Default: `nvm use $version && ( npm test )`
+
+  * **-D, --dry-run**
+Dry run the test (just echo the `test` command option):
+`nvm-test -D` or `nvm-test --dry-run`
+
+  * **-L, --log-level**
+Set the log level:
+`nvm-test -L info` or `nvm-test --log-level info`
+
+Can be one of: `silent`, `error`, `warn`, `info`, `verbose`, or `silly`
+
+Default: `info`, `silly` in w/ `NODE_ENV=development`
+
+  * **-v, --version**
+Show `nvm-test` version number:
+`nvm-test -v` or `nvm-test --version`

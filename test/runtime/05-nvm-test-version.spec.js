@@ -19,7 +19,20 @@ describe('nvmTestVersion', function () {
   it('should resolve with a valid Node version', function (done) {
     this.timeout(20000)
     // need to dry run here, or endless loop
-    return nvmTestVersion(process.version, undefined, true, {})
+    return nvmTestVersion(process.version, { dryRun: true })
+    .then((code) => {
+      expect(code).toEqual(0)
+      done()
+    })
+  })
+
+  it('should execute others install and test commands', function (done) {
+    this.timeout(20000)
+    // need to dry run here, or endless loop
+    return nvmTestVersion(process.version, {
+      install: 'nvm which $version > /dev/null',
+      test: 'npm --version > /dev/null',
+    }, {})
     .then((code) => {
       expect(code).toEqual(0)
       done()

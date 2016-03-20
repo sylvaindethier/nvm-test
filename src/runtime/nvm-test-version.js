@@ -5,24 +5,26 @@ import { hook } from './hooks'
 
 /**
  * Run test using a Node version via nvm
- * @param {String} version - A Node version to use with nvm
- * @param {String} test - A test command
- * @param {Boolean} dryRun - Wheter or not to dry run the test
- * @param {Object} hooks.nvmInstallHooks - Some nvm install hooks
- * @param {Object} hooks.nvmTestHooks - Some nvm test hooks
+ * @param {String} [version = ''] - A Node version to use with nvm
+ * @param {Object} [options = {}] - Some options
+ * @param {String} [options.install = config.install]- The install command
+ * @param {String} [options.test = config.test]- The test command
+ * @param {Boolean} [options.dryRun = config.dryRun] - Wheter or not to dry run the test
+ * @param {Object} [hooks = {}] - Some hooks
+ * @param {Object} [hooks.nvmInstallHooks] - Some nvm install hooks
+ * @param {Object} [hooks.nvmTestHooks] - Some nvm test hooks
  * @return {Promise} - The (await hook) nvmTest Promise
  */
 async function nvmTestVersion (
   version = '',
-  test = config.test,
-  dryRun = config.dryRun,
+  { install = config.install, test = config.test, dryRun = config.dryRun } = {},
   { nvmInstallHooks, nvmTestHooks } = {}
 ) {
   // await for nvm install
-  await nvmInstall(version, nvmInstallHooks)
+  await nvmInstall(version, { install }, nvmInstallHooks)
 
   // await and return for nvm test
-  return await nvmTest(version, test, dryRun, nvmTestHooks)
+  return await nvmTest(version, { test, dryRun }, nvmTestHooks)
 }
 
 // hook nvmTestVersion

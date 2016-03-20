@@ -4,23 +4,25 @@ import { hook } from './hooks'
 
 /**
  * Test using a Node version with nvm
- * @param {String} version - A Node version to use with nvm
- * @param {String} test - A test command
- * @param {Boolean} dryRun - Wheter or not to dry run the test
- * @param {Object} hooks.nvmHooks - Some nvm hooks
+ * @param {String} [version = ''] - A Node version to use with nvm
+ * @param {Object} [options = {}] - Some options
+ * @param {String} [options.test = config.test] - The test command
+ * @param {Boolean} [options.dryRun = config.dryRun] - Wheter or not to dry run the test
+ * @param {Object} [hooks = {}] - Some hooks
+ * @param {Object} [hooks.nvmHooks] - Some nvm hooks
  * @return {Promise} - The nvm (hook) Promise
  */
 function nvmTest (
   version = '',
-  test = config.test,
-  dryRun = config.dryRun,
+  { test = config.test, dryRun = config.dryRun } = {},
   { nvmHooks } = {}
 ) {
-  const use = `nvm use ${version}`
-  const cmd = dryRun ? `echo "Dry run: ${test}"` : test
+  // apply dryRun if required, just echo the command for now
+  if (dryRun) test = `echo "Dry run: ${test}"`
 
-  // 'use' version AND 'cmd'
-  return nvm(`${use} && ( ${cmd} )`, nvmHooks)
+  // raw command is test, replace $version
+  const command = test.replace(/\$version/g, version)
+  return nvm(command, nvmHooks)
 }
 
 // hook nvmTest
