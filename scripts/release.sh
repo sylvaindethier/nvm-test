@@ -6,10 +6,6 @@ script='scripts/release.sh'
   echo >&2 "Please run $script from the repo root" &&
   exit 1
 
-## run test, exit if fail
-npm test
-[[ $? -ne 0 ]] && exit 1
-
 ## get the current version from package
 current_version=$(node --print "require('./package').version")
 
