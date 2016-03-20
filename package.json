@@ -1,6 +1,6 @@
 {
   "name": "nvm-test",
-  "version": "0.0.4",
+  "version": "1.0.0-0",
   "description": "Test using differents Node versions with nvm",
   "bin": {
     "nvm-test": "./bin/nvm-test.js"
