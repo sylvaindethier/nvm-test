@@ -6,16 +6,17 @@ describe('nvmTestVersions', function () {
     expect(nvmTestVersions).toExist().toBeA('function')
   })
 
-  it('should resolve with no Node version', function (done) {
+  it('should reject with no Node version', function (done) {
     this.timeout(20000)
     return nvmTestVersions()
-    .then((code) => {
-      expect(code).toEqual(0) // version not found (nvm)
+    .then(() => { throw new Error('nvmTestVersions was resolved, it should NOT') })
+    .catch((code) => {
+      expect(code).toNotEqual(0)
       done()
     })
   })
 
-  it('should return error code with an invlid Node version', function (done) {
+  it('should return error code with an invalid Node version', function (done) {
     this.timeout(20000)
     return nvmTestVersions(['foo'])
     .then((code) => {
@@ -27,7 +28,20 @@ describe('nvmTestVersions', function () {
   it('should resolve with a valid Node version', function (done) {
     this.timeout(20000)
     // need to dry run here, or endless loop
-    return nvmTestVersions([process.version], 'npm --version', true, {})
+    return nvmTestVersions([process.version], { dryRun: true })
+    .then((code) => {
+      expect(code).toEqual(0)
+      done()
+    })
+  })
+
+  it('should execute others install and test commands', function (done) {
+    this.timeout(20000)
+    // need to dry run here, or endless loop
+    return nvmTestVersions([process.version], {
+      install: 'nvm which $version > /dev/null',
+      test: 'npm --version > /dev/null',
+    }, {})
     .then((code) => {
       expect(code).toEqual(0)
       done()

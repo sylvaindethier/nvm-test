@@ -16,7 +16,7 @@ describe('nvmTest', function () {
     })
   })
 
-  it('should reject with invalid Node version', function (done) {
+  it('should reject with an invalid Node version', function (done) {
     this.timeout(20000)
     return nvmTest('bad-version')
     .then(() => { throw new Error('nvmInstall "bad-version" was resolved, it should NOT') })
@@ -29,7 +29,7 @@ describe('nvmTest', function () {
   it('should resolve with a valid Node version', function (done) {
     this.timeout(20000)
     // need to dry run here, or endless loop
-    return nvmTest(process.version, undefined, true)
+    return nvmTest(process.version, { dryRun: true })
     .then((code) => {
       expect(code).toEqual(0)
       done()
@@ -38,7 +38,7 @@ describe('nvmTest', function () {
 
   it('should execute an other test command', function (done) {
     this.timeout(5000)
-    return nvmTest(process.version, 'npm --version', true, {})
+    return nvmTest(process.version, { test: 'npm --version > /dev/null' }, {})
     .then((code) => {
       expect(code).toEqual(0)
       done()

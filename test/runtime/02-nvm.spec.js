@@ -1,6 +1,6 @@
 import expect from 'expect'
 import { renameSync } from 'fs'
-import nvmHook, { nvm, exists, shell } from '../../src/runtime/nvm'
+import { nvm, exists, shell } from '../../src/runtime/nvm'
 
 import { spawn } from 'child_process'
 import { statSync } from 'fs'
@@ -79,11 +79,5 @@ describe('nvm', function () {
       .then((code) => {
         expect(code).toEqual(0)
       })
-  })
-})
-
-describe('hook nvm', function () {
-  it('should be function', function () {
-    expect(nvmHook).toBeA('function')
   })
 })

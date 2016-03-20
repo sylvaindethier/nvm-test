@@ -16,7 +16,7 @@ describe('nvmInstall', function () {
     })
   })
 
-  it('should reject with invalid Node version', function (done) {
+  it('should reject with an invalid Node version', function (done) {
     this.timeout(20000)
     return nvmInstall('bad-version')
     .then(() => { throw new Error('nvmInstall "bad-version" was resolved, it should NOT') })
@@ -28,7 +28,16 @@ describe('nvmInstall', function () {
 
   it('should resolve with a valid Node version', function (done) {
     this.timeout(5000)
-    return nvmInstall(process.version, {})
+    return nvmInstall(process.version)
+    .then((code) => {
+      expect(code).toEqual(0)
+      done()
+    })
+  })
+
+  it('should execute an other install command', function (done) {
+    this.timeout(5000)
+    return nvmInstall(process.version, { install: 'nvm which $version > /dev/null' }, {})
     .then((code) => {
       expect(code).toEqual(0)
       done()
