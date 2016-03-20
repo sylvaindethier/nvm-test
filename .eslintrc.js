@@ -1,3 +1,4 @@
+module.exports =
 {
   root: true,
 
@@ -57,15 +58,9 @@
     // experimentalObjectRestSpread: true,
   },
 
-  plugins: [
-    'promise',
-    'standard',
-  ],
+  plugins: ['promise', 'standard'],
 
-  extends: [
-    'eslint:recommended',
-    'standard',
-  ],
+  extends: ['eslint:recommended', 'standard'],
 
   rules: {
     'brace-style': [2, '1tbs', { allowSingleLine: true }],
