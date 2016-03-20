@@ -9,11 +9,11 @@ log.heading = name
  * @param {Object} cmd - A command
  * @return {String} - The usage string for the command
  */
-export function buildUsage (cmd) {
+export function buildUsage (cmd, prefix = `Usage:\n  `) {
   // get description from command
   const desc = cmd.desc || cmd.describe || cmd.description || ''
 
-  return `${name} ${cmd.command} [options] \t ${desc}`
+  return `${prefix}${name} ${cmd.command} [options] \t ${desc}`
 }
 
 /**
@@ -27,7 +27,7 @@ export function patchCommand (cmd) {
   const fnbuilder = (yargs) => (typeof cmd.builder === 'object'
     ? yargs.options(cmd.builder) : yargs)
   const builder = typeof cmd.builder === 'function' ? cmd.builder : fnbuilder
-  cmd.builder = (yargs) => (builder(yargs).usage(`Usage:\n` + buildUsage(cmd)))
+  cmd.builder = (yargs) => (builder(yargs).usage(buildUsage(cmd)))
 
   return cmd
 }
