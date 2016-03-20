@@ -24,8 +24,5 @@ config.commands.forEach((command) => {
   yargs.command(patchCommand(cmd))
 })
 
-// get argv
-const argv = yargs.argv
-
-// handle command
-cmd.handler(argv)
+// get argv from yargs, handle command
+cmd.handler(yargs.argv)
