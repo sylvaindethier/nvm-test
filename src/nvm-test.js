@@ -5,7 +5,7 @@ import { buildUsage, patchCommand } from './utils'
 // commands had to be required
 const cmd = require('./command')
 const usage = buildUsage(cmd) + buildUsage({
-  command: '<command>', desc: 'Execute external command',
+  command: '<command>', desc: 'Execute external <command>',
 }, `\n  `)
 
 yargs
