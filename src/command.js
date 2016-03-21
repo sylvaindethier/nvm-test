@@ -1,4 +1,4 @@
-import { nvmTestVersions, Hooks } from './runtime'
+import { config, nvmTestVersions, Hooks } from './runtime'
 import log from 'npmlog'
 
 // set default log level to 'silly' in development NODE_ENV
@@ -11,25 +11,26 @@ const builder = {
     alias: 'install',
     desc: 'Specify the install command',
     type: 'string',
-    // default: config.install,
+    default: config.install,
   },
   't': {
     alias: 'test',
     desc: 'Specify the test command',
     type: 'string',
-    // default: config.test,
+    default: config.test,
   },
   'D': {
     alias: 'dry-run',
     desc: 'Dry run the test',
     type: 'boolean',
+    default: false,
   },
   'L': {
     alias: 'log-level',
     desc: 'Set the log level',
     type: 'string',
-    // choices: Object.keys(log.levels),
-    // default: log.level,
+    choices: Object.keys(log.levels),
+    default: log.level,
   },
 }
 
@@ -86,7 +87,7 @@ const handler = (argv) => {
   })
 
   // nvm test versions
-  nvmTestVersions(versions, { install, test, dryRun }, hooks)
+  return nvmTestVersions(versions, { install, test, dryRun }, hooks)
 
   // then exit with code on resolve and reject
   .then(process.exit, process.exit)
