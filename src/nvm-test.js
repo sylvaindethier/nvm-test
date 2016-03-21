@@ -20,7 +20,8 @@ yargs
 
 // add config commands
 config.commands.forEach((command) => {
-  const cmd = require(`nvm-test-command-${command}`)
+  // require command from running project
+  const cmd = require(`${process.cwd()}/node_modules/nvm-test-command-${command}`)
   yargs.command(patchCommand(cmd))
 })
 
