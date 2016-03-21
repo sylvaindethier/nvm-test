@@ -29,5 +29,15 @@ export function patchCommand (cmd) {
   const builder = typeof cmd.builder === 'function' ? cmd.builder : fnbuilder
   cmd.builder = (yargs) => (builder(yargs).usage(buildUsage(cmd)))
 
+  // patch handler to process.exit
+  const fnhandler = () => (0)
+  const handler = typeof cmd.handler === 'function' ? cmd.handler : fnhandler
+  cmd.handler = (argv) => {
+    const code = handler(argv)
+    // exit w/ code on resolve and reject if Promise
+    if (code instanceof Promise) code.then(process.exit, process.exit)
+    else process.exit(code)
+  }
+
   return cmd
 }
