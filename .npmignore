@@ -1,7 +1,3 @@
-# Dot files
-.*
-!.npmignore
-
 # Sources
 src
 
@@ -10,3 +6,4 @@ test
 
 # Misc
 scripts
+coverage
