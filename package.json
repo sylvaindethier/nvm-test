@@ -1,6 +1,6 @@
 {
   "name": "nvm-test",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0",
   "description": "Test using differents Node versions with nvm",
   "main": "./dist/api.js",
   "bin": {
