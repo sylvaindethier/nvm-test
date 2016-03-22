@@ -1,8 +1,4 @@
 import { name } from '../package'
-import log from 'npmlog'
-
-// set log heading
-log.heading = name
 
 /**
  * Build a usage string from a command

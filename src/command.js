@@ -40,7 +40,10 @@ const handler = (argv) => {
   // get options
   const { install, test, dryRun, logLevel } = argv
 
+  // set log heading & level
+  log.heading = 'nvm-test'
   log.level = logLevel
+
   log.silly('command', 'argv:', argv)
 
   // define hooks
