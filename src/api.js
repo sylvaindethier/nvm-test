@@ -6,4 +6,4 @@ export {
   nvmTest,
   nvmTestVersion,
   nvmTestVersions,
-} from './api'
+} from './api/'
