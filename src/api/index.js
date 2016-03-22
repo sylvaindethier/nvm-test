@@ -4,10 +4,10 @@ import { exists } from './nvm'
 /* istanbul ignore if */
 if (!exists()) throw new Error('Please install from http://nvm.sh')
 
-export { default } from './nvm-test-versions'
 export { default as config } from './config'
+export { default as Hooks } from './hooks'
 export { default as nvm } from './nvm'
 export { default as nvmInstall } from './nvm-install'
 export { default as nvmTest } from './nvm-test'
 export { default as nvmTestVersion } from './nvm-test-version'
-export { default as Hooks } from './hooks'
+export { default as nvmTestVersions } from './nvm-test-versions'
