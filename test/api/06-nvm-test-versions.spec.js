@@ -1,5 +1,5 @@
 import expect from 'expect'
-import { nvmTestVersions } from '../../src/runtime/nvm-test-versions'
+import { nvmTestVersions } from '../../src/api/nvm-test-versions'
 
 describe('nvmTestVersions', function () {
   it('should be a function', function () {
