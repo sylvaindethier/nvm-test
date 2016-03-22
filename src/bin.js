@@ -1,4 +1,5 @@
 import yargs from 'yargs'
+import { sync as resolveSync } from 'resolve'
 import { config } from './api'
 import { buildUsage, patchCommand } from './utils'
 
@@ -21,8 +22,9 @@ yargs
 // add config commands
 const commands = config.commands
 commands.forEach((command) => {
-  // require command from running project
-  const cmd = require(`${process.cwd()}/node_modules/nvm-test-command-${command}`)
+  // resolve command path from running project
+  const path = resolveSync(`nvm-test-command-${command}`, { basedir: process.cwd() })
+  const cmd = require(path)
   yargs.command(patchCommand(cmd))
 })
 
