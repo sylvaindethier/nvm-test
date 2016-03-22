@@ -1,6 +1,6 @@
 import expect from 'expect'
 import { renameSync } from 'fs'
-import { nvm, exists, shell } from '../../src/runtime/nvm'
+import { nvm, exists, shell } from '../../src/api/nvm'
 
 import { spawn } from 'child_process'
 import { statSync } from 'fs'

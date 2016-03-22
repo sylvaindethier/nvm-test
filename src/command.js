@@ -1,4 +1,4 @@
-import { config, nvmTestVersions, Hooks } from './runtime'
+import { config, nvmTestVersions, Hooks } from './api'
 import log from 'npmlog'
 
 // set default log level to 'silly' in development NODE_ENV

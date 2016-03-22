@@ -1,5 +1,5 @@
 import yargs from 'yargs'
-import { config } from './runtime'
+import { config } from './api'
 import { buildUsage, patchCommand } from './utils'
 
 // commands had to be required

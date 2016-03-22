@@ -1,5 +1,5 @@
 import expect from 'expect'
-import Hooks, { hook } from '../../src/runtime/hooks'
+import Hooks, { hook } from '../../src/api/hooks'
 
 const fn = (...args) => { return args }
 
