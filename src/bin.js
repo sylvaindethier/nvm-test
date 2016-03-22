@@ -19,11 +19,14 @@ yargs
   .locale('en')
 
 // add config commands
-config.commands.forEach((command) => {
+const commands = config.commands
+commands.forEach((command) => {
   // require command from running project
   const cmd = require(`${process.cwd()}/node_modules/nvm-test-command-${command}`)
   yargs.command(patchCommand(cmd))
 })
 
-// get argv from yargs, handle command
-cmd.handler(yargs.argv)
+// get argv from yargs
+const argv = yargs.argv
+// handle if not command
+if (commands.indexOf(argv._[0]) === -1) cmd.handler(argv)
