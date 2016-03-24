@@ -1,14 +1,15 @@
 import expect from 'expect'
-import Hooks, { hook } from '../../src/api/hooks'
+import Hooks, { hookable } from '../../src/api/hooks'
 
-const fn = (...args) => { return args }
+const fn = (...args) => (args)
+const err = new Error()
+const throws = () => { throw err }
 
+/** @test Hooks */
 describe('Hooks', function () {
   it('should be call for new instance only', function () {
+    expect(function () { Hooks() }).toThrow()
     expect(new Hooks()).toBeA(Hooks)
-    expect(function () {
-      Hooks()
-    }).toThrow()
   })
 
   it('should have passed in properties', function () {
@@ -19,64 +20,70 @@ describe('Hooks', function () {
   })
 })
 
-describe('hook', function () {
+/** @test hookable */
+describe('hookable', function () {
   it('should be a function', function () {
-    expect(hook).toBeA('function')
+    expect(hookable).toBeA('function')
   })
 
   it('should throw a TypeError if argument is not a function', function () {
-    expect(function () { hook() }).toThrow(TypeError)
+    expect(function () { hookable() }).toThrow(TypeError)
   })
 
   it('should return a function (1st level)', function () {
-    expect(hook(fn)).toBeA('function')
+    expect(hookable(fn)).toBeA('function')
   })
 
-  it('should return a Promise (2nd level)', function () {
-    expect(hook(fn)()).toBeA(Promise)
+  it('should return a Promise (2nd level)', function (done) {
+    const p = hookable(fn)()
+    expect(p).toBeA(Promise)
+
+    return p.then(() => {
+      done()
+    })
+    .catch(done)
   })
 
-  it('should execute a "pre" hook', function () {
+  it('should execute a "pre" hook', function (done) {
     const hooks = new Hooks({ pre: () => {} })
     const spy = expect.spyOn(hooks, 'pre')
 
-    return hook(fn)('foo', 'bar', hooks).then(() => {
+    return hookable(fn)('foo', 'bar', hooks)
+    .then(() => {
       expect(spy).toHaveBeenCalledWith('foo', 'bar')
       expect.restoreSpies()
+      done()
     })
+    .catch(done)
   })
 
-  it('should execute a "post" hook', function () {
+  it('should execute a "post" hook', function (done) {
     const hooks = new Hooks({ post: () => {} })
     const spy = expect.spyOn(hooks, 'post')
     const add = (a, b) => (a + b)
 
-    return hook(add)('foo', 'bar', hooks).then(() => {
+    return hookable(add)('foo', 'bar', hooks)
+    .then(() => {
       expect(spy).toHaveBeenCalledWith('foobar', 'foo', 'bar')
       expect.restoreSpies()
+      done()
     })
+    .catch(done)
   })
 
-  it('should execute an "error" hook on error', function () {
+  it('should reject and execute an "error" hook on Error', function (done) {
     const hooks = new Hooks({ error: () => {} })
     const spy = expect.spyOn(hooks, 'error')
-    const e = new Error()
-    const err = () => { throw e }
 
-    return hook(err)('foo', 'bar', hooks).catch(() => {
-      expect(spy).toHaveBeenCalledWith(e, 'foo', 'bar')
-      expect.restoreSpies()
-    })
-  })
-
-  it('should reject on Error', function () {
-    const err = () => { throw new Error() }
-    return hook(err)()
+    return hookable(throws)('foo', 'bar', hooks)
     .then(() => {
-      throw new Error('Error was resolved, it should NOT')
+      // it should not be resolved on Error, terminate with error
+      done(err)
     })
-    .catch((e) => {
-      expect(e).toBeA(Error)
+    .catch(() => {
+      expect(spy).toHaveBeenCalledWith(err, 'foo', 'bar')
+      expect.restoreSpies()
+      done()
     })
   })
 })

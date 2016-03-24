@@ -1,6 +1,7 @@
 import expect from 'expect'
 import { renameSync, statSync } from 'fs'
 
+/** @test api */
 describe('api', function () {
   it('sould fail to require if nvm does not exists', function () {
     // move NVM_DIR
@@ -11,6 +12,7 @@ describe('api', function () {
       if (!statSync(tmp).isDir()) { return }
       require('../../src/api')
     }).toThrow()
+
     // restablish NVM_DIR
     renameSync(tmp, process.env.NVM_DIR)
   })

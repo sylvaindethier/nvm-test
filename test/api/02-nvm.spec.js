@@ -1,24 +1,13 @@
 import expect from 'expect'
 import { renameSync } from 'fs'
 import { nvm, exists, shell } from '../../src/api/nvm'
-
-import { spawn } from 'child_process'
-import { statSync } from 'fs'
+import { shouldReject, shouldResolve } from './helpers/nvm.js'
 
 // ChildProcess class is not exposed under Node 0.12, use EventEmitter instead
 let ChildProcess = require('child_process').ChildProcess
 if (ChildProcess === undefined) ChildProcess = require('events').EventEmitter
 
-describe('Node used import', function () {
-  it('child_process.spawn should exists', function () {
-    expect(spawn).toExist()
-  })
-
-  it('fs.statSync should exists', function () {
-    expect(statSync).toExist()
-  })
-})
-
+/** @test exists */
 describe('exists', function () {
   it('should be a function', function () {
     expect(exists).toBeA('function')
@@ -38,46 +27,44 @@ describe('exists', function () {
   })
 })
 
+/** @test shell */
 describe('shell', function () {
   it('should be a function', function () {
     expect(shell).toBeA('function')
   })
 
-  it('should return a ChildProcess', function () {
-    expect(shell()).toBeA(ChildProcess)
+  it('should return a ChildProcess', function (done) {
+    this.timeout(5000) // 5s
+    const cp = shell()
+    expect(cp).toBeA(ChildProcess)
+    cp.on('close', done)
+    cp.on('error', done)
   })
 
   it('should execute with success', function (done) {
-    // close with done function
-    shell('echo "shell test" > /dev/null').on('close', done)
+    this.timeout(5000) // 5s
+    const cp = shell('echo "shell test" > /dev/null')
+    cp.on('close', done)
+    cp.on('error', done)
   })
 })
 
+/** @test nvm */
 describe('nvm', function () {
   it('should be a function', function () {
     expect(nvm).toBeA('function')
   })
 
-  it('should return a Promise', function () {
-    const sh = nvm('echo "nvm test" > /dev/null')
-    expect(sh).toBeA(Promise)
-    return sh
+  it('should reject the Promise on Error', function (done) {
+    this.timeout(5000) // 5s
+    return shouldReject(nvm('bad-command 2> /dev/null'), done)
   })
 
-  it('should reject the Promise on error', function () {
-    return nvm('bad-command 2> /dev/null')
-      .then((code) => {
-        throw new Error('nvm Promise was resolved, it should NOT')
-      })
-      .catch((code) => {
-        expect(code).toNotEqual(0)
-      })
-  })
+  it('should return and resolve the Promise', function (done) {
+    this.timeout(5000) // 5s
+    const p = nvm()
+    expect(p).toBeA(Promise)
 
-  it('should resolve the Promise on close', function () {
-    return nvm('nvm --version > /dev/null')
-      .then((code) => {
-        expect(code).toEqual(0)
-      })
+    return shouldResolve(p, done)
   })
 })
