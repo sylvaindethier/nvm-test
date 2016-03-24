@@ -1,12 +1,18 @@
 # Dot files
 .*
 
+# Other config files
+esdoc.json
+
 # Sources
 src
 
 # Tests
 test
+coverage
+
+# Docs
+docs
 
 # Misc
 scripts
-coverage

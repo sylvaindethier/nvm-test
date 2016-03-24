@@ -1,0 +1,12 @@
+{
+  "source": "./src",
+  "destination": "./docs",
+  "title": "nvm-test",
+  "test": {
+    "type": "mocha",
+    "source": "./test"
+  },
+  "plugins": [
+    { "name": "esdoc-es7-plugin" }
+  ]
+}

@@ -18,6 +18,14 @@ try {
   rc = require(filepath)
 } catch (e) {} // eslint-disable-line no-empty
 
-// merge defaults w/ runtime config
+/**
+ * Runtime configuration.
+ * @public
+ * @type     {Object}                   - The runtime configuration
+ * @property {string}   [install=]      - The install command.<br> `nvm which $version &> /dev/null || nvm install $version`
+ * @property {string}   [test=]         - The test command.<br> `nvm use $version && ( npm test )`
+ * @property {boolean}  [dryRun=false]  - Whether or not to dry run the test
+ * @property {string[]} [commands=[]]   - External commands
+ */
 const config = Object.assign({}, defaults, rc)
 export default config
