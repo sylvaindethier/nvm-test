@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">nvm-test API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/sylvaindethier/nvm-test.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersions">nvmTestVersions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTest">nvmTest</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvm">nvm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shell">shell</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-command">command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="nvm-test">nvm-test</h1>
+<blockquote>
+<p>Test using different Node versions with nvm.</p>
+</blockquote>
+<p>Configurable &amp; Extensible <code>npm test</code> using different Node versions with nvm.</p>
+<p><a href="https://www.npmjs.org/package/nvm-test"><img src="https://nodei.co/npm/nvm-test.svg?downloads=true&amp;stars=true" alt="NPM Package Stats"></a></p>
+<p><a href="https://www.npmjs.org/package/nvm-test"><img src="https://img.shields.io/npm/v/nvm-test.svg?style=flat-square" alt="NPM Version"></a>
+<a href="https://travis-ci.org/sylvaindethier/nvm-test"><img src="https://img.shields.io/travis/sylvaindethier/nvm-test/master.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/sylvaindethier/nvm-test"><img src="https://img.shields.io/codeclimate/github/sylvaindethier/nvm-test.svg?style=flat-square" alt="Code Climate"></a>
+<a href="https://codeclimate.com/github/sylvaindethier/nvm-test/coverage"><img src="https://img.shields.io/codeclimate/coverage/github/sylvaindethier/nvm-test.svg?style=flat-square" alt="Coverage Status"></a></p>
+<p><a href="https://david-dm.org/sylvaindethier/nvm-test#info=dependencies"><img src="https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square" alt="Dependencies"></a>
+<a href="https://david-dm.org/sylvaindethier/nvm-test#info=devDependencies"><img src="https://img.shields.io/david/dev/sylvaindethier/nvm-test.svg?style=flat-square" alt="Dev Dependencies"></a></p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">Usage:
+  nvm-test [versions] [options]  Test using some Node versions
+  nvm-test &lt;command&gt;  [options]  Execute external &lt;command&gt;
+
+Options:
+  -h, --help       Show help                                           [boolean]
+  -i, --install    Specify the install command                          [string]
+  -t, --test       Specify the test command                             [string]
+  -D, --dry-run    Dry run the test                                    [boolean]
+  -L, --log-level  Set the log level                                    [string]
+  -v, --version    Show version number                                 [boolean]</code>
+</code></pre>
+<h2 id="install">Install</h2>
+<p>Prefer global install:
+<strong><code>npm install nvm-test -g</code></strong></p>
+<p>Or simply use as per project dev dependencies:
+<strong><code>npm install --save-dev nvm-test</code></strong></p>
+<h2 id="usage-">Usage:</h2>
+<ul>
+<li><strong>nvm-test [versions] [options]</strong></li>
+</ul>
+<p>Test using some Node versions, <code>stable</code> and <code>v4</code> here:
+<strong><code>nvm-test stable v4</code></strong></p>
+<p>Test using Node version from <code>.nvmrc</code> file:
+<strong><code>nvm-test</code></strong></p>
+<ul>
+<li><strong>nvm-test &lt;command&gt; [options]</strong></li>
+</ul>
+<p>Execute external &lt;command&gt;.
+Which therefore must be available and installed in your project.</p>
+<p>For example install the Travis <code>nvm-test</code> command:
+<strong><code>npm install nvm-test-command-travis</code></strong></p>
+<p>Add the external command in your <code>.nvmrc.test.js</code> file:</p>
+<pre><code class="lang-json"><code class="source-code prettyprint">{
+  &quot;commands&quot;: [&quot;travis&quot;]
+}</code>
+</code></pre>
+<p>And run the test using Node versions specified in your <code>.travis.yml</code> file:
+<strong><code>nvm-test travis</code></strong></p>
+<h2 id="options-">Options:</h2>
+<ul>
+<li><strong>-h, --help</strong></li>
+</ul>
+<p>Show help:
+<strong><code>nvm-test -h</code></strong> or <strong><code>nvm-test --help</code></strong></p>
+<p>Show external &lt;command&gt; help:
+<strong><code>nvm-test &lt;command&gt; -h</code></strong> or <strong><code>nvm-test &lt;command&gt; --help</code></strong></p>
+<blockquote>
+<p>Note about the <code>install</code> and <code>test</code> options: any <code>$version</code> in the command
+string is replaced by the specified version.</p>
+</blockquote>
+<ul>
+<li><strong>-i, --install</strong></li>
+</ul>
+<p>Specify the install command:
+<strong><code>nvm-test -i &quot;nvm install $version&quot;</code></strong> or <strong><code>nvm-test --install &quot;nvm install $version&quot;</code></strong></p>
+<p>Default: <em><code>nvm which $version &amp;&gt; /dev/null || nvm install $version</code></em></p>
+<p>The Node version to be tested will be installed if required.</p>
+<ul>
+<li><strong>-t, --test</strong></li>
+</ul>
+<p>Specify the test command:
+<strong><code>nvm-test -t &quot;npm test&quot;</code></strong> or <strong><code>nvm-test --test &quot;&quot;</code></strong></p>
+<p>Default: <em><code>nvm use $version &amp;&amp; ( npm test )</code></em></p>
+<ul>
+<li><strong>-D, --dry-run</strong></li>
+</ul>
+<p>Dry run the test (just echo the <code>test</code> command option):
+<strong><code>nvm-test -D</code></strong> or <strong><code>nvm-test --dry-run</code></strong></p>
+<ul>
+<li><strong>-L, --log-level</strong></li>
+</ul>
+<p>Set the log level:
+<strong><code>nvm-test -L info</code></strong> or <strong><code>nvm-test --log-level info</code></strong></p>
+<p>Can be one of: <code>silent</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>verbose</code>, or <code>silly</code></p>
+<p>Default: <em><code>info</code></em>, <em><code>silly</code></em> w/ <code>NODE_ENV=development</code></p>
+<ul>
+<li><strong>-v, --version</strong></li>
+</ul>
+<p>Show <code>nvm-test</code> version number:
+<strong><code>nvm-test -v</code></strong> or <strong><code>nvm-test --version</code></strong></p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,2302 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 2884,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 60,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 47,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 47
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 7,
+          "end": 21,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 7,
+            "end": 21,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 21
+              }
+            },
+            "name": "nvmTestVersion"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 27,
+        "end": 47,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 27
+          },
+          "end": {
+            "line": 1,
+            "column": 47
+          }
+        },
+        "value": "./nvm-test-version",
+        "rawValue": "./nvm-test-version",
+        "raw": "'./nvm-test-version'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 48,
+      "end": 77,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 29
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 55,
+          "end": 61,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 13
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 55,
+            "end": 61,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            },
+            "name": "config"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 67,
+        "end": 77,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 19
+          },
+          "end": {
+            "line": 2,
+            "column": 29
+          }
+        },
+        "value": "./config",
+        "rawValue": "./config",
+        "raw": "'./config'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 78,
+      "end": 112,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 34
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 87,
+          "end": 95,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 9
+            },
+            "end": {
+              "line": 3,
+              "column": 17
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 87,
+            "end": 95,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 9
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            },
+            "name": "hookable"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 87,
+            "end": 95,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 9
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            },
+            "name": "hookable"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 103,
+        "end": 112,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 25
+          },
+          "end": {
+            "line": 3,
+            "column": 34
+          }
+        },
+        "value": "./hooks",
+        "rawValue": "./hooks",
+        "raw": "'./hooks'",
+        "leadingComments": null,
+        "trailingComments": null
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Run test using a list of Node versions with nvm.\n * @protected\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=[]]                   - A list of Node versions to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Object}                       [hooks]                         - An Object of {@link Hooks}\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n ",
+          "start": 114,
+          "end": 1006,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 17,
+              "column": 3
+            }
+          },
+          "range": [
+            114,
+            1006
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1007,
+      "end": 1630,
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 40,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 1014,
+        "end": 1630,
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 7
+          },
+          "end": {
+            "line": 40,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 1029,
+          "end": 1044,
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 22
+            },
+            "end": {
+              "line": 18,
+              "column": 37
+            }
+          },
+          "name": "nvmTestVersions",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": true,
+        "params": [
+          {
+            "type": "AssignmentPattern",
+            "start": 1049,
+            "end": 1062,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 2
+              },
+              "end": {
+                "line": 19,
+                "column": 15
+              }
+            },
+            "operator": "=",
+            "left": {
+              "type": "Identifier",
+              "start": 1049,
+              "end": 1057,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 2
+                },
+                "end": {
+                  "line": 19,
+                  "column": 10
+                }
+              },
+              "name": "versions"
+            },
+            "right": {
+              "type": "ArrayExpression",
+              "start": 1060,
+              "end": 1062,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 13
+                },
+                "end": {
+                  "line": 19,
+                  "column": 15
+                }
+              },
+              "elements": []
+            }
+          },
+          {
+            "type": "AssignmentPattern",
+            "start": 1066,
+            "end": 1143,
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 2
+              },
+              "end": {
+                "line": 20,
+                "column": 79
+              }
+            },
+            "operator": "=",
+            "left": {
+              "type": "ObjectPattern",
+              "start": 1066,
+              "end": 1138,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 74
+                }
+              },
+              "properties": [
+                {
+                  "type": "Property",
+                  "start": 1068,
+                  "end": 1092,
+                  "loc": {
+                    "start": {
+                      "line": 20,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 28
+                    }
+                  },
+                  "method": false,
+                  "shorthand": true,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 1068,
+                    "end": 1075,
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 11
+                      }
+                    },
+                    "name": "install"
+                  },
+                  "kind": "init",
+                  "value": {
+                    "type": "AssignmentPattern",
+                    "start": 1068,
+                    "end": 1092,
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 28
+                      }
+                    },
+                    "operator": "=",
+                    "left": {
+                      "type": "Identifier",
+                      "start": 1068,
+                      "end": 1075,
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 11
+                        }
+                      },
+                      "name": "install"
+                    },
+                    "right": {
+                      "type": "MemberExpression",
+                      "start": 1078,
+                      "end": 1092,
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 14
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 28
+                        }
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "start": 1078,
+                        "end": 1084,
+                        "loc": {
+                          "start": {
+                            "line": 20,
+                            "column": 14
+                          },
+                          "end": {
+                            "line": 20,
+                            "column": 20
+                          }
+                        },
+                        "name": "config"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 1085,
+                        "end": 1092,
+                        "loc": {
+                          "start": {
+                            "line": 20,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 20,
+                            "column": 28
+                          }
+                        },
+                        "name": "install"
+                      },
+                      "computed": false
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "start": 1094,
+                  "end": 1112,
+                  "loc": {
+                    "start": {
+                      "line": 20,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 48
+                    }
+                  },
+                  "method": false,
+                  "shorthand": true,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 1094,
+                    "end": 1098,
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 34
+                      }
+                    },
+                    "name": "test"
+                  },
+                  "kind": "init",
+                  "value": {
+                    "type": "AssignmentPattern",
+                    "start": 1094,
+                    "end": 1112,
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 48
+                      }
+                    },
+                    "operator": "=",
+                    "left": {
+                      "type": "Identifier",
+                      "start": 1094,
+                      "end": 1098,
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 30
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 34
+                        }
+                      },
+                      "name": "test"
+                    },
+                    "right": {
+                      "type": "MemberExpression",
+                      "start": 1101,
+                      "end": 1112,
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 37
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 48
+                        }
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "start": 1101,
+                        "end": 1107,
+                        "loc": {
+                          "start": {
+                            "line": 20,
+                            "column": 37
+                          },
+                          "end": {
+                            "line": 20,
+                            "column": 43
+                          }
+                        },
+                        "name": "config"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 1108,
+                        "end": 1112,
+                        "loc": {
+                          "start": {
+                            "line": 20,
+                            "column": 44
+                          },
+                          "end": {
+                            "line": 20,
+                            "column": 48
+                          }
+                        },
+                        "name": "test"
+                      },
+                      "computed": false
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "start": 1114,
+                  "end": 1136,
+                  "loc": {
+                    "start": {
+                      "line": 20,
+                      "column": 50
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 72
+                    }
+                  },
+                  "method": false,
+                  "shorthand": true,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 1114,
+                    "end": 1120,
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 50
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 56
+                      }
+                    },
+                    "name": "dryRun"
+                  },
+                  "kind": "init",
+                  "value": {
+                    "type": "AssignmentPattern",
+                    "start": 1114,
+                    "end": 1136,
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 50
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 72
+                      }
+                    },
+                    "operator": "=",
+                    "left": {
+                      "type": "Identifier",
+                      "start": 1114,
+                      "end": 1120,
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 50
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 56
+                        }
+                      },
+                      "name": "dryRun"
+                    },
+                    "right": {
+                      "type": "MemberExpression",
+                      "start": 1123,
+                      "end": 1136,
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 59
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 72
+                        }
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "start": 1123,
+                        "end": 1129,
+                        "loc": {
+                          "start": {
+                            "line": 20,
+                            "column": 59
+                          },
+                          "end": {
+                            "line": 20,
+                            "column": 65
+                          }
+                        },
+                        "name": "config"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 1130,
+                        "end": 1136,
+                        "loc": {
+                          "start": {
+                            "line": 20,
+                            "column": 66
+                          },
+                          "end": {
+                            "line": 20,
+                            "column": 72
+                          }
+                        },
+                        "name": "dryRun"
+                      },
+                      "computed": false
+                    }
+                  }
+                }
+              ]
+            },
+            "right": {
+              "type": "ObjectExpression",
+              "start": 1141,
+              "end": 1143,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 77
+                },
+                "end": {
+                  "line": 20,
+                  "column": 79
+                }
+              },
+              "properties": []
+            }
+          },
+          {
+            "type": "AssignmentPattern",
+            "start": 1147,
+            "end": 1175,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 2
+              },
+              "end": {
+                "line": 21,
+                "column": 30
+              }
+            },
+            "operator": "=",
+            "left": {
+              "type": "ObjectPattern",
+              "start": 1147,
+              "end": 1170,
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 25
+                }
+              },
+              "properties": [
+                {
+                  "type": "Property",
+                  "start": 1149,
+                  "end": 1168,
+                  "loc": {
+                    "start": {
+                      "line": 21,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 21,
+                      "column": 23
+                    }
+                  },
+                  "method": false,
+                  "shorthand": true,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 1149,
+                    "end": 1168,
+                    "loc": {
+                      "start": {
+                        "line": 21,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 21,
+                        "column": 23
+                      }
+                    },
+                    "name": "nvmTestVersionHooks"
+                  },
+                  "kind": "init",
+                  "value": {
+                    "type": "Identifier",
+                    "start": 1149,
+                    "end": 1168,
+                    "loc": {
+                      "start": {
+                        "line": 21,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 21,
+                        "column": 23
+                      }
+                    },
+                    "name": "nvmTestVersionHooks"
+                  }
+                }
+              ]
+            },
+            "right": {
+              "type": "ObjectExpression",
+              "start": 1173,
+              "end": 1175,
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 28
+                },
+                "end": {
+                  "line": 21,
+                  "column": 30
+                }
+              },
+              "properties": []
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 1178,
+          "end": 1630,
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 2
+            },
+            "end": {
+              "line": 40,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "start": 1182,
+              "end": 1194,
+              "loc": {
+                "start": {
+                  "line": 23,
+                  "column": 2
+                },
+                "end": {
+                  "line": 23,
+                  "column": 14
+                }
+              },
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "start": 1186,
+                  "end": 1194,
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 14
+                    }
+                  },
+                  "id": {
+                    "type": "Identifier",
+                    "start": 1186,
+                    "end": 1190,
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 6
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 10
+                      }
+                    },
+                    "name": "code"
+                  },
+                  "init": {
+                    "type": "Literal",
+                    "start": 1193,
+                    "end": 1194,
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 14
+                      }
+                    },
+                    "value": 0,
+                    "rawValue": 0,
+                    "raw": "0",
+                    "leadingComments": null,
+                    "trailingComments": null
+                  },
+                  "trailingComments": null
+                }
+              ],
+              "kind": "let",
+              "trailingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " empty version if no versions",
+                  "start": 1197,
+                  "end": 1228,
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 33
+                    }
+                  },
+                  "range": [
+                    1197,
+                    1228
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "IfStatement",
+              "start": 1231,
+              "end": 1277,
+              "loc": {
+                "start": {
+                  "line": 25,
+                  "column": 2
+                },
+                "end": {
+                  "line": 25,
+                  "column": 48
+                }
+              },
+              "test": {
+                "type": "UnaryExpression",
+                "start": 1235,
+                "end": 1251,
+                "loc": {
+                  "start": {
+                    "line": 25,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 22
+                  }
+                },
+                "operator": "!",
+                "prefix": true,
+                "argument": {
+                  "type": "MemberExpression",
+                  "start": 1236,
+                  "end": 1251,
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 7
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 22
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 1236,
+                    "end": 1244,
+                    "loc": {
+                      "start": {
+                        "line": 25,
+                        "column": 7
+                      },
+                      "end": {
+                        "line": 25,
+                        "column": 15
+                      }
+                    },
+                    "name": "versions",
+                    "leadingComments": null
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 1245,
+                    "end": 1251,
+                    "loc": {
+                      "start": {
+                        "line": 25,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 25,
+                        "column": 22
+                      }
+                    },
+                    "name": "length"
+                  },
+                  "computed": false,
+                  "leadingComments": null
+                },
+                "leadingComments": null
+              },
+              "consequent": {
+                "type": "ExpressionStatement",
+                "start": 1253,
+                "end": 1277,
+                "loc": {
+                  "start": {
+                    "line": 25,
+                    "column": 24
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 48
+                  }
+                },
+                "expression": {
+                  "type": "CallExpression",
+                  "start": 1253,
+                  "end": 1277,
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 24
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 48
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 1253,
+                    "end": 1266,
+                    "loc": {
+                      "start": {
+                        "line": 25,
+                        "column": 24
+                      },
+                      "end": {
+                        "line": 25,
+                        "column": 37
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 1253,
+                      "end": 1261,
+                      "loc": {
+                        "start": {
+                          "line": 25,
+                          "column": 24
+                        },
+                        "end": {
+                          "line": 25,
+                          "column": 32
+                        }
+                      },
+                      "name": "versions"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 1262,
+                      "end": 1266,
+                      "loc": {
+                        "start": {
+                          "line": 25,
+                          "column": 33
+                        },
+                        "end": {
+                          "line": 25,
+                          "column": 37
+                        }
+                      },
+                      "name": "push"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "start": 1267,
+                      "end": 1276,
+                      "loc": {
+                        "start": {
+                          "line": 25,
+                          "column": 38
+                        },
+                        "end": {
+                          "line": 25,
+                          "column": 47
+                        }
+                      },
+                      "name": "undefined"
+                    }
+                  ],
+                  "trailingComments": null
+                },
+                "trailingComments": null
+              },
+              "alternate": null,
+              "leadingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " empty version if no versions",
+                  "start": 1197,
+                  "end": 1228,
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 33
+                    }
+                  },
+                  "range": [
+                    1197,
+                    1228
+                  ]
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " as we are using await we cant use .forEach",
+                  "start": 1281,
+                  "end": 1326,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 47
+                    }
+                  },
+                  "range": [
+                    1281,
+                    1326
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ForStatement",
+              "start": 1329,
+              "end": 1613,
+              "loc": {
+                "start": {
+                  "line": 28,
+                  "column": 2
+                },
+                "end": {
+                  "line": 37,
+                  "column": 3
+                }
+              },
+              "init": {
+                "type": "VariableDeclaration",
+                "start": 1334,
+                "end": 1366,
+                "loc": {
+                  "start": {
+                    "line": 28,
+                    "column": 7
+                  },
+                  "end": {
+                    "line": 28,
+                    "column": 39
+                  }
+                },
+                "declarations": [
+                  {
+                    "type": "VariableDeclarator",
+                    "start": 1338,
+                    "end": 1343,
+                    "loc": {
+                      "start": {
+                        "line": 28,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 28,
+                        "column": 16
+                      }
+                    },
+                    "id": {
+                      "type": "Identifier",
+                      "start": 1338,
+                      "end": 1339,
+                      "loc": {
+                        "start": {
+                          "line": 28,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 28,
+                          "column": 12
+                        }
+                      },
+                      "name": "i",
+                      "leadingComments": null
+                    },
+                    "init": {
+                      "type": "Literal",
+                      "start": 1342,
+                      "end": 1343,
+                      "loc": {
+                        "start": {
+                          "line": 28,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 28,
+                          "column": 16
+                        }
+                      },
+                      "value": 0,
+                      "rawValue": 0,
+                      "raw": "0"
+                    },
+                    "leadingComments": null
+                  },
+                  {
+                    "type": "VariableDeclarator",
+                    "start": 1345,
+                    "end": 1366,
+                    "loc": {
+                      "start": {
+                        "line": 28,
+                        "column": 18
+                      },
+                      "end": {
+                        "line": 28,
+                        "column": 39
+                      }
+                    },
+                    "id": {
+                      "type": "Identifier",
+                      "start": 1345,
+                      "end": 1348,
+                      "loc": {
+                        "start": {
+                          "line": 28,
+                          "column": 18
+                        },
+                        "end": {
+                          "line": 28,
+                          "column": 21
+                        }
+                      },
+                      "name": "len"
+                    },
+                    "init": {
+                      "type": "MemberExpression",
+                      "start": 1351,
+                      "end": 1366,
+                      "loc": {
+                        "start": {
+                          "line": 28,
+                          "column": 24
+                        },
+                        "end": {
+                          "line": 28,
+                          "column": 39
+                        }
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "start": 1351,
+                        "end": 1359,
+                        "loc": {
+                          "start": {
+                            "line": 28,
+                            "column": 24
+                          },
+                          "end": {
+                            "line": 28,
+                            "column": 32
+                          }
+                        },
+                        "name": "versions"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 1360,
+                        "end": 1366,
+                        "loc": {
+                          "start": {
+                            "line": 28,
+                            "column": 33
+                          },
+                          "end": {
+                            "line": 28,
+                            "column": 39
+                          }
+                        },
+                        "name": "length"
+                      },
+                      "computed": false
+                    }
+                  }
+                ],
+                "kind": "let",
+                "leadingComments": null
+              },
+              "test": {
+                "type": "BinaryExpression",
+                "start": 1368,
+                "end": 1375,
+                "loc": {
+                  "start": {
+                    "line": 28,
+                    "column": 41
+                  },
+                  "end": {
+                    "line": 28,
+                    "column": 48
+                  }
+                },
+                "left": {
+                  "type": "Identifier",
+                  "start": 1368,
+                  "end": 1369,
+                  "loc": {
+                    "start": {
+                      "line": 28,
+                      "column": 41
+                    },
+                    "end": {
+                      "line": 28,
+                      "column": 42
+                    }
+                  },
+                  "name": "i"
+                },
+                "operator": "<",
+                "right": {
+                  "type": "Identifier",
+                  "start": 1372,
+                  "end": 1375,
+                  "loc": {
+                    "start": {
+                      "line": 28,
+                      "column": 45
+                    },
+                    "end": {
+                      "line": 28,
+                      "column": 48
+                    }
+                  },
+                  "name": "len"
+                }
+              },
+              "update": {
+                "type": "UpdateExpression",
+                "start": 1377,
+                "end": 1380,
+                "loc": {
+                  "start": {
+                    "line": 28,
+                    "column": 50
+                  },
+                  "end": {
+                    "line": 28,
+                    "column": 53
+                  }
+                },
+                "operator": "++",
+                "prefix": true,
+                "argument": {
+                  "type": "Identifier",
+                  "start": 1379,
+                  "end": 1380,
+                  "loc": {
+                    "start": {
+                      "line": 28,
+                      "column": 52
+                    },
+                    "end": {
+                      "line": 28,
+                      "column": 53
+                    }
+                  },
+                  "name": "i"
+                }
+              },
+              "body": {
+                "type": "BlockStatement",
+                "start": 1382,
+                "end": 1613,
+                "loc": {
+                  "start": {
+                    "line": 28,
+                    "column": 55
+                  },
+                  "end": {
+                    "line": 37,
+                    "column": 3
+                  }
+                },
+                "body": [
+                  {
+                    "type": "VariableDeclaration",
+                    "start": 1388,
+                    "end": 1413,
+                    "loc": {
+                      "start": {
+                        "line": 29,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 29,
+                        "column": 29
+                      }
+                    },
+                    "declarations": [
+                      {
+                        "type": "VariableDeclarator",
+                        "start": 1392,
+                        "end": 1413,
+                        "loc": {
+                          "start": {
+                            "line": 29,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 29,
+                            "column": 29
+                          }
+                        },
+                        "id": {
+                          "type": "Identifier",
+                          "start": 1392,
+                          "end": 1399,
+                          "loc": {
+                            "start": {
+                              "line": 29,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 29,
+                              "column": 15
+                            }
+                          },
+                          "name": "version"
+                        },
+                        "init": {
+                          "type": "MemberExpression",
+                          "start": 1402,
+                          "end": 1413,
+                          "loc": {
+                            "start": {
+                              "line": 29,
+                              "column": 18
+                            },
+                            "end": {
+                              "line": 29,
+                              "column": 29
+                            }
+                          },
+                          "object": {
+                            "type": "Identifier",
+                            "start": 1402,
+                            "end": 1410,
+                            "loc": {
+                              "start": {
+                                "line": 29,
+                                "column": 18
+                              },
+                              "end": {
+                                "line": 29,
+                                "column": 26
+                              }
+                            },
+                            "name": "versions"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 1411,
+                            "end": 1412,
+                            "loc": {
+                              "start": {
+                                "line": 29,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 29,
+                                "column": 28
+                              }
+                            },
+                            "name": "i"
+                          },
+                          "computed": true
+                        }
+                      }
+                    ],
+                    "kind": "let"
+                  },
+                  {
+                    "type": "TryStatement",
+                    "start": 1418,
+                    "end": 1609,
+                    "loc": {
+                      "start": {
+                        "line": 30,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 36,
+                        "column": 5
+                      }
+                    },
+                    "block": {
+                      "type": "BlockStatement",
+                      "start": 1422,
+                      "end": 1549,
+                      "loc": {
+                        "start": {
+                          "line": 30,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 33,
+                          "column": 5
+                        }
+                      },
+                      "body": [
+                        {
+                          "type": "ExpressionStatement",
+                          "start": 1466,
+                          "end": 1543,
+                          "loc": {
+                            "start": {
+                              "line": 32,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 32,
+                              "column": 83
+                            }
+                          },
+                          "expression": {
+                            "type": "AwaitExpression",
+                            "start": 1466,
+                            "end": 1543,
+                            "loc": {
+                              "start": {
+                                "line": 32,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 32,
+                                "column": 83
+                              }
+                            },
+                            "all": false,
+                            "argument": {
+                              "type": "CallExpression",
+                              "start": 1472,
+                              "end": 1543,
+                              "loc": {
+                                "start": {
+                                  "line": 32,
+                                  "column": 12
+                                },
+                                "end": {
+                                  "line": 32,
+                                  "column": 83
+                                }
+                              },
+                              "callee": {
+                                "type": "Identifier",
+                                "start": 1472,
+                                "end": 1486,
+                                "loc": {
+                                  "start": {
+                                    "line": 32,
+                                    "column": 12
+                                  },
+                                  "end": {
+                                    "line": 32,
+                                    "column": 26
+                                  }
+                                },
+                                "name": "nvmTestVersion"
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "start": 1487,
+                                  "end": 1494,
+                                  "loc": {
+                                    "start": {
+                                      "line": 32,
+                                      "column": 27
+                                    },
+                                    "end": {
+                                      "line": 32,
+                                      "column": 34
+                                    }
+                                  },
+                                  "name": "version"
+                                },
+                                {
+                                  "type": "ObjectExpression",
+                                  "start": 1496,
+                                  "end": 1521,
+                                  "loc": {
+                                    "start": {
+                                      "line": 32,
+                                      "column": 36
+                                    },
+                                    "end": {
+                                      "line": 32,
+                                      "column": 61
+                                    }
+                                  },
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "start": 1498,
+                                      "end": 1505,
+                                      "loc": {
+                                        "start": {
+                                          "line": 32,
+                                          "column": 38
+                                        },
+                                        "end": {
+                                          "line": 32,
+                                          "column": 45
+                                        }
+                                      },
+                                      "method": false,
+                                      "shorthand": true,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Identifier",
+                                        "start": 1498,
+                                        "end": 1505,
+                                        "loc": {
+                                          "start": {
+                                            "line": 32,
+                                            "column": 38
+                                          },
+                                          "end": {
+                                            "line": 32,
+                                            "column": 45
+                                          }
+                                        },
+                                        "name": "install"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Identifier",
+                                        "start": 1498,
+                                        "end": 1505,
+                                        "loc": {
+                                          "start": {
+                                            "line": 32,
+                                            "column": 38
+                                          },
+                                          "end": {
+                                            "line": 32,
+                                            "column": 45
+                                          }
+                                        },
+                                        "name": "install"
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "start": 1507,
+                                      "end": 1511,
+                                      "loc": {
+                                        "start": {
+                                          "line": 32,
+                                          "column": 47
+                                        },
+                                        "end": {
+                                          "line": 32,
+                                          "column": 51
+                                        }
+                                      },
+                                      "method": false,
+                                      "shorthand": true,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Identifier",
+                                        "start": 1507,
+                                        "end": 1511,
+                                        "loc": {
+                                          "start": {
+                                            "line": 32,
+                                            "column": 47
+                                          },
+                                          "end": {
+                                            "line": 32,
+                                            "column": 51
+                                          }
+                                        },
+                                        "name": "test"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Identifier",
+                                        "start": 1507,
+                                        "end": 1511,
+                                        "loc": {
+                                          "start": {
+                                            "line": 32,
+                                            "column": 47
+                                          },
+                                          "end": {
+                                            "line": 32,
+                                            "column": 51
+                                          }
+                                        },
+                                        "name": "test"
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "start": 1513,
+                                      "end": 1519,
+                                      "loc": {
+                                        "start": {
+                                          "line": 32,
+                                          "column": 53
+                                        },
+                                        "end": {
+                                          "line": 32,
+                                          "column": 59
+                                        }
+                                      },
+                                      "method": false,
+                                      "shorthand": true,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Identifier",
+                                        "start": 1513,
+                                        "end": 1519,
+                                        "loc": {
+                                          "start": {
+                                            "line": 32,
+                                            "column": 53
+                                          },
+                                          "end": {
+                                            "line": 32,
+                                            "column": 59
+                                          }
+                                        },
+                                        "name": "dryRun"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Identifier",
+                                        "start": 1513,
+                                        "end": 1519,
+                                        "loc": {
+                                          "start": {
+                                            "line": 32,
+                                            "column": 53
+                                          },
+                                          "end": {
+                                            "line": 32,
+                                            "column": 59
+                                          }
+                                        },
+                                        "name": "dryRun"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "Identifier",
+                                  "start": 1523,
+                                  "end": 1542,
+                                  "loc": {
+                                    "start": {
+                                      "line": 32,
+                                      "column": 63
+                                    },
+                                    "end": {
+                                      "line": 32,
+                                      "column": 82
+                                    }
+                                  },
+                                  "name": "nvmTestVersionHooks"
+                                }
+                              ]
+                            },
+                            "leadingComments": null
+                          },
+                          "leadingComments": [
+                            {
+                              "type": "CommentLine",
+                              "value": " await for nvm test version",
+                              "start": 1430,
+                              "end": 1459,
+                              "loc": {
+                                "start": {
+                                  "line": 31,
+                                  "column": 6
+                                },
+                                "end": {
+                                  "line": 31,
+                                  "column": 35
+                                }
+                              },
+                              "range": [
+                                1430,
+                                1459
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "handler": {
+                      "type": "CatchClause",
+                      "start": 1550,
+                      "end": 1609,
+                      "loc": {
+                        "start": {
+                          "line": 33,
+                          "column": 6
+                        },
+                        "end": {
+                          "line": 36,
+                          "column": 5
+                        }
+                      },
+                      "param": {
+                        "type": "Identifier",
+                        "start": 1557,
+                        "end": 1558,
+                        "loc": {
+                          "start": {
+                            "line": 33,
+                            "column": 13
+                          },
+                          "end": {
+                            "line": 33,
+                            "column": 14
+                          }
+                        },
+                        "name": "e"
+                      },
+                      "body": {
+                        "type": "BlockStatement",
+                        "start": 1560,
+                        "end": 1609,
+                        "loc": {
+                          "start": {
+                            "line": 33,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 36,
+                            "column": 5
+                          }
+                        },
+                        "body": [
+                          {
+                            "type": "ExpressionStatement",
+                            "start": 1595,
+                            "end": 1603,
+                            "loc": {
+                              "start": {
+                                "line": 35,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 35,
+                                "column": 14
+                              }
+                            },
+                            "expression": {
+                              "type": "AssignmentExpression",
+                              "start": 1595,
+                              "end": 1603,
+                              "loc": {
+                                "start": {
+                                  "line": 35,
+                                  "column": 6
+                                },
+                                "end": {
+                                  "line": 35,
+                                  "column": 14
+                                }
+                              },
+                              "operator": "=",
+                              "left": {
+                                "type": "Identifier",
+                                "start": 1595,
+                                "end": 1599,
+                                "loc": {
+                                  "start": {
+                                    "line": 35,
+                                    "column": 6
+                                  },
+                                  "end": {
+                                    "line": 35,
+                                    "column": 10
+                                  }
+                                },
+                                "name": "code",
+                                "leadingComments": null
+                              },
+                              "right": {
+                                "type": "Identifier",
+                                "start": 1602,
+                                "end": 1603,
+                                "loc": {
+                                  "start": {
+                                    "line": 35,
+                                    "column": 13
+                                  },
+                                  "end": {
+                                    "line": 35,
+                                    "column": 14
+                                  }
+                                },
+                                "name": "e"
+                              },
+                              "leadingComments": null
+                            },
+                            "leadingComments": [
+                              {
+                                "type": "CommentLine",
+                                "value": " set code to error",
+                                "start": 1568,
+                                "end": 1588,
+                                "loc": {
+                                  "start": {
+                                    "line": 34,
+                                    "column": 6
+                                  },
+                                  "end": {
+                                    "line": 34,
+                                    "column": 26
+                                  }
+                                },
+                                "range": [
+                                  1568,
+                                  1588
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "guardedHandlers": [],
+                    "finalizer": null
+                  }
+                ]
+              },
+              "leadingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " as we are using await we cant use .forEach",
+                  "start": 1281,
+                  "end": 1326,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 47
+                    }
+                  },
+                  "range": [
+                    1281,
+                    1326
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ReturnStatement",
+              "start": 1617,
+              "end": 1628,
+              "loc": {
+                "start": {
+                  "line": 39,
+                  "column": 2
+                },
+                "end": {
+                  "line": 39,
+                  "column": 13
+                }
+              },
+              "argument": {
+                "type": "Identifier",
+                "start": 1624,
+                "end": 1628,
+                "loc": {
+                  "start": {
+                    "line": 39,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 39,
+                    "column": 13
+                  }
+                },
+                "name": "code"
+              }
+            }
+          ],
+          "trailingComments": null
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Run test using a list of Node versions with nvm.\n * @protected\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=[]]                   - A list of Node versions to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Object}                       [hooks]                         - An Object of {@link Hooks}\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n ",
+            "start": 114,
+            "end": 1006,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 17,
+                "column": 3
+              }
+            },
+            "range": [
+              114,
+              1006
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * {@link Hookable} nvmTestVersions\n * @public\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=['']]                 - A list of Node version to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Hooks}                        [hooks]                         - A {@link nvmTestVersions} Hooks\n * @param  {{pre: Hook}}                  [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}                 [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}                [hooks.error]                   - A `error` hook\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - A {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n ",
+            "start": 1632,
+            "end": 2781,
+            "loc": {
+              "start": {
+                "line": 42,
+                "column": 0
+              },
+              "end": {
+                "line": 57,
+                "column": 3
+              }
+            },
+            "range": [
+              1632,
+              2781
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Run test using a list of Node versions with nvm.\n * @protected\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=[]]                   - A list of Node versions to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Object}                       [hooks]                         - An Object of {@link Hooks}\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n ",
+          "start": 114,
+          "end": 1006,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 17,
+              "column": 3
+            }
+          },
+          "range": [
+            114,
+            1006
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * {@link Hookable} nvmTestVersions\n * @public\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=['']]                 - A list of Node version to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Hooks}                        [hooks]                         - A {@link nvmTestVersions} Hooks\n * @param  {{pre: Hook}}                  [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}                 [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}                [hooks.error]                   - A `error` hook\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - A {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n ",
+          "start": 1632,
+          "end": 2781,
+          "loc": {
+            "start": {
+              "line": 42,
+              "column": 0
+            },
+            "end": {
+              "line": 57,
+              "column": 3
+            }
+          },
+          "range": [
+            1632,
+            2781
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 2782,
+      "end": 2822,
+      "loc": {
+        "start": {
+          "line": 58,
+          "column": 0
+        },
+        "end": {
+          "line": 58,
+          "column": 40
+        }
+      },
+      "declaration": {
+        "type": "CallExpression",
+        "start": 2797,
+        "end": 2822,
+        "loc": {
+          "start": {
+            "line": 58,
+            "column": 15
+          },
+          "end": {
+            "line": 58,
+            "column": 40
+          }
+        },
+        "callee": {
+          "type": "Identifier",
+          "start": 2797,
+          "end": 2805,
+          "loc": {
+            "start": {
+              "line": 58,
+              "column": 15
+            },
+            "end": {
+              "line": 58,
+              "column": 23
+            }
+          },
+          "name": "hookable",
+          "leadingComments": null
+        },
+        "arguments": [
+          {
+            "type": "Identifier",
+            "start": 2806,
+            "end": 2821,
+            "loc": {
+              "start": {
+                "line": 58,
+                "column": 24
+              },
+              "end": {
+                "line": 58,
+                "column": 39
+              }
+            },
+            "name": "nvmTestVersions"
+          }
+        ],
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * {@link Hookable} nvmTestVersions\n * @public\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=['']]                 - A list of Node version to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Hooks}                        [hooks]                         - A {@link nvmTestVersions} Hooks\n * @param  {{pre: Hook}}                  [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}                 [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}                [hooks.error]                   - A `error` hook\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - A {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n ",
+            "start": 1632,
+            "end": 2781,
+            "loc": {
+              "start": {
+                "line": 42,
+                "column": 0
+              },
+              "end": {
+                "line": 57,
+                "column": 3
+              }
+            },
+            "range": [
+              1632,
+              2781
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentLine",
+            "value": " exporting this will fail to document as function w/ esdoc",
+            "start": 2823,
+            "end": 2883,
+            "loc": {
+              "start": {
+                "line": 59,
+                "column": 0
+              },
+              "end": {
+                "line": 59,
+                "column": 60
+              }
+            },
+            "range": [
+              2823,
+              2883
+            ]
+          }
+        ]
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * {@link Hookable} nvmTestVersions\n * @public\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=['']]                 - A list of Node version to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Hooks}                        [hooks]                         - A {@link nvmTestVersions} Hooks\n * @param  {{pre: Hook}}                  [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}                 [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}                [hooks.error]                   - A `error` hook\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - A {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n ",
+          "start": 1632,
+          "end": 2781,
+          "loc": {
+            "start": {
+              "line": 42,
+              "column": 0
+            },
+            "end": {
+              "line": 57,
+              "column": 3
+            }
+          },
+          "range": [
+            1632,
+            2781
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " exporting this will fail to document as function w/ esdoc",
+          "start": 2823,
+          "end": 2883,
+          "loc": {
+            "start": {
+              "line": 59,
+              "column": 0
+            },
+            "end": {
+              "line": 59,
+              "column": 60
+            }
+          },
+          "range": [
+            2823,
+            2883
+          ]
+        }
+      ]
+    }
+  ]
+}

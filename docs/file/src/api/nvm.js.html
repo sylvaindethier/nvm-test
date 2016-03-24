@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/api/nvm.js | nvm-test API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/sylvaindethier/nvm-test.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersions">nvmTestVersions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTest">nvmTest</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvm">nvm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shell">shell</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-command">command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/api/nvm.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { spawn } from &apos;child_process&apos;
+import { statSync } from &apos;fs&apos;
+import semver from &apos;semver&apos;
+import { hookable } from &apos;./hooks&apos;
+
+const bin = process.env.NVM_DIR + &apos;/nvm.sh&apos;
+const options = {
+  cwd: process.cwd(),
+  env: process.env,
+  stdio: &apos;inherit&apos;,
+  shell: process.env.SHELL,
+}
+
+// &apos;shell&apos; option introduced in Node v5.7.0
+const shellOption = semver.satisfies(process.version, &apos;&gt;=5.7.0&apos;)
+
+/**
+ * Wether or not nvm exists.
+ * @protected
+ * @return {boolean} - Wether or not nvm exists
+ */
+export function exists () {
+  try {
+    return statSync(bin).isFile()
+  } catch (e) {
+    return false
+  }
+}
+
+/* !esdoc bug
+ * The Node ChildProcess
+ * @external ChildProcess
+ * @see {@link https://nodejs.org/api/child_process.html#child_process_class_childprocess}
+ */
+
+/* !esdoc bug
+ * The Node EventEmitter, some Node versions do NOT expose the ChildProcess class
+ * @external EventEmitter
+ * @see {@link https://nodejs.org/api/events.html#events_class_eventemitter}
+ */
+
+/**
+ * Spawn a shell command with nvm shell.
+ * @protected
+ * @param  {command} [command=&apos;&apos;] - A shell command to spawn
+ * @return {(ChildProcess|EventEmitter)} - The spawned nvm command child process
+ */
+export function shell (command = &apos;&apos;) {
+  // source (period command) nvm before running the command
+  const cmd = `. ${bin}` + (command ? ` &amp;&amp; ${command}` : &apos;&apos;)
+
+  // the hole command has to be quoted starting w/ shell option
+  /* istanbul ignore next: depends on process.version */
+  const shcmd = shellOption ? `&apos;${cmd}&apos;` : cmd
+
+  // invoke shell command (-c)
+  const args = [&apos;-c&apos;, shcmd]
+  return spawn(process.env.SHELL, args, options)
+}
+
+/**
+ * Process a nvm shell command as a Promise.
+ * - It will resolve on &apos;close&apos; code not equals 0.
+ * - It will reject on &apos;error&apos; and &apos;close&apos; code equals 0.
+ * @protected
+ * @param  {command} [command=&apos;&apos;] - A shell command
+ * @return {Promise} - The nvm shell Promise
+ */
+export function nvm (command = &apos;&apos;) {
+  return new Promise((resolve, reject) =&gt; {
+    shell(command)
+
+    /*
+     * &apos;error&apos; event is emitted on spawn, kill, or send message Errors
+     * no solution found yet to unit test
+     */
+     // reject on error
+    .on(&apos;error&apos;, /* istanbul ignore next */ (error) =&gt; { reject(error.code || 1) })
+
+    // resolve if code is 0, reject otherwise
+    .on(&apos;close&apos;, (code) =&gt; { (code === 0 ? resolve : reject)(code) })
+  })
+}
+
+/**
+ * {@link Hookable} nvm
+ * @public
+ * @function nvm
+ * @param  {command}       [command=&apos;&apos;]  - A shell command
+ * @param  {Hooks}         [hooks]       - {@link nvm} Hooks
+ * @param  {{pre: Hook}}   [hooks.pre]   - A `pre` hook
+ * @param  {{post: Hook}}  [hooks.post]  - A `post` hook
+ * @param  {{error: Hook}} [hooks.error] - A `error` hook
+ * @return {Promise} - The {@link nvm} Promise
+ */
+export default hookable(nvm)
+// exporting this will fail to document as function w/ esdoc
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
