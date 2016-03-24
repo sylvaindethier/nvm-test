@@ -1,9 +1,25 @@
 import { join } from 'path'
 
+/**
+ * A version refers to any version-like string nvm understands. This includes:
+ * - full or partial version numbers, starting with an optional "v" (0.10, v0.1.2, v1)
+ * - default (built-in) aliases: node, stable, unstable, iojs, system
+ * - custom aliases you define with `nvm alias foo`
+ * @public
+ * @typedef {string} version
+ */
+
+/**
+ * A command refers to a shell command. Any `$version` string will be replaced
+ * by the version in test
+ * @public
+ * @typedef {string} command
+ */
+
 // defaults
 const filename = '.nvmrc.test'
 const defaults = {
-  // install: detect version silently, install version otherwise
+  // install: detects version silently, install otherwise
   install: 'nvm which $version &> /dev/null || nvm install $version',
   // test: just 'npm test'
   test: 'nvm use $version && ( npm test )',
@@ -19,13 +35,19 @@ try {
 } catch (e) {} // eslint-disable-line no-empty
 
 /**
- * Runtime configuration.
+ * Config from `.nvmrc.test.json` file
  * @public
- * @type     {Object}                   - The runtime configuration
- * @property {string}   [install=]      - The install command.<br> `nvm which $version &> /dev/null || nvm install $version`
- * @property {string}   [test=]         - The test command.<br> `nvm use $version && ( npm test )`
- * @property {boolean}  [dryRun=false]  - Whether or not to dry run the test
- * @property {string[]} [commands=[]]   - External commands
+ * @namespace {Object}   config
+ * @type      {Object}
+ * @property  {command}  [install=]     - The `install` command.<br> `nvm which $version &> /dev/null || nvm install $version`
+ * @property  {command}  [test=]        - The `test` command.<br> `npm test`
+ * @property  {boolean}  [dryRun=false] - Whether or not to dry run the test. Echoes the `test` command if true.
+ * @property  {string[]} [commands=[]]  - External commands
+ * @example
+ * {
+ *   "test": "echo 'nvm-test version $version'; npm run lint && npm run test",
+ *   "commands": ["travis"]
+ * }
  */
 const config = Object.assign({}, defaults, rc)
 export default config

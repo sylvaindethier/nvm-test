@@ -1,7 +1,7 @@
 import { spawn } from 'child_process'
 import { statSync } from 'fs'
 import semver from 'semver'
-import { hook } from './hooks'
+import { hookable } from './hooks'
 
 const bin = process.env.NVM_DIR + '/nvm.sh'
 const options = {
@@ -15,21 +15,37 @@ const options = {
 const shellOption = semver.satisfies(process.version, '>=5.7.0')
 
 /**
- * Wether or not nvm exists
- * @return {Boolean} - Wether or not nvm exists
+ * Wether or not nvm exists.
+ * @protected
+ * @return {boolean} - Wether or not nvm exists
  */
-function exists () {
+export function exists () {
   try {
     return statSync(bin).isFile()
-  } catch (e) { return false }
+  } catch (e) {
+    return false
+  }
 }
 
-/**
- * Spawn a shell command with nvm shell
- * @param {String} [command = ''] - A shell command to spawn
- * @return {ChildProcess} - The spawned nvm command
+/* !esdoc bug
+ * The Node ChildProcess
+ * @external ChildProcess
+ * @see {@link https://nodejs.org/api/child_process.html#child_process_class_childprocess}
  */
-function shell (command = '') {
+
+/* !esdoc bug
+ * The Node EventEmitter, some Node versions do NOT expose the ChildProcess class
+ * @external EventEmitter
+ * @see {@link https://nodejs.org/api/events.html#events_class_eventemitter}
+ */
+
+/**
+ * Spawn a shell command with nvm shell.
+ * @protected
+ * @param  {command} [command=''] - A shell command to spawn
+ * @return {(ChildProcess|EventEmitter)} - The spawned nvm command child process
+ */
+export function shell (command = '') {
   // source (period command) nvm before running the command
   const cmd = `. ${bin}` + (command ? ` && ${command}` : '')
 
@@ -43,13 +59,14 @@ function shell (command = '') {
 }
 
 /**
- * Process a nvm shell command as a Promise
- * - It will resolve on 'close' code not equals 0
- * - It will reject on 'error' and 'close' code equals 0
- * @param {String} [command] - A nvm shell command
+ * Process a nvm shell command as a Promise.
+ * - It will resolve on 'close' code not equals 0.
+ * - It will reject on 'error' and 'close' code equals 0.
+ * @protected
+ * @param  {command} [command=''] - A shell command
  * @return {Promise} - The nvm shell Promise
  */
-function nvm (command) {
+export function nvm (command = '') {
   return new Promise((resolve, reject) => {
     shell(command)
 
@@ -65,7 +82,16 @@ function nvm (command) {
   })
 }
 
-// hook nvm
-const nvmHook = hook(nvm)
-
-export { nvmHook as default, nvm, exists, shell }
+/**
+ * {@link Hookable} nvm
+ * @public
+ * @function nvm
+ * @param  {command}       [command='']  - A shell command
+ * @param  {Hooks}         [hooks]       - {@link nvm} Hooks
+ * @param  {{pre: Hook}}   [hooks.pre]   - A `pre` hook
+ * @param  {{post: Hook}}  [hooks.post]  - A `post` hook
+ * @param  {{error: Hook}} [hooks.error] - A `error` hook
+ * @return {Promise} - The {@link nvm} Promise
+ */
+export default hookable(nvm)
+// exporting this will fail to document as function w/ esdoc

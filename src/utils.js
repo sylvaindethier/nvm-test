@@ -2,8 +2,10 @@ import { name } from '../package'
 
 /**
  * Build a usage string from a command
- * @param {Object} cmd - A command
- * @return {String} - The usage string for the command
+ * @private
+ * @param  {Object} cmd               - A command
+ * @param  {string} [prefix=Usage:\n] - A prefix string
+ * @return {string} - The usage string for the command
  */
 export function buildUsage (cmd, prefix = `Usage:\n  `) {
   // get description from command
@@ -14,7 +16,8 @@ export function buildUsage (cmd, prefix = `Usage:\n  `) {
 
 /**
  * Patch a command - add usage
- * @param {Object} cmd - The command to patch
+ * @private
+ * @param  {Object} cmd - The command to patch
  * @return {Object} - The patched command
  */
 export function patchCommand (cmd) {

@@ -1,18 +1,20 @@
 import nvm from './nvm'
 import config from './config'
-import { hook } from './hooks'
+import { hookable } from './hooks'
 
 /**
  * Test using a Node version with nvm
- * @param {String} [version = ''] - A Node version to use with nvm
- * @param {Object} [options = {}] - Some options
- * @param {String} [options.test = config.test] - The test command
- * @param {Boolean} [options.dryRun = config.dryRun] - Wheter or not to dry run the test
- * @param {Object} [hooks = {}] - Some hooks
- * @param {Object} [hooks.nvmHooks] - Some nvm hooks
- * @return {Promise} - The nvm (hook) Promise
+ * @protected
+ * @function nvmTest
+ * @param  {version}           [version='']                  - A Node version to use with nvm
+ * @param  {Object}            [config]                      - A {@link config}
+ * @param  {{test: command}}   [config.test=config.test]     - A {@link config} `test` command
+ * @param  {{dryRun: boolean}} [config.dryRun=config.dryRun] - Wheter or not to dry run the test
+ * @param  {Object}            [hooks]                       - An Object of {@link Hooks}
+ * @param  {{nvmHooks: Hooks}} [hooks.nvmHooks]              - A {@link nvm} Hooks
+ * @return {Promise} - The {@link nvm} Promise
  */
-function nvmTest (
+export function nvmTest (
   version = '',
   { test = config.test, dryRun = config.dryRun } = {},
   { nvmHooks } = {}
@@ -25,7 +27,20 @@ function nvmTest (
   return nvm(command, nvmHooks)
 }
 
-// hook nvmTest
-const nvmTestHook = hook(nvmTest)
-
-export { nvmTestHook as default, nvmTest }
+/**
+ * {@link Hookable} nvmTest
+ * @public
+ * @function nvmTest
+ * @param  {version}            [version='']                    - A Node version to use with nvm
+ * @param  {Object}             [config]                        - A {@link config}
+ * @param  {{test: command}}    [config.test=config.test]       - The {@link config} `test` command
+ * @param  {{dryRun: boolean}}  [config.dryRun=config.dryRun]   - Wheter or not to dry run the test
+ * @param  {Hooks}              [hooks]                         - {@link nvmTest} Hooks
+ * @param  {{pre: Hook}}        [hooks.pre]                     - A `pre` hook
+ * @param  {{post: Hook}}       [hooks.post]                    - A `post` hook
+ * @param  {{error: Hook}}      [hooks.error]                   - A `error` hook
+ * @param  {{nvmHooks: Hooks}}  [hooks.nvmHooks]                - {@link nvm} Hooks
+ * @return {Promise} - The {@link nvm} Promise
+ */
+export default hookable(nvmTest)
+// exporting this will fail to document as function w/ esdoc

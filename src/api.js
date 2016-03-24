@@ -1,3 +1,4 @@
+/** @namespace api */
 export {
   config,
   Hooks,

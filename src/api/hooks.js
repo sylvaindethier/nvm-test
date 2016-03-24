@@ -1,29 +1,52 @@
 const isFunction = (fn) => (typeof fn === 'function')
 
 /**
+ * Hook
+ * @public
+ * @typedef {function} Hook
+ */
+
+/**
  * Hooks
+ * @public
+ * @class Hooks
  */
 export default class Hooks {
   /**
-   * Create a Hooks
-   * @constructor
-   * @param {Object} [hooks = {}] - Some hooks
+   * @constructs Hooks
+   * @param {Object<string, Hook>} [hooks] - Some hooks
    */
-  constructor (hooks = {}) {
+  constructor (hooks) {
     // assign hooks to this
     Object.assign(this, hooks)
   }
 }
 
 /**
- * Makes a function hookable
- * @param {Function} fn - A function to hook
- * @return {Function} - The hookable function
+ * Hookable function, accepts a Hooks as last arguments
+ * @public
+ * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable
  */
-export function hook (fn) {
+
+/**
+ * Makes a function hookable
+ * @protected
+ * @param  {function} fn - A function to make hookable
+ * @throws {TypeError} - When argument is not a function
+ * @return {Hookable}  - The Hookable function, {@link Hooks} as last arguments
+ */
+export function hookable (fn) {
   if (!isFunction(fn)) throw new TypeError('Argument must be a function')
 
-  return async function (...args) {
+  /**
+   * {@link Hookable} function
+   * @protected
+   * @param  {...arguments} [args]  - The function arguments
+   * @param  {Hooks}        [hooks] - {@link Hooks} (`pre`, `post`, `error`, ...Hooks)
+   * @throws {Error} - When error
+   * @return {*}     - The function return value
+   */
+  return async function hook (...args) {
     // remove latest hooks from args if any
     const latest = args[args.length - 1]
     const hooks = latest instanceof Hooks ? args.pop() : new Hooks()

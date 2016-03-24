@@ -1,17 +1,19 @@
 import nvm from './nvm'
 import config from './config'
-import { hook } from './hooks'
+import { hookable } from './hooks'
 
 /**
  * Install a Node version with nvm if needed
- * @param {String} [version = ''] - A Node version to install with nvm
- * @param {Object} [options = {}] - Some options
- * @param {String} [options.install = config.install] - The install command
- * @param {Object} [hooks = {}] - Some hooks
- * @param {Object} [hooks.nvmHooks] - Some nvm hooks
- * @return {Promise} - The nvm (hook) Promise
+ * @protected
+ * @function nvmInstall
+ * @param  {version}            [version='']                    - A Node version to install with nvm
+ * @param  {Object}             [config]                        - A {@link config}
+ * @param  {{install: command}} [config.install=config.install] - A {@link config} `install` command
+ * @param  {Object}             [hooks]                         - An Object of {@link Hooks}
+ * @param  {{nvmHooks: Hooks}}  [hooks.nvmHooks]                - {@link nvm} Hooks
+ * @return {Promise} - The {@link nvm} Promise
  */
-function nvmInstall (
+export function nvmInstall (
   version = '',
   { install = config.install } = {},
   { nvmHooks } = {}
@@ -21,7 +23,19 @@ function nvmInstall (
   return nvm(command, nvmHooks)
 }
 
-// hook nvmInstall
-const nvmInstallHook = hook(nvmInstall)
-
-export { nvmInstallHook as default, nvmInstall }
+/**
+ * {@link Hookable} nvmInstall
+ * @public
+ * @function nvmInstall
+ * @param  {version}            [version='']                    - A Node version to install with nvm
+ * @param  {Object}             [config]                        - A {@link config}
+ * @param  {{install: command}} [config.install=config.install] - A {@link config} `install` command
+ * @param  {Hooks}              [hooks]                         - A {@link nvmInstall} Hooks
+ * @param  {{pre: Hook}}        [hooks.pre]                     - A `pre` hook
+ * @param  {{post: Hook}}       [hooks.post]                    - A `post` hook
+ * @param  {{error: Hook}}      [hooks.error]                   - A `error` hook
+ * @param  {{nvmHooks: Hooks}}  [hooks.nvmHooks]                - A {@link nvm} Hooks
+ * @return {Promise} - The {@link nvm} Promise
+ */
+export default hookable(nvmInstall)
+// exporting this will fail to document as function w/ esdoc

@@ -4,8 +4,11 @@ import log from 'npmlog'
 // set default log level to 'silly' in development NODE_ENV
 if (process.env.NODE_ENV === 'development') log.level = 'silly'
 
+/** @private */
 const command = '[versions]'
+/** @private */
 const desc = 'Test using some Node versions'
+/** @private */
 const builder = {
   'i': {
     alias: 'install',
@@ -33,7 +36,12 @@ const builder = {
     default: log.level,
   },
 }
-
+/**
+ * Handler
+ * @private
+ * @param  {Object} argv - The yargs argv
+ * @return {Promise} - The nvmTestVersions Promise
+ */
 const handler = (argv) => {
   // get versions from argv._
   const versions = argv._
@@ -96,5 +104,6 @@ const handler = (argv) => {
   .then(process.exit, process.exit)
 }
 
+/** @private */
 const options = builder
 export { command, desc, options, handler }
