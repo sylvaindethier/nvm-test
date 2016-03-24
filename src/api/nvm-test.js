@@ -3,6 +3,15 @@ import config from './config'
 import { hookable } from './hooks'
 
 /**
+ * Wrap a command to use a Node version before
+ * @private
+ * @function nvmUse
+ * @param {command} command - The command to wrap
+ * @return {command} - The wrapped command
+ */
+const nvmUse = (command) => (`nvm use $version && ( ${command} )`)
+
+/**
  * Test using a Node version with nvm
  * @protected
  * @function nvmTest
@@ -19,6 +28,8 @@ export function nvmTest (
   { test = config.test, dryRun = config.dryRun } = {},
   { nvmHooks } = {}
 ) {
+  // use the Node version
+  test = nvmUse(test)
   // apply dryRun if required, just echo the command for now
   if (dryRun) test = `echo "Dry run: ${test}"`
 

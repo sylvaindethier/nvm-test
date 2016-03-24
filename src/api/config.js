@@ -22,7 +22,7 @@ const defaults = {
   // install: detects version silently, install otherwise
   install: 'nvm which $version &> /dev/null || nvm install $version',
   // test: just 'npm test'
-  test: 'nvm use $version && ( npm test )',
+  test: 'npm test',
   dryRun: false,
   commands: [],
 }
