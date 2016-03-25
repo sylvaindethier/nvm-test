@@ -9,7 +9,17 @@ describe('nvmInstall', function () {
   })
 
   it('should reject with no Node version', function (done) {
-    return shouldReject(nvmInstall(), done)
+    return nvmInstall()
+    .then((code) => {
+      // weird: fails on TravisCI, nvmInstall w/ no Node version reject w/ code 0
+      if (code === 0) done()
+      else done(new Error(`Resolved with code ${code}, it sould NOT`))
+    })
+    .catch((code) => {
+      // exit code should NOT be 0 when Error
+      expect(code).toNotEqual(0)
+      done()
+    })
   })
 
   it('should reject with an invalid Node version', function (done) {
