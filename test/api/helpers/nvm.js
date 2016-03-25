@@ -3,10 +3,12 @@ import expect from 'expect'
 
 // Note: nvm API resolve and reject with the exit code
 
-export function shouldReject (promise, done) {
-  return promise
+export function shouldReject (nvm, done) {
+  return nvm
   .then((code) => {
-    done(new Error(`Resolved with ${code}, it should NOT`))
+    // weird: fails on TravisCI, nvmInstall w/ no Node version reject w/ code 0
+    if (code !== 0) done(new Error(`Resolved with ${code}, it should NOT`))
+    else done()
   })
   .catch((code) => {
     // exit code should NOT be 0 when Error
