@@ -35,17 +35,14 @@ describe('shell', function () {
 
   it('should return a ChildProcess', function (done) {
     this.timeout(5000) // 5s
-    const cp = shell()
-    expect(cp).toBeA(ChildProcess)
-    cp.on('close', done)
-    cp.on('error', done)
+    expect(shell()).toBeA(ChildProcess)
+    done()
   })
 
   it('should execute with success', function (done) {
     this.timeout(5000) // 5s
-    const cp = shell('echo "shell test" > /dev/null')
-    cp.on('close', done)
-    cp.on('error', done)
+    shell('echo "shell test" > /dev/null')
+    .on('close', done)
   })
 })
 
