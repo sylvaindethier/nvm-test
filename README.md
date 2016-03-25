@@ -36,12 +36,12 @@ Usage:
   nvm-test <command>  [options]  Execute external <command>
 
 Options:
-  -h, --help       Show help                                           [boolean]
-  -i, --install    Specify the install command                          [string]
-  -t, --test       Specify the test command                             [string]
-  -D, --dry-run    Dry run the test                                    [boolean]
-  -L, --log-level  Set the log level                                    [string]
-  -v, --version    Show version number                                 [boolean]
+  -h, --help       Show help                                          [boolean]
+  -i, --install    Specify the install command                         [string]
+  -t, --test       Specify the test command                            [string]
+  -D, --dry-run    Dry run the test                                   [boolean]
+  -L, --log-level  Set the log level                                   [string]
+  -v, --version    Show version number                                [boolean]
 ```
 
 ## Install
