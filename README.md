@@ -16,7 +16,8 @@ Configurable & Extensible `npm test` using different Node versions with nvm.
 [deps-image]: https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square
 [devDeps-image]: https://img.shields.io/david/dev/sylvaindethier/nvm-test.svg?style=flat-square
 [devDeps-url]: https://david-dm.org/sylvaindethier/nvm-test#info=devDependencies
-
+[api-url-esdoc]: https://doc.esdoc.org/github.com/sylvaindethier/nvm-test
+[api-url-gh]: https://sylvaindethier.github.io/nvm-test
 
 [![NPM Package Stats][npm-image]][npm-url]
 
@@ -49,6 +50,11 @@ Prefer global install:
 
 Or simply use as per project dev dependencies:
 **`npm install --save-dev nvm-test`**
+
+## API
+`nvm-test` [API documentation on GithHub][api-url-gh]
+
+`nvm-test` [API documentation on ESDoc][api-url-esdoc]
 
 ## Usage:
   * **nvm-test [versions] [options]**
