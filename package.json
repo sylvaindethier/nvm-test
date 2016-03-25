@@ -16,8 +16,8 @@
     "test": "npm run coverage",
     "test:only": "mocha",
     "coverage": "rimraf coverage && istanbul cover _mocha -- -R spec",
-    "preversion": "npm run build",
-    "postversion": "gh-pages --dist ./doc --message 'doc(update): Auto build'"
+    "preversion": "npm run build && npm run deploy:doc",
+    "deploy:doc": "gh-pages --dist ./doc --message 'doc(update): Auto build'"
   },
   "repository": {
     "type": "git",
