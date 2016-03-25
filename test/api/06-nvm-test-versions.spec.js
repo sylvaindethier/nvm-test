@@ -9,7 +9,6 @@ describe('nvmTestVersions', function () {
   })
 
   it('should return error code with no Node version', function (done) {
-    this.timeout(20000) // 20s
     return nvmTestVersions()
     .then((code) => {
       expect(code).toNotEqual(0)
@@ -21,7 +20,6 @@ describe('nvmTestVersions', function () {
   })
 
   it('should return error code with an invalid Node version', function (done) {
-    this.timeout(20000) // 20s
     return nvmTestVersions(['foo'])
     .then((code) => {
       expect(code).toNotEqual(0)
@@ -33,13 +31,11 @@ describe('nvmTestVersions', function () {
   })
 
   it('should resolve with a valid Node version', function (done) {
-    this.timeout(20000) // 20s
     // need to dry run here, or endless loop
     return shouldResolve(nvmTestVersions([process.version], { dryRun: true }), done)
   })
 
   it('should execute others install and test commands', function (done) {
-    this.timeout(20000) // 20s
     return shouldResolve(nvmTestVersions([process.version], {
       install: 'nvm which $version > /dev/null',
       test: 'npm --version > /dev/null',

@@ -34,13 +34,11 @@ describe('shell', function () {
   })
 
   it('should return a ChildProcess', function (done) {
-    this.timeout(5000) // 5s
     expect(shell()).toBeA(ChildProcess)
     done()
   })
 
   it('should execute with success', function (done) {
-    this.timeout(5000) // 5s
     shell('echo "shell test" > /dev/null')
     .on('close', done)
   })
@@ -53,12 +51,10 @@ describe('nvm', function () {
   })
 
   it('should reject the Promise on Error', function (done) {
-    this.timeout(5000) // 5s
     return shouldReject(nvm('bad-command 2> /dev/null'), done)
   })
 
   it('should return and resolve the Promise', function (done) {
-    this.timeout(5000) // 5s
     const p = nvm()
     expect(p).toBeA(Promise)
 
