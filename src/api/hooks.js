@@ -11,16 +11,18 @@ const isFunction = (fn) => (typeof fn === 'function')
  * @public
  * @class Hooks
  */
-export default class Hooks {
+class Hooks {
   /**
-   * @constructs Hooks
-   * @param {Object<string, Hook>} [hooks] - Some hooks
+   * Create a Hooks
+   * @param  {Object<string, Hook>} [hooks] - Some hooks
+   * @return {Hooks} - This Hooks
    */
   constructor (hooks) {
     // assign hooks to this
     Object.assign(this, hooks)
   }
 }
+export default Hooks
 
 /**
  * Hookable function, accepts a Hooks as last arguments
