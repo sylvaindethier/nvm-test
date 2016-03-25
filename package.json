@@ -1,0 +1,68 @@
+{
+  "name": "nvm-test",
+  "version": "1.1.1",
+  "description": "Test using differents Node versions with nvm",
+  "main": "./lib/api.js",
+  "bin": {
+    "nvm-test": "./bin/nvm-test.js"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development babel-node ./src/bin.js",
+    "prebuild": "npm run lint && npm run test",
+    "build": "npm run build:lib && npm run build:doc",
+    "build:lib": "rimraf lib && NODE_ENV=production babel ./src -d ./lib",
+    "build:doc": "rimraf doc && esdoc -c ./esdoc.json .",
+    "lint": "eslint .",
+    "test": "npm run coverage",
+    "test:only": "mocha",
+    "coverage": "rimraf coverage && istanbul cover _mocha -- -R spec",
+    "preversion": "npm run build",
+    "postversion": "gh-pages --dist ./doc --message 'doc(update): Auto build'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sylvaindethier/nvm-test.git"
+  },
+  "keywords": [
+    "versions",
+    "node",
+    "nvm-test",
+    "test",
+    "nvm"
+  ],
+  "author": "Sylvain Dethier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sylvaindethier/nvm-test/issues"
+  },
+  "homepage": "https://github.com/sylvaindethier/nvm-test#readme",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.6.1",
+    "npmlog": "^2.0.2",
+    "resolve": "^1.1.7",
+    "semver": "^5.1.0",
+    "yargs": "^4.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-core": "^6.7.2",
+    "babel-eslint": "^6.0.0-beta",
+    "babel-plugin-transform-runtime": "^6.6.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "esdoc": "^0.4.6",
+    "esdoc-es7-plugin": "0.0.3",
+    "eslint": "^2.4.0",
+    "eslint-config-standard": "^5.1.0",
+    "eslint-plugin-promise": "^1.1.0",
+    "eslint-plugin-standard": "^1.3.2",
+    "expect": "^1.15.2",
+    "gh-pages": "^0.11.0",
+    "istanbul": "^1.0.0-alpha",
+    "mocha": "^2.4.5",
+    "rimraf": "^2.5.2"
+  }
+}
