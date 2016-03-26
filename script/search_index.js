@@ -60,12 +60,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "nvm-test/src/utils.js~y18n",
-    "variable/index.html#static-variable-y18n",
-    "<span>y18n</span> <span class=\"search-result-import-path\">nvm-test/src/utils.js</span>",
-    "variable"
-  ],
-  [
     "builtinexternal/ecmascriptexternal.js~array",
     "external/index.html",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -397,289 +391,289 @@ window.esdocSearchIndex = [
   ],
   [
     "* *,*",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber9",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber10",
     "Hooks",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber10",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber11",
     "Hooks should be call for new instance only",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber15",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber16",
     "Hooks should have passed in properties",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/00-index.spec.js.html#lineNumber5",
+    "test-file/test/api/00-index.spec.js.html#lineNumber6",
     "api",
     "test"
   ],
   [
     "",
-    "test-file/test/api/00-index.spec.js.html#lineNumber6",
+    "test-file/test/api/00-index.spec.js.html#lineNumber7",
     "api sould fail to require if nvm does not exists",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber11",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber12",
     "exists",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber12",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber13",
     "exists should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber16",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber17",
     "exists should return false if nvm does not exists",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber25",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber26",
     "exists should return true if nvm exists",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber24",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber25",
     "hookable",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber25",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber26",
     "hookable should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber60",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber61",
     "hookable should execute a \"post\" hook",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber47",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber48",
     "hookable should execute a \"pre\" hook",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber74",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber75",
     "hookable should reject and execute an \"error\" hook on Error",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber37",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber38",
     "hookable should return a Promise (2nd level)",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber33",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber34",
     "hookable should return a function (1st level)",
     "test"
   ],
   [
     "",
-    "test-file/test/api/01-hooks.spec.js.html#lineNumber29",
+    "test-file/test/api/01-hooks.spec.js.html#lineNumber30",
     "hookable should throw a TypeError if argument is not a function",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber48",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber49",
     "nvm",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber49",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber50",
     "nvm should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber53",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber54",
     "nvm should reject the Promise on Error",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber57",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber58",
     "nvm should return and resolve the Promise",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber6",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber7",
     "nvmInstall",
     "test"
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber7",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber8",
     "nvmInstall should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber33",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber34",
     "nvmInstall should execute an other install command",
     "test"
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber25",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber26",
     "nvmInstall should reject with an invalid Node version",
     "test"
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber11",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber12",
     "nvmInstall should reject with no Node version",
     "test"
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber29",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber30",
     "nvmInstall should resolve with a valid Node version",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber6",
+    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber7",
     "nvmTest",
     "test"
   ],
   [
     "",
-    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber7",
+    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber8",
     "nvmTest should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber24",
+    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber25",
     "nvmTest should execute an other test command",
     "test"
   ],
   [
     "",
-    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber15",
+    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber16",
     "nvmTest should reject with an invalid Node version",
     "test"
   ],
   [
     "",
-    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber11",
+    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber12",
     "nvmTest should reject with no Node version",
     "test"
   ],
   [
     "",
-    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber19",
+    "test-file/test/api/04-nvm-test.spec.js.html#lineNumber20",
     "nvmTest should resolve with a valid Node version",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber6",
+    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber7",
     "nvmTestVersion",
     "test"
   ],
   [
     "",
-    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber7",
+    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber8",
     "nvmTestVersion should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber20",
+    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber21",
     "nvmTestVersion should execute others install and test commands",
     "test"
   ],
   [
     "",
-    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber11",
+    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber12",
     "nvmTestVersion should reject with no Node version",
     "test"
   ],
   [
     "",
-    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber15",
+    "test-file/test/api/05-nvm-test-version.spec.js.html#lineNumber16",
     "nvmTestVersion should resolve with a valid Node version",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber6",
+    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber7",
     "nvmTestVersions",
     "test"
   ],
   [
     "",
-    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber7",
+    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber8",
     "nvmTestVersions should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber38",
+    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber39",
     "nvmTestVersions should execute others install and test commands",
     "test"
   ],
   [
     "",
-    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber33",
+    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber34",
     "nvmTestVersions should resolve with a valid Node version",
     "test"
   ],
   [
     "",
-    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber22",
+    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber23",
     "nvmTestVersions should return error code with an invalid Node version",
     "test"
   ],
   [
     "",
-    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber11",
+    "test-file/test/api/06-nvm-test-versions.spec.js.html#lineNumber12",
     "nvmTestVersions should return error code with no Node version",
     "test"
   ],
   [
     "* *,*",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber31",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber32",
     "shell",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber32",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber33",
     "shell should be a function",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber41",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber42",
     "shell should execute with success",
     "test"
   ],
   [
     "",
-    "test-file/test/api/02-nvm.spec.js.html#lineNumber36",
+    "test-file/test/api/02-nvm.spec.js.html#lineNumber37",
     "shell should return a ChildProcess",
     "test"
   ],
@@ -717,12 +711,6 @@ window.esdocSearchIndex = [
     "src/api/hooks.js~hook",
     "typedef/index.html#static-typedef-Hook",
     "src/api/hooks.js~Hook",
-    "typedef"
-  ],
-  [
-    "src/api/hooks.js~hookable",
-    "typedef/index.html#static-typedef-Hookable",
-    "src/api/hooks.js~Hookable",
     "typedef"
   ],
   [

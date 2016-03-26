@@ -32,8 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-y18n">y18n</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -47,24 +46,24 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="nvm-test">nvm-test</h1>
 <blockquote>
-<p>Test using different Node versions with nvm.</p>
+<p>Test using differents Node versions with nvm.</p>
 </blockquote>
 <p>Configurable &amp; Extensible <code>npm test</code> using differents Node versions with nvm.</p>
 <p><a href="https://www.npmjs.org/package/nvm-test"><img src="https://nodei.co/npm/nvm-test.svg?downloads=true&amp;stars=true" alt="NPM Package Stats"></a><br><a href="https://www.npmjs.org/package/nvm-test"><img src="https://img.shields.io/npm/v/nvm-test.svg?style=flat-square" alt="NPM Version"></a>
 <a href="https://travis-ci.org/sylvaindethier/nvm-test"><img src="https://img.shields.io/travis/sylvaindethier/nvm-test/master.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://codeclimate.com/github/sylvaindethier/nvm-test"><img src="https://img.shields.io/codeclimate/github/sylvaindethier/nvm-test.svg?style=flat-square" alt="Code Climate"></a>
-<a href="https://codeclimate.com/github/sylvaindethier/nvm-test/coverage"><img src="https://img.shields.io/codeclimate/coverage/github/sylvaindethier/nvm-test.svg?style=flat-square" alt="Coverage Status"></a><br><a href="https://david-dm.org/sylvaindethier/nvm-test#info=dependencies"><img src="https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square" alt="Dependencies"></a>
+<a href="https://codeclimate.com/github/sylvaindethier/nvm-test/coverage"><img src="https://img.shields.io/codeclimate/coverage/github/sylvaindethier/nvm-test.svg?style=flat-square" alt="Coverage Status"></a><br><a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="JS Style"></a>
+<a href="https://david-dm.org/sylvaindethier/nvm-test#info=dependencies"><img src="https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square" alt="Dependencies"></a>
 <a href="https://david-dm.org/sylvaindethier/nvm-test#info=devDependencies"><img src="https://img.shields.io/david/dev/sylvaindethier/nvm-test.svg?style=flat-square" alt="Dev Dependencies"></a></p>
 <pre><code class="lang-sh"><code class="source-code prettyprint">Usage:
-  nvm-test [versions] [options]  Test using some Node versions
-  nvm-test &lt;command&gt;  [options]  Execute external &lt;command&gt;
+  nvm-test [versions] [options]  Test using Node [versions]
+  nvm-test &lt;command&gt;  [options]  Execute the &lt;command&gt; plugin
 
 Options:
   -h, --help       Show help                                          [boolean]
@@ -78,7 +77,8 @@ Options:
 <ul>
 <li><p><strong>install</strong> command: <code>nvm which $version || nvm install $version</code><br>Which silently install the specified <code>$version</code> if required.</p>
 </li>
-<li><p><strong>test</strong> command: <code>npm test</code><br>Which run the configured <code>test</code> npm scripts.<br>The command is always preceded by <code>nvm use $version</code> in order to make the Node <code>$version</code> in use before the test.</p>
+<li><p><strong>test</strong> command: <code>npm test</code><br>Which run the configured <code>test</code> npm scripts.<br>The command is always preceded by <code>nvm use $version</code> in order to make the Node
+<code>$version</code> used before the test.</p>
 </li>
 </ul>
 <h2 id="install">Install</h2>
@@ -87,28 +87,28 @@ Options:
 <h2 id="cli-usage">CLI usage</h2>
 <h3 id="nvm-test-versions-options-">nvm-test [versions] [options]</h3>
 <blockquote>
-<p>Test using some Node versions</p>
+<p>Test using Node [versions]</p>
 </blockquote>
 <p>Testing <code>stable</code> and <code>v4</code> Node versions:</p>
-<pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test stable v4</code>
+<pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test stable v4 [options]</code>
 </code></pre>
 <p>Test using <em>the</em> Node version from <code>.nvmrc</code> file (default nvm behavior):</p>
-<pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test</code>
+<pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test [options]</code>
 </code></pre>
 <h3 id="nvm-test-lt-command-gt-options-">nvm-test &lt;command&gt; [options]</h3>
 <blockquote>
-<p>Execute external &lt;command&gt;</p>
+<p>Execute the &lt;command&gt; plugin</p>
 </blockquote>
-<p>Therefore the command must be available and installed in your project.<br>For example install the <code>travis</code> command:</p>
-<pre><code class="lang-sh"><code class="source-code prettyprint">$ npm install nvm-test-command-travis</code>
+<p>Therefore the plugin must be available and installed in your project.<br>For example, install the <code>travis</code> plugin:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">$ npm install nvm-test-plugin-travis</code>
 </code></pre>
-<p>Add the <code>travis</code> command in your <code>.nvmrc.test.json</code> file:</p>
+<p>Add it to your <code>.nvmrc.test.json</code> project file:</p>
 <pre><code class="lang-json"><code class="source-code prettyprint">{
-  &quot;commands&quot;: [&quot;travis&quot;]
+  &quot;plugins&quot;: [&quot;travis&quot;]
 }</code>
 </code></pre>
-<p>And run the test using Node versions from your <code>.travis.yml</code> file:</p>
-<pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test travis</code>
+<p>Then run the test using the Node versions from your <code>.travis.yml</code> file:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test travis [options]</code>
 </code></pre>
 <h2 id="cli-options">CLI options</h2>
 <h3 id="-i-install">-i, --install</h3>
@@ -150,7 +150,7 @@ $ nvm-test --log-level info [versions]</code>
 $ nvm-test --help</code>
 </code></pre>
 <blockquote>
-<p>Show external &lt;command&gt; help</p>
+<p>Show the &lt;command&gt; plugin help</p>
 </blockquote>
 <pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test &lt;command&gt; -h
 $ nvm-test &lt;command&gt; --help</code>

@@ -1,6 +1,6 @@
 {
-  "coverage": "91.66%",
-  "expectCount": 12,
+  "coverage": "100%",
+  "expectCount": 11,
   "actualCount": 11,
   "files": {
     "src/api/hooks.js": {
@@ -37,13 +37,6 @@
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
-    },
-    "src/utils.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        42
-      ]
     }
   }
 }

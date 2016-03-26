@@ -32,8 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-y18n">y18n</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -47,7 +46,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -58,32 +56,33 @@ import { sync as resolveSync } from &apos;resolve&apos;
 import { config } from &apos;./api&apos;
 import { buildUsage, patchCommand, __ } from &apos;./utils&apos;
 
-// commands had to be required
-const cmd = require(&apos;./command&apos;)
-const usage = __(&apos;usage&apos;) + buildUsage(cmd) +
-  &apos;\n  &apos; + buildUsage({ command: &apos;&lt;command&gt; &apos;, desc: __(&apos;external&apos;) })
+// require command and patch handler
+const command = patchCommand.handler(require(&apos;./command&apos;))
+const usage = __(&apos;usage&apos;) + buildUsage(command) +
+  &apos;\n  &apos; + buildUsage({ command: &apos;&lt;command&gt; &apos;, desc: __(&apos;plugin&apos;) })
 
 yargs
   // version from package
   .version().alias(&apos;v&apos;, &apos;version&apos;)
   .help(&apos;h&apos;).alias(&apos;h&apos;, &apos;help&apos;)
-  .usage(usage, cmd.options)
+  .usage(usage, command.builder)
   // all options are global
-  .global(Object.keys(cmd.options))
+  .global(Object.keys(command.builder))
 
-// add config commands
-const commands = config.commands
-commands.forEach((command) =&gt; {
-  // resolve command path from running project
-  const path = resolveSync(`nvm-test-command-${command}`, { basedir: process.cwd() })
-  const cmd = require(path)
-  yargs.command(patchCommand(cmd, __(&apos;usage&apos;)))
+// add config plugins
+const plugins = config.plugins
+plugins.forEach((plugin) =&gt; {
+  // resolve plugin path from running project
+  const basedir = process.cwd()
+  const path = resolveSync(`nvm-test-plugin-${plugin}`, { basedir })
+  // require command, patch and register
+  yargs.command(patchCommand(require(path)))
 })
 
 // get argv from yargs
 const argv = yargs.argv
-// handle if not command
-if (commands.indexOf(argv._[0]) === -1) cmd.handler(argv)
+// handle if not executing plugin
+if (plugins.indexOf(argv._[0]) === -1) command.handler(argv)
 </code></pre>
 
 </div>

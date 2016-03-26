@@ -32,8 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-y18n">y18n</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -46,7 +45,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-command">command</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 </ul>
 </div>
@@ -79,7 +77,7 @@ const defaults = {
   // test: just &apos;npm test&apos;
   test: &apos;npm test&apos;,
   dryRun: false,
-  commands: [],
+  plugins: []
 }
 
 const filepath = join(process.cwd(), filename)
@@ -97,11 +95,11 @@ try {
  * @property  {command}  [install=]     - The `install` command.&lt;br&gt; `nvm which $version &amp;&gt; /dev/null || nvm install $version`
  * @property  {command}  [test=]        - The `test` command.&lt;br&gt; `npm test`
  * @property  {boolean}  [dryRun=false] - Whether or not to dry run the test. Echoes the `test` command if true.
- * @property  {string[]} [commands=[]]  - External commands
+ * @property  {string[]} [plugins=[]]   - External plugins
  * @example
  * {
  *   &quot;test&quot;: &quot;echo &apos;nvm-test version $version&apos;; npm run lint &amp;&amp; npm run test&quot;,
- *   &quot;commands&quot;: [&quot;travis&quot;]
+ *   &quot;plugins&quot;: [&quot;travis&quot;]
  * }
  */
 const config = Object.assign({}, defaults, rc)

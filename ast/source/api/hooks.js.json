@@ -192,9 +192,9 @@
         },
         {
           "type": "Block",
-          "value": "*\n * Hooks\n * @public\n * @class Hooks\n ",
+          "value": "*\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n ",
           "start": 111,
-          "end": 154,
+          "end": 260,
           "loc": {
             "start": {
               "line": 9,
@@ -207,36 +207,56 @@
           },
           "range": [
             111,
-            154
+            260
+          ]
+        },
+        {
+          "type": "Block",
+          "value": "*\n * Hooks\n * @public\n * @class Hooks\n ",
+          "start": 262,
+          "end": 305,
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 3
+            }
+          },
+          "range": [
+            262,
+            305
           ]
         }
       ]
     },
     {
       "type": "Identifier",
-      "start": 155,
-      "end": 380,
+      "start": 306,
+      "end": 531,
       "loc": {
         "start": {
-          "line": 14,
+          "line": 20,
           "column": 0
         },
         "end": {
-          "line": 24,
+          "line": 30,
           "column": 1
         }
       },
       "id": {
         "type": "Identifier",
-        "start": 161,
-        "end": 166,
+        "start": 312,
+        "end": 317,
         "loc": {
           "start": {
-            "line": 14,
+            "line": 20,
             "column": 6
           },
           "end": {
-            "line": 14,
+            "line": 20,
             "column": 11
           }
         },
@@ -246,45 +266,45 @@
       "superClass": null,
       "body": {
         "type": "ClassBody",
-        "start": 167,
-        "end": 380,
+        "start": 318,
+        "end": 531,
         "loc": {
           "start": {
-            "line": 14,
+            "line": 20,
             "column": 12
           },
           "end": {
-            "line": 24,
+            "line": 30,
             "column": 1
           }
         },
         "body": [
           {
             "type": "MethodDefinition",
-            "start": 294,
-            "end": 378,
+            "start": 445,
+            "end": 529,
             "loc": {
               "start": {
-                "line": 20,
+                "line": 26,
                 "column": 2
               },
               "end": {
-                "line": 23,
+                "line": 29,
                 "column": 3
               }
             },
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 294,
-              "end": 305,
+              "start": 445,
+              "end": 456,
               "loc": {
                 "start": {
-                  "line": 20,
+                  "line": 26,
                   "column": 2
                 },
                 "end": {
-                  "line": 20,
+                  "line": 26,
                   "column": 13
                 }
               },
@@ -295,15 +315,15 @@
             "kind": "constructor",
             "value": {
               "type": "FunctionExpression",
-              "start": 306,
-              "end": 378,
+              "start": 457,
+              "end": 529,
               "loc": {
                 "start": {
-                  "line": 20,
+                  "line": 26,
                   "column": 14
                 },
                 "end": {
-                  "line": 23,
+                  "line": 29,
                   "column": 3
                 }
               },
@@ -314,15 +334,15 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 307,
-                  "end": 312,
+                  "start": 458,
+                  "end": 463,
                   "loc": {
                     "start": {
-                      "line": 20,
+                      "line": 26,
                       "column": 15
                     },
                     "end": {
-                      "line": 20,
+                      "line": 26,
                       "column": 20
                     }
                   },
@@ -331,72 +351,72 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 314,
-                "end": 378,
+                "start": 465,
+                "end": 529,
                 "loc": {
                   "start": {
-                    "line": 20,
+                    "line": 26,
                     "column": 22
                   },
                   "end": {
-                    "line": 23,
+                    "line": 29,
                     "column": 3
                   }
                 },
                 "body": [
                   {
                     "type": "ExpressionStatement",
-                    "start": 348,
-                    "end": 374,
+                    "start": 499,
+                    "end": 525,
                     "loc": {
                       "start": {
-                        "line": 22,
+                        "line": 28,
                         "column": 4
                       },
                       "end": {
-                        "line": 22,
+                        "line": 28,
                         "column": 30
                       }
                     },
                     "expression": {
                       "type": "CallExpression",
-                      "start": 348,
-                      "end": 374,
+                      "start": 499,
+                      "end": 525,
                       "loc": {
                         "start": {
-                          "line": 22,
+                          "line": 28,
                           "column": 4
                         },
                         "end": {
-                          "line": 22,
+                          "line": 28,
                           "column": 30
                         }
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 348,
-                        "end": 361,
+                        "start": 499,
+                        "end": 512,
                         "loc": {
                           "start": {
-                            "line": 22,
+                            "line": 28,
                             "column": 4
                           },
                           "end": {
-                            "line": 22,
+                            "line": 28,
                             "column": 17
                           }
                         },
                         "object": {
                           "type": "Identifier",
-                          "start": 348,
-                          "end": 354,
+                          "start": 499,
+                          "end": 505,
                           "loc": {
                             "start": {
-                              "line": 22,
+                              "line": 28,
                               "column": 4
                             },
                             "end": {
-                              "line": 22,
+                              "line": 28,
                               "column": 10
                             }
                           },
@@ -405,15 +425,15 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 355,
-                          "end": 361,
+                          "start": 506,
+                          "end": 512,
                           "loc": {
                             "start": {
-                              "line": 22,
+                              "line": 28,
                               "column": 11
                             },
                             "end": {
-                              "line": 22,
+                              "line": 28,
                               "column": 17
                             }
                           },
@@ -425,30 +445,30 @@
                       "arguments": [
                         {
                           "type": "ThisExpression",
-                          "start": 362,
-                          "end": 366,
+                          "start": 513,
+                          "end": 517,
                           "loc": {
                             "start": {
-                              "line": 22,
+                              "line": 28,
                               "column": 18
                             },
                             "end": {
-                              "line": 22,
+                              "line": 28,
                               "column": 22
                             }
                           }
                         },
                         {
                           "type": "Identifier",
-                          "start": 368,
-                          "end": 373,
+                          "start": 519,
+                          "end": 524,
                           "loc": {
                             "start": {
-                              "line": 22,
+                              "line": 28,
                               "column": 24
                             },
                             "end": {
-                              "line": 22,
+                              "line": 28,
                               "column": 29
                             }
                           },
@@ -461,21 +481,21 @@
                       {
                         "type": "CommentLine",
                         "value": " assign hooks to this",
-                        "start": 320,
-                        "end": 343,
+                        "start": 471,
+                        "end": 494,
                         "loc": {
                           "start": {
-                            "line": 21,
+                            "line": 27,
                             "column": 4
                           },
                           "end": {
-                            "line": 21,
+                            "line": 27,
                             "column": 27
                           }
                         },
                         "range": [
-                          320,
-                          343
+                          471,
+                          494
                         ]
                       }
                     ]
@@ -487,21 +507,21 @@
               {
                 "type": "Block",
                 "value": "*\n   * Create a Hooks\n   * @param  {Object<string, Hook>} [hooks] - Some hooks\n   * @return {Hooks} - This Hooks\n   ",
-                "start": 171,
-                "end": 291,
+                "start": 322,
+                "end": 442,
                 "loc": {
                   "start": {
-                    "line": 15,
+                    "line": 21,
                     "column": 2
                   },
                   "end": {
-                    "line": 19,
+                    "line": 25,
                     "column": 5
                   }
                 },
                 "range": [
-                  171,
-                  291
+                  322,
+                  442
                 ]
               }
             ]
@@ -514,29 +534,29 @@
     },
     {
       "type": "Identifier",
-      "start": 381,
-      "end": 401,
+      "start": 532,
+      "end": 552,
       "loc": {
         "start": {
-          "line": 25,
+          "line": 31,
           "column": 0
         },
         "end": {
-          "line": 25,
+          "line": 31,
           "column": 20
         }
       },
       "declaration": {
         "type": "Identifier",
-        "start": 396,
-        "end": 401,
+        "start": 547,
+        "end": 552,
         "loc": {
           "start": {
-            "line": 25,
+            "line": 31,
             "column": 15
           },
           "end": {
-            "line": 25,
+            "line": 31,
             "column": 20
           }
         },
@@ -2687,26 +2707,6 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n ",
-            "start": 403,
-            "end": 552,
-            "loc": {
-              "start": {
-                "line": 27,
-                "column": 0
-              },
-              "end": {
-                "line": 31,
-                "column": 3
-              }
-            },
-            "range": [
-              403,
-              552
-            ]
-          },
-          {
-            "type": "Block",
             "value": "*\n * Makes a function hookable\n * @protected\n * @param  {function} fn - A function to make hookable\n * @throws {TypeError} - When argument is not a function\n * @return {Hookable}  - The Hookable function, {@link Hooks} as last arguments\n ",
             "start": 554,
             "end": 796,
@@ -2733,26 +2733,6 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n ",
-          "start": 403,
-          "end": 552,
-          "loc": {
-            "start": {
-              "line": 27,
-              "column": 0
-            },
-            "end": {
-              "line": 31,
-              "column": 3
-            }
-          },
-          "range": [
-            403,
-            552
-          ]
-        },
-        {
-          "type": "Block",
           "value": "*\n * Makes a function hookable\n * @protected\n * @param  {function} fn - A function to make hookable\n * @throws {TypeError} - When argument is not a function\n * @return {Hookable}  - The Hookable function, {@link Hooks} as last arguments\n ",
           "start": 554,
           "end": 796,
@@ -2775,43 +2755,43 @@
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 381,
-      "end": 401,
+      "start": 532,
+      "end": 552,
       "loc": {
         "start": {
-          "line": 25,
+          "line": 31,
           "column": 0
         },
         "end": {
-          "line": 25,
+          "line": 31,
           "column": 20
         }
       },
       "declaration": {
         "type": "ClassDeclaration",
-        "start": 155,
-        "end": 380,
+        "start": 306,
+        "end": 531,
         "loc": {
           "start": {
-            "line": 14,
+            "line": 20,
             "column": 0
           },
           "end": {
-            "line": 24,
+            "line": 30,
             "column": 1
           }
         },
         "id": {
           "type": "Identifier",
-          "start": 161,
-          "end": 166,
+          "start": 312,
+          "end": 317,
           "loc": {
             "start": {
-              "line": 14,
+              "line": 20,
               "column": 6
             },
             "end": {
-              "line": 14,
+              "line": 20,
               "column": 11
             }
           },
@@ -2821,45 +2801,45 @@
         "superClass": null,
         "body": {
           "type": "ClassBody",
-          "start": 167,
-          "end": 380,
+          "start": 318,
+          "end": 531,
           "loc": {
             "start": {
-              "line": 14,
+              "line": 20,
               "column": 12
             },
             "end": {
-              "line": 24,
+              "line": 30,
               "column": 1
             }
           },
           "body": [
             {
               "type": "MethodDefinition",
-              "start": 294,
-              "end": 378,
+              "start": 445,
+              "end": 529,
               "loc": {
                 "start": {
-                  "line": 20,
+                  "line": 26,
                   "column": 2
                 },
                 "end": {
-                  "line": 23,
+                  "line": 29,
                   "column": 3
                 }
               },
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 294,
-                "end": 305,
+                "start": 445,
+                "end": 456,
                 "loc": {
                   "start": {
-                    "line": 20,
+                    "line": 26,
                     "column": 2
                   },
                   "end": {
-                    "line": 20,
+                    "line": 26,
                     "column": 13
                   }
                 },
@@ -2870,15 +2850,15 @@
               "kind": "constructor",
               "value": {
                 "type": "FunctionExpression",
-                "start": 306,
-                "end": 378,
+                "start": 457,
+                "end": 529,
                 "loc": {
                   "start": {
-                    "line": 20,
+                    "line": 26,
                     "column": 14
                   },
                   "end": {
-                    "line": 23,
+                    "line": 29,
                     "column": 3
                   }
                 },
@@ -2889,15 +2869,15 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 307,
-                    "end": 312,
+                    "start": 458,
+                    "end": 463,
                     "loc": {
                       "start": {
-                        "line": 20,
+                        "line": 26,
                         "column": 15
                       },
                       "end": {
-                        "line": 20,
+                        "line": 26,
                         "column": 20
                       }
                     },
@@ -2906,72 +2886,72 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 314,
-                  "end": 378,
+                  "start": 465,
+                  "end": 529,
                   "loc": {
                     "start": {
-                      "line": 20,
+                      "line": 26,
                       "column": 22
                     },
                     "end": {
-                      "line": 23,
+                      "line": 29,
                       "column": 3
                     }
                   },
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 348,
-                      "end": 374,
+                      "start": 499,
+                      "end": 525,
                       "loc": {
                         "start": {
-                          "line": 22,
+                          "line": 28,
                           "column": 4
                         },
                         "end": {
-                          "line": 22,
+                          "line": 28,
                           "column": 30
                         }
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 348,
-                        "end": 374,
+                        "start": 499,
+                        "end": 525,
                         "loc": {
                           "start": {
-                            "line": 22,
+                            "line": 28,
                             "column": 4
                           },
                           "end": {
-                            "line": 22,
+                            "line": 28,
                             "column": 30
                           }
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 348,
-                          "end": 361,
+                          "start": 499,
+                          "end": 512,
                           "loc": {
                             "start": {
-                              "line": 22,
+                              "line": 28,
                               "column": 4
                             },
                             "end": {
-                              "line": 22,
+                              "line": 28,
                               "column": 17
                             }
                           },
                           "object": {
                             "type": "Identifier",
-                            "start": 348,
-                            "end": 354,
+                            "start": 499,
+                            "end": 505,
                             "loc": {
                               "start": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 4
                               },
                               "end": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 10
                               }
                             },
@@ -2980,15 +2960,15 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 355,
-                            "end": 361,
+                            "start": 506,
+                            "end": 512,
                             "loc": {
                               "start": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 11
                               },
                               "end": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 17
                               }
                             },
@@ -3000,30 +2980,30 @@
                         "arguments": [
                           {
                             "type": "ThisExpression",
-                            "start": 362,
-                            "end": 366,
+                            "start": 513,
+                            "end": 517,
                             "loc": {
                               "start": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 18
                               },
                               "end": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 22
                               }
                             }
                           },
                           {
                             "type": "Identifier",
-                            "start": 368,
-                            "end": 373,
+                            "start": 519,
+                            "end": 524,
                             "loc": {
                               "start": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 24
                               },
                               "end": {
-                                "line": 22,
+                                "line": 28,
                                 "column": 29
                               }
                             },
@@ -3036,21 +3016,21 @@
                         {
                           "type": "CommentLine",
                           "value": " assign hooks to this",
-                          "start": 320,
-                          "end": 343,
+                          "start": 471,
+                          "end": 494,
                           "loc": {
                             "start": {
-                              "line": 21,
+                              "line": 27,
                               "column": 4
                             },
                             "end": {
-                              "line": 21,
+                              "line": 27,
                               "column": 27
                             }
                           },
                           "range": [
-                            320,
-                            343
+                            471,
+                            494
                           ]
                         }
                       ]
@@ -3062,21 +3042,21 @@
                 {
                   "type": "Block",
                   "value": "*\n   * Create a Hooks\n   * @param  {Object<string, Hook>} [hooks] - Some hooks\n   * @return {Hooks} - This Hooks\n   ",
-                  "start": 171,
-                  "end": 291,
+                  "start": 322,
+                  "end": 442,
                   "loc": {
                     "start": {
-                      "line": 15,
+                      "line": 21,
                       "column": 2
                     },
                     "end": {
-                      "line": 19,
+                      "line": 25,
                       "column": 5
                     }
                   },
                   "range": [
-                    171,
-                    291
+                    322,
+                    442
                   ]
                 }
               ]
@@ -3106,9 +3086,9 @@
           },
           {
             "type": "Block",
-            "value": "*\n * Hooks\n * @public\n * @class Hooks\n ",
+            "value": "*\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n ",
             "start": 111,
-            "end": 154,
+            "end": 260,
             "loc": {
               "start": {
                 "line": 9,
@@ -3121,32 +3101,32 @@
             },
             "range": [
               111,
-              154
+              260
+            ]
+          },
+          {
+            "type": "Block",
+            "value": "*\n * Hooks\n * @public\n * @class Hooks\n ",
+            "start": 262,
+            "end": 305,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 3
+              }
+            },
+            "range": [
+              262,
+              305
             ]
           }
         ],
         "__esdoc__pseudo_export": false,
         "trailingComments": [
-          {
-            "type": "Block",
-            "value": "*\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n ",
-            "start": 403,
-            "end": 552,
-            "loc": {
-              "start": {
-                "line": 27,
-                "column": 0
-              },
-              "end": {
-                "line": 31,
-                "column": 3
-              }
-            },
-            "range": [
-              403,
-              552
-            ]
-          },
           {
             "type": "Block",
             "value": "*\n * Makes a function hookable\n * @protected\n * @param  {function} fn - A function to make hookable\n * @throws {TypeError} - When argument is not a function\n * @return {Hookable}  - The Hookable function, {@link Hooks} as last arguments\n ",
@@ -3170,26 +3150,6 @@
         ]
       },
       "trailingComments": [
-        {
-          "type": "Block",
-          "value": "*\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n ",
-          "start": 403,
-          "end": 552,
-          "loc": {
-            "start": {
-              "line": 27,
-              "column": 0
-            },
-            "end": {
-              "line": 31,
-              "column": 3
-            }
-          },
-          "range": [
-            403,
-            552
-          ]
-        },
         {
           "type": "Block",
           "value": "*\n * Makes a function hookable\n * @protected\n * @param  {function} fn - A function to make hookable\n * @throws {TypeError} - When argument is not a function\n * @return {Hookable}  - The Hookable function, {@link Hooks} as last arguments\n ",

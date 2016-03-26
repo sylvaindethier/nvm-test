@@ -32,8 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-y18n">y18n</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -46,7 +45,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-command">command</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 </ul>
 </div>
@@ -61,38 +59,38 @@ import { __ } from &apos;./utils&apos;
 if (process.env.NODE_ENV === &apos;development&apos;) log.level = &apos;silly&apos;
 
 /** @private */
-const command = &apos;[versions]&apos;
+export const command = &apos;[versions]&apos;
 
 /** @private */
-const desc = __(&apos;desc&apos;)
+export const desc = __(&apos;desc&apos;)
 
 /** @private */
-const builder = {
+export const builder = {
   &apos;i&apos;: {
     alias: &apos;install&apos;,
     desc: __(&apos;options.install&apos;),
     type: &apos;string&apos;,
-    default: config.install,
+    default: config.install
   },
   &apos;t&apos;: {
     alias: &apos;test&apos;,
     desc: __(&apos;options.test&apos;),
     type: &apos;string&apos;,
-    default: config.test,
+    default: config.test
   },
   &apos;D&apos;: {
     alias: &apos;dry-run&apos;,
     desc: __(&apos;options.dryRun&apos;),
     type: &apos;boolean&apos;,
-    default: false,
+    default: false
   },
   &apos;L&apos;: {
     alias: &apos;log-level&apos;,
     desc: __(&apos;options.logLevel&apos;),
     type: &apos;string&apos;,
     choices: Object.keys(log.levels),
-    default: log.level,
-  },
+    default: log.level
+  }
 }
 
 /**
@@ -101,7 +99,7 @@ const builder = {
  * @param  {Object} argv - The yargs argv
  * @return {Promise} - The nvmTestVersions Promise
  */
-const handler = (argv) =&gt; {
+export function handler (argv) {
   // get versions from argv._
   const versions = argv._
   // get options
@@ -114,6 +112,15 @@ const handler = (argv) =&gt; {
   log.silly(&apos;command&apos;, &apos;argv:&apos;, argv)
 
   // define hooks
+  const logVersion = (prefix, fn = log.info) =&gt; {
+    return (version) =&gt; { fn(prefix, &apos;version&apos;, version) }
+  }
+  const logError = (prefix, fn = log.error) =&gt; {
+    return (code, version) =&gt; {
+      fn(prefix, &apos;error code %s for version&apos;, code, version)
+    }
+  }
+
   const pre = (versions, { install, test, dryRun }) =&gt; {
     // info the versions
     log.info(&apos;nvm-test-versions&apos;, &apos;versions&apos;, versions.join(&apos;, &apos;))
@@ -124,48 +131,24 @@ const handler = (argv) =&gt; {
     log.error(&apos;nvm-test-versions&apos;, &apos;error code %s&apos;, code)
   }
   const nvmInstallHooks = new Hooks({
-    pre: (version) =&gt; {
-      log.verbose(&apos;nvm-install&apos;, &apos;version&apos;, version)
-    },
-    error: (code, version) =&gt; {
-      log.error(&apos;nvm-install&apos;, &apos;error code %s for version&apos;, code, version)
-    },
+    pre: logVersion(&apos;nvm-install&apos;, log.verbose),
+    error: logError(&apos;nvm-install&apos;)
   })
   const nvmTestHooks = new Hooks({
-    pre: (version) =&gt; {
-      log.verbose(&apos;nvm-test&apos;, &apos;version&apos;, version)
-    },
-    error: (code, version) =&gt; {
-      log.error(&apos;nvm-test&apos;, &apos;error code %s for version&apos;, code, version)
-    },
+    pre: logVersion(&apos;nvm-test&apos;, log.verbose),
+    error: logError(&apos;nvm-test&apos;)
   })
   const nvmTestVersionHooks = new Hooks({
-    pre: (version) =&gt; {
-      // info the version
-      log.info(&apos;nvm-test-version&apos;, &apos;version&apos;, version)
-    },
-    error: (code, version) =&gt; {
-      log.verbose(&apos;nvm-test-version&apos;, &apos;error code %s for version&apos;, code, version)
-    },
+    pre: logVersion(&apos;nvm-test-version&apos;),
+    error: logError(&apos;nvm-test-version&apos;),
     nvmInstallHooks,
-    nvmTestHooks,
+    nvmTestHooks
   })
-  const hooks = new Hooks({
-    pre,
-    error,
-    nvmTestVersionHooks,
-  })
+  const hooks = new Hooks({ pre, error, nvmTestVersionHooks })
 
   // nvm test versions
   return nvmTestVersions(versions, { install, test, dryRun }, hooks)
-
-  // then exit with code on resolve and reject
-  .then(process.exit, process.exit)
 }
-
-/** @private */
-const options = builder
-export { command, desc, options, handler }
 </code></pre>
 
 </div>

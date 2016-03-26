@@ -1,7 +1,7 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 1678,
+  "end": 1674,
   "loc": {
     "start": {
       "line": 1,
@@ -295,7 +295,7 @@
     {
       "type": "VariableDeclaration",
       "start": 563,
-      "end": 791,
+      "end": 789,
       "loc": {
         "start": {
           "line": 21,
@@ -310,7 +310,7 @@
         {
           "type": "VariableDeclarator",
           "start": 569,
-          "end": 791,
+          "end": 789,
           "loc": {
             "start": {
               "line": 21,
@@ -340,7 +340,7 @@
           "init": {
             "type": "ObjectExpression",
             "start": 580,
-            "end": 791,
+            "end": 789,
             "loc": {
               "start": {
                 "line": 21,
@@ -560,7 +560,7 @@
               {
                 "type": "Property",
                 "start": 776,
-                "end": 788,
+                "end": 787,
                 "loc": {
                   "start": {
                     "line": 27,
@@ -568,7 +568,7 @@
                   },
                   "end": {
                     "line": 27,
-                    "column": 14
+                    "column": 13
                   }
                 },
                 "method": false,
@@ -577,7 +577,7 @@
                 "key": {
                   "type": "Identifier",
                   "start": 776,
-                  "end": 784,
+                  "end": 783,
                   "loc": {
                     "start": {
                       "line": 27,
@@ -585,23 +585,23 @@
                     },
                     "end": {
                       "line": 27,
-                      "column": 10
+                      "column": 9
                     }
                   },
-                  "name": "commands"
+                  "name": "plugins"
                 },
                 "value": {
                   "type": "ArrayExpression",
-                  "start": 786,
-                  "end": 788,
+                  "start": 785,
+                  "end": 787,
                   "loc": {
                     "start": {
                       "line": 27,
-                      "column": 12
+                      "column": 11
                     },
                     "end": {
                       "line": 27,
-                      "column": 14
+                      "column": 13
                     }
                   },
                   "elements": []
@@ -616,8 +616,8 @@
     },
     {
       "type": "VariableDeclaration",
-      "start": 793,
-      "end": 839,
+      "start": 791,
+      "end": 837,
       "loc": {
         "start": {
           "line": 30,
@@ -631,8 +631,8 @@
       "declarations": [
         {
           "type": "VariableDeclarator",
-          "start": 799,
-          "end": 839,
+          "start": 797,
+          "end": 837,
           "loc": {
             "start": {
               "line": 30,
@@ -645,8 +645,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 799,
-            "end": 807,
+            "start": 797,
+            "end": 805,
             "loc": {
               "start": {
                 "line": 30,
@@ -661,8 +661,8 @@
           },
           "init": {
             "type": "CallExpression",
-            "start": 810,
-            "end": 839,
+            "start": 808,
+            "end": 837,
             "loc": {
               "start": {
                 "line": 30,
@@ -675,8 +675,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 810,
-              "end": 814,
+              "start": 808,
+              "end": 812,
               "loc": {
                 "start": {
                   "line": 30,
@@ -692,8 +692,8 @@
             "arguments": [
               {
                 "type": "CallExpression",
-                "start": 815,
-                "end": 828,
+                "start": 813,
+                "end": 826,
                 "loc": {
                   "start": {
                     "line": 30,
@@ -706,8 +706,8 @@
                 },
                 "callee": {
                   "type": "MemberExpression",
-                  "start": 815,
-                  "end": 826,
+                  "start": 813,
+                  "end": 824,
                   "loc": {
                     "start": {
                       "line": 30,
@@ -720,8 +720,8 @@
                   },
                   "object": {
                     "type": "Identifier",
-                    "start": 815,
-                    "end": 822,
+                    "start": 813,
+                    "end": 820,
                     "loc": {
                       "start": {
                         "line": 30,
@@ -736,8 +736,8 @@
                   },
                   "property": {
                     "type": "Identifier",
-                    "start": 823,
-                    "end": 826,
+                    "start": 821,
+                    "end": 824,
                     "loc": {
                       "start": {
                         "line": 30,
@@ -756,8 +756,8 @@
               },
               {
                 "type": "Identifier",
-                "start": 830,
-                "end": 838,
+                "start": 828,
+                "end": 836,
                 "loc": {
                   "start": {
                     "line": 30,
@@ -778,8 +778,8 @@
     },
     {
       "type": "VariableDeclaration",
-      "start": 840,
-      "end": 846,
+      "start": 838,
+      "end": 844,
       "loc": {
         "start": {
           "line": 31,
@@ -793,8 +793,8 @@
       "declarations": [
         {
           "type": "VariableDeclarator",
-          "start": 844,
-          "end": 846,
+          "start": 842,
+          "end": 844,
           "loc": {
             "start": {
               "line": 31,
@@ -807,8 +807,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 844,
-            "end": 846,
+            "start": 842,
+            "end": 844,
             "loc": {
               "start": {
                 "line": 31,
@@ -828,8 +828,8 @@
     },
     {
       "type": "TryStatement",
-      "start": 847,
-      "end": 956,
+      "start": 845,
+      "end": 954,
       "loc": {
         "start": {
           "line": 32,
@@ -842,8 +842,8 @@
       },
       "block": {
         "type": "BlockStatement",
-        "start": 851,
-        "end": 943,
+        "start": 849,
+        "end": 941,
         "loc": {
           "start": {
             "line": 32,
@@ -857,8 +857,8 @@
         "body": [
           {
             "type": "ExpressionStatement",
-            "start": 919,
-            "end": 941,
+            "start": 917,
+            "end": 939,
             "loc": {
               "start": {
                 "line": 34,
@@ -871,8 +871,8 @@
             },
             "expression": {
               "type": "AssignmentExpression",
-              "start": 919,
-              "end": 941,
+              "start": 917,
+              "end": 939,
               "loc": {
                 "start": {
                   "line": 34,
@@ -886,8 +886,8 @@
               "operator": "=",
               "left": {
                 "type": "Identifier",
-                "start": 919,
-                "end": 921,
+                "start": 917,
+                "end": 919,
                 "loc": {
                   "start": {
                     "line": 34,
@@ -903,8 +903,8 @@
               },
               "right": {
                 "type": "CallExpression",
-                "start": 924,
-                "end": 941,
+                "start": 922,
+                "end": 939,
                 "loc": {
                   "start": {
                     "line": 34,
@@ -917,8 +917,8 @@
                 },
                 "callee": {
                   "type": "Identifier",
-                  "start": 924,
-                  "end": 931,
+                  "start": 922,
+                  "end": 929,
                   "loc": {
                     "start": {
                       "line": 34,
@@ -934,8 +934,8 @@
                 "arguments": [
                   {
                     "type": "Identifier",
-                    "start": 932,
-                    "end": 940,
+                    "start": 930,
+                    "end": 938,
                     "loc": {
                       "start": {
                         "line": 34,
@@ -956,8 +956,8 @@
               {
                 "type": "CommentLine",
                 "value": " needed to be resolved at runtime, using require vs. import",
-                "start": 855,
-                "end": 916,
+                "start": 853,
+                "end": 914,
                 "loc": {
                   "start": {
                     "line": 33,
@@ -969,8 +969,8 @@
                   }
                 },
                 "range": [
-                  855,
-                  916
+                  853,
+                  914
                 ]
               }
             ]
@@ -979,8 +979,8 @@
       },
       "handler": {
         "type": "CatchClause",
-        "start": 944,
-        "end": 956,
+        "start": 942,
+        "end": 954,
         "loc": {
           "start": {
             "line": 35,
@@ -993,8 +993,8 @@
         },
         "param": {
           "type": "Identifier",
-          "start": 951,
-          "end": 952,
+          "start": 949,
+          "end": 950,
           "loc": {
             "start": {
               "line": 35,
@@ -1009,8 +1009,8 @@
         },
         "body": {
           "type": "BlockStatement",
-          "start": 954,
-          "end": 956,
+          "start": 952,
+          "end": 954,
           "loc": {
             "start": {
               "line": 35,
@@ -1033,8 +1033,8 @@
         {
           "type": "CommentLine",
           "value": " eslint-disable-line no-empty",
-          "start": 957,
-          "end": 988,
+          "start": 955,
+          "end": 986,
           "loc": {
             "start": {
               "line": 35,
@@ -1046,15 +1046,15 @@
             }
           },
           "range": [
-            957,
-            988
+            955,
+            986
           ]
         },
         {
           "type": "Block",
-          "value": "*\n * Config from `.nvmrc.test.json` file\n * @public\n * @namespace {Object}   config\n * @type      {Object}\n * @property  {command}  [install=]     - The `install` command.<br> `nvm which $version &> /dev/null || nvm install $version`\n * @property  {command}  [test=]        - The `test` command.<br> `npm test`\n * @property  {boolean}  [dryRun=false] - Whether or not to dry run the test. Echoes the `test` command if true.\n * @property  {string[]} [commands=[]]  - External commands\n * @example\n * {\n *   \"test\": \"echo 'nvm-test version $version'; npm run lint && npm run test\",\n *   \"commands\": [\"travis\"]\n * }\n ",
-          "start": 990,
-          "end": 1608,
+          "value": "*\n * Config from `.nvmrc.test.json` file\n * @public\n * @namespace {Object}   config\n * @type      {Object}\n * @property  {command}  [install=]     - The `install` command.<br> `nvm which $version &> /dev/null || nvm install $version`\n * @property  {command}  [test=]        - The `test` command.<br> `npm test`\n * @property  {boolean}  [dryRun=false] - Whether or not to dry run the test. Echoes the `test` command if true.\n * @property  {string[]} [plugins=[]]   - External plugins\n * @example\n * {\n *   \"test\": \"echo 'nvm-test version $version'; npm run lint && npm run test\",\n *   \"plugins\": [\"travis\"]\n * }\n ",
+          "start": 988,
+          "end": 1604,
           "loc": {
             "start": {
               "line": 37,
@@ -1066,16 +1066,16 @@
             }
           },
           "range": [
-            990,
-            1608
+            988,
+            1604
           ]
         }
       ]
     },
     {
       "type": "Identifier",
-      "start": 1609,
-      "end": 1655,
+      "start": 1605,
+      "end": 1651,
       "loc": {
         "start": {
           "line": 52,
@@ -1089,8 +1089,8 @@
       "declarations": [
         {
           "type": "VariableDeclarator",
-          "start": 1615,
-          "end": 1655,
+          "start": 1611,
+          "end": 1651,
           "loc": {
             "start": {
               "line": 52,
@@ -1103,8 +1103,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 1615,
-            "end": 1621,
+            "start": 1611,
+            "end": 1617,
             "loc": {
               "start": {
                 "line": 52,
@@ -1120,8 +1120,8 @@
           },
           "init": {
             "type": "CallExpression",
-            "start": 1624,
-            "end": 1655,
+            "start": 1620,
+            "end": 1651,
             "loc": {
               "start": {
                 "line": 52,
@@ -1134,8 +1134,8 @@
             },
             "callee": {
               "type": "MemberExpression",
-              "start": 1624,
-              "end": 1637,
+              "start": 1620,
+              "end": 1633,
               "loc": {
                 "start": {
                   "line": 52,
@@ -1148,8 +1148,8 @@
               },
               "object": {
                 "type": "Identifier",
-                "start": 1624,
-                "end": 1630,
+                "start": 1620,
+                "end": 1626,
                 "loc": {
                   "start": {
                     "line": 52,
@@ -1164,8 +1164,8 @@
               },
               "property": {
                 "type": "Identifier",
-                "start": 1631,
-                "end": 1637,
+                "start": 1627,
+                "end": 1633,
                 "loc": {
                   "start": {
                     "line": 52,
@@ -1183,8 +1183,8 @@
             "arguments": [
               {
                 "type": "ObjectExpression",
-                "start": 1638,
-                "end": 1640,
+                "start": 1634,
+                "end": 1636,
                 "loc": {
                   "start": {
                     "line": 52,
@@ -1199,8 +1199,8 @@
               },
               {
                 "type": "Identifier",
-                "start": 1642,
-                "end": 1650,
+                "start": 1638,
+                "end": 1646,
                 "loc": {
                   "start": {
                     "line": 52,
@@ -1215,8 +1215,8 @@
               },
               {
                 "type": "Identifier",
-                "start": 1652,
-                "end": 1654,
+                "start": 1648,
+                "end": 1650,
                 "loc": {
                   "start": {
                     "line": 52,
@@ -1241,8 +1241,8 @@
     },
     {
       "type": "Identifier",
-      "start": 1656,
-      "end": 1677,
+      "start": 1652,
+      "end": 1673,
       "loc": {
         "start": {
           "line": 53,
@@ -1255,8 +1255,8 @@
       },
       "declaration": {
         "type": "Identifier",
-        "start": 1671,
-        "end": 1677,
+        "start": 1667,
+        "end": 1673,
         "loc": {
           "start": {
             "line": 53,
@@ -1275,8 +1275,8 @@
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 1656,
-      "end": 1677,
+      "start": 1652,
+      "end": 1673,
       "loc": {
         "start": {
           "line": 53,
@@ -1289,8 +1289,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 1609,
-        "end": 1655,
+        "start": 1605,
+        "end": 1651,
         "loc": {
           "start": {
             "line": 52,
@@ -1304,8 +1304,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 1615,
-            "end": 1655,
+            "start": 1611,
+            "end": 1651,
             "loc": {
               "start": {
                 "line": 52,
@@ -1318,8 +1318,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 1615,
-              "end": 1621,
+              "start": 1611,
+              "end": 1617,
               "loc": {
                 "start": {
                   "line": 52,
@@ -1335,8 +1335,8 @@
             },
             "init": {
               "type": "CallExpression",
-              "start": 1624,
-              "end": 1655,
+              "start": 1620,
+              "end": 1651,
               "loc": {
                 "start": {
                   "line": 52,
@@ -1349,8 +1349,8 @@
               },
               "callee": {
                 "type": "MemberExpression",
-                "start": 1624,
-                "end": 1637,
+                "start": 1620,
+                "end": 1633,
                 "loc": {
                   "start": {
                     "line": 52,
@@ -1363,8 +1363,8 @@
                 },
                 "object": {
                   "type": "Identifier",
-                  "start": 1624,
-                  "end": 1630,
+                  "start": 1620,
+                  "end": 1626,
                   "loc": {
                     "start": {
                       "line": 52,
@@ -1379,8 +1379,8 @@
                 },
                 "property": {
                   "type": "Identifier",
-                  "start": 1631,
-                  "end": 1637,
+                  "start": 1627,
+                  "end": 1633,
                   "loc": {
                     "start": {
                       "line": 52,
@@ -1398,8 +1398,8 @@
               "arguments": [
                 {
                   "type": "ObjectExpression",
-                  "start": 1638,
-                  "end": 1640,
+                  "start": 1634,
+                  "end": 1636,
                   "loc": {
                     "start": {
                       "line": 52,
@@ -1414,8 +1414,8 @@
                 },
                 {
                   "type": "Identifier",
-                  "start": 1642,
-                  "end": 1650,
+                  "start": 1638,
+                  "end": 1646,
                   "loc": {
                     "start": {
                       "line": 52,
@@ -1430,8 +1430,8 @@
                 },
                 {
                   "type": "Identifier",
-                  "start": 1652,
-                  "end": 1654,
+                  "start": 1648,
+                  "end": 1650,
                   "loc": {
                     "start": {
                       "line": 52,
@@ -1454,8 +1454,8 @@
           {
             "type": "CommentLine",
             "value": " eslint-disable-line no-empty",
-            "start": 957,
-            "end": 988,
+            "start": 955,
+            "end": 986,
             "loc": {
               "start": {
                 "line": 35,
@@ -1467,15 +1467,15 @@
               }
             },
             "range": [
-              957,
-              988
+              955,
+              986
             ]
           },
           {
             "type": "Block",
-            "value": "*\n * Config from `.nvmrc.test.json` file\n * @public\n * @namespace {Object}   config\n * @type      {Object}\n * @property  {command}  [install=]     - The `install` command.<br> `nvm which $version &> /dev/null || nvm install $version`\n * @property  {command}  [test=]        - The `test` command.<br> `npm test`\n * @property  {boolean}  [dryRun=false] - Whether or not to dry run the test. Echoes the `test` command if true.\n * @property  {string[]} [commands=[]]  - External commands\n * @example\n * {\n *   \"test\": \"echo 'nvm-test version $version'; npm run lint && npm run test\",\n *   \"commands\": [\"travis\"]\n * }\n ",
-            "start": 990,
-            "end": 1608,
+            "value": "*\n * Config from `.nvmrc.test.json` file\n * @public\n * @namespace {Object}   config\n * @type      {Object}\n * @property  {command}  [install=]     - The `install` command.<br> `nvm which $version &> /dev/null || nvm install $version`\n * @property  {command}  [test=]        - The `test` command.<br> `npm test`\n * @property  {boolean}  [dryRun=false] - Whether or not to dry run the test. Echoes the `test` command if true.\n * @property  {string[]} [plugins=[]]   - External plugins\n * @example\n * {\n *   \"test\": \"echo 'nvm-test version $version'; npm run lint && npm run test\",\n *   \"plugins\": [\"travis\"]\n * }\n ",
+            "start": 988,
+            "end": 1604,
             "loc": {
               "start": {
                 "line": 37,
@@ -1487,8 +1487,8 @@
               }
             },
             "range": [
-              990,
-              1608
+              988,
+              1604
             ]
           }
         ],
