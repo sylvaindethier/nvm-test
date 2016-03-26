@@ -1,6 +1,6 @@
 {
   "name": "nvm-test",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0",
   "description": "Test using differents Node versions with nvm",
   "main": "./lib/api.js",
   "bin": {
@@ -69,6 +69,9 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "ignore": ["/lib", "/doc"]
+    "ignore": [
+      "/lib",
+      "/doc"
+    ]
   }
 }
