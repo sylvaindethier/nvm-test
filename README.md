@@ -141,8 +141,7 @@ $ nvm-test --version
 ```
 
 ## JavaScript API usage
-  * API documentation on [GitHub][api-url-gh]
-  * API documentation on [ESDoc][api-url-esdoc]
+See the API documentation on [GitHub][api-url-gh]
 
 [npm-url]: https://www.npmjs.org/package/nvm-test
 [npm-image]: https://nodei.co/npm/nvm-test.svg?downloads=true&stars=true
@@ -159,5 +158,4 @@ $ nvm-test --version
 [deps-image]: https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square
 [devDeps-image]: https://img.shields.io/david/dev/sylvaindethier/nvm-test.svg?style=flat-square
 [devDeps-url]: https://david-dm.org/sylvaindethier/nvm-test#info=devDependencies
-[api-url-esdoc]: https://doc.esdoc.org/github.com/sylvaindethier/nvm-test
 [api-url-gh]: https://sylvaindethier.github.io/nvm-test
