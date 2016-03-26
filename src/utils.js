@@ -15,26 +15,40 @@ export function buildUsage (cmd) {
 }
 
 /**
- * Patch a command - add usage
+ * Patch a command - add usage to builder, process exit to handler
  * @private
- * @param  {Object} cmd        - A command to patch
- * @param  {string} [usage=''] - A string to prefix usage
+ * @param  {Object} cmd - A command to patch
  * @return {Object} - The patched command
  */
-export function patchCommand (cmd, usage = '') {
+export function patchCommand (cmd) {
+  // patch the builder, patch the handler
+  return patchCommand.handler(patchCommand.builder(cmd))
+}
+/**
+ * Patch a command builder to add usage
+ * @param  {Object} cmd - The command to patch the builder
+ * @return {Object} - The patched command
+ */
+patchCommand.builder = (cmd) => {
   // get builder from command if function
-  // or build builder function from command
-  const fnbuilder = (yargs) => (typeof cmd.builder === 'object'
-    ? yargs.options(cmd.builder) : yargs)
+  // or create builder function from command
+  const fnbuilder = (yargs) => (
+    typeof cmd.builder === 'object' ? yargs.options(cmd.builder) : yargs
+  )
   const builder = typeof cmd.builder === 'function' ? cmd.builder : fnbuilder
-  cmd.builder = (yargs) => (builder(yargs).usage(usage + buildUsage(cmd)))
-
+  cmd.builder = (yargs) => (builder(yargs).usage(__('usage') + buildUsage(cmd)))
+  return cmd
+}
+/**
+ * Patch a command handler to process.exit
+ * @private
+ * @param  {Object} cmd - The command to patch the handler
+ * @return {Object} - The patched command
+ */
+patchCommand.handler = (cmd) => {
   // patch handler to process.exit
   const handler = cmd.handler
-  cmd.handler = async function (argv) {
-    process.exit(await handler(argv))
-  }
-
+  cmd.handler = async function (argv) { process.exit(await handler(argv)) }
   return cmd
 }
 

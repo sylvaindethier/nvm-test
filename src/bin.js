@@ -3,18 +3,18 @@ import { sync as resolveSync } from 'resolve'
 import { config } from './api'
 import { buildUsage, patchCommand, __ } from './utils'
 
-// commands had to be required
-const cmd = require('./command')
-const usage = __('usage') + buildUsage(cmd) +
-  '\n  ' + buildUsage({ command: '<command> ', desc: __('external') })
+// require command and patch handler
+const command = patchCommand.handler(require('./command'))
+const usage = __('usage') + buildUsage(command) +
+  '\n  ' + buildUsage({ command: '<command> ', desc: __('plugin') })
 
 yargs
   // version from package
   .version().alias('v', 'version')
   .help('h').alias('h', 'help')
-  .usage(usage, cmd.options)
+  .usage(usage, command.builder)
   // all options are global
-  .global(Object.keys(cmd.options))
+  .global(Object.keys(command.builder))
 
 // add config plugins
 const plugins = config.plugins
@@ -30,4 +30,4 @@ plugins.forEach((plugin) => {
 // get argv from yargs
 const argv = yargs.argv
 // handle if not executing plugin
-if (plugins.indexOf(argv._[0]) === -1) cmd.handler(argv)
+if (plugins.indexOf(argv._[0]) === -1) command.handler(argv)

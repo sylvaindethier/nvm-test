@@ -1,7 +1,7 @@
 {
   "usage": "Usage: \n  ",
-  "external": "Execute the external <command>",
-  "desc": "Test using some Node [versions]",
+  "desc": "Test using Node [versions]",
+  "plugin": "Execute the <command> plugin",
   "options.install": "Specify the install command",
   "options.test": "Specify the test command",
   "options.dryRun": "Dry run the test",

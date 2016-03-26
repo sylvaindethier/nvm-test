@@ -6,13 +6,13 @@ import { __ } from './utils'
 if (process.env.NODE_ENV === 'development') log.level = 'silly'
 
 /** @private */
-const command = '[versions]'
+export const command = '[versions]'
 
 /** @private */
-const desc = __('desc')
+export const desc = __('desc')
 
 /** @private */
-const builder = {
+export const builder = {
   'i': {
     alias: 'install',
     desc: __('options.install'),
@@ -46,7 +46,7 @@ const builder = {
  * @param  {Object} argv - The yargs argv
  * @return {Promise} - The nvmTestVersions Promise
  */
-const handler = (argv) => {
+export function handler (argv) {
   // get versions from argv._
   const versions = argv._
   // get options
@@ -103,11 +103,4 @@ const handler = (argv) => {
 
   // nvm test versions
   return nvmTestVersions(versions, { install, test, dryRun }, hooks)
-
-  // then exit with code on resolve and reject
-  .then(process.exit, process.exit)
 }
-
-/** @private */
-const options = builder
-export { command, desc, options, handler }
