@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 import expect from 'expect'
 import { nvmTestVersion } from '../../src/api/nvm-test-version'
 import { shouldReject, shouldResolve } from './helpers/nvm.js'
@@ -21,7 +22,7 @@ describe('nvmTestVersion', function () {
     // need to dry run here, or endless loop
     return shouldResolve(nvmTestVersion(process.version, {
       install: 'nvm which $version > /dev/null',
-      test: 'npm --version > /dev/null',
+      test: 'npm --version > /dev/null'
     }, {}), done)
   })
 })

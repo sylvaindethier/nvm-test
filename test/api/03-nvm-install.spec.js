@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 import expect from 'expect'
 import { nvmInstall } from '../../src/api/nvm-install'
 import { shouldReject, shouldResolve } from './helpers/nvm.js'

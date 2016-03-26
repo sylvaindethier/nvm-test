@@ -17,27 +17,27 @@ export const builder = {
     alias: 'install',
     desc: __('options.install'),
     type: 'string',
-    default: config.install,
+    default: config.install
   },
   't': {
     alias: 'test',
     desc: __('options.test'),
     type: 'string',
-    default: config.test,
+    default: config.test
   },
   'D': {
     alias: 'dry-run',
     desc: __('options.dryRun'),
     type: 'boolean',
-    default: false,
+    default: false
   },
   'L': {
     alias: 'log-level',
     desc: __('options.logLevel'),
     type: 'string',
     choices: Object.keys(log.levels),
-    default: log.level,
-  },
+    default: log.level
+  }
 }
 
 /**
@@ -74,7 +74,7 @@ export function handler (argv) {
     },
     error: (code, version) => {
       log.error('nvm-install', 'error code %s for version', code, version)
-    },
+    }
   })
   const nvmTestHooks = new Hooks({
     pre: (version) => {
@@ -82,7 +82,7 @@ export function handler (argv) {
     },
     error: (code, version) => {
       log.error('nvm-test', 'error code %s for version', code, version)
-    },
+    }
   })
   const nvmTestVersionHooks = new Hooks({
     pre: (version) => {
@@ -93,13 +93,9 @@ export function handler (argv) {
       log.verbose('nvm-test-version', 'error code %s for version', code, version)
     },
     nvmInstallHooks,
-    nvmTestHooks,
+    nvmTestHooks
   })
-  const hooks = new Hooks({
-    pre,
-    error,
-    nvmTestVersionHooks,
-  })
+  const hooks = new Hooks({ pre, error, nvmTestVersionHooks })
 
   // nvm test versions
   return nvmTestVersions(versions, { install, test, dryRun }, hooks)

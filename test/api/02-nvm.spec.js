@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 import expect from 'expect'
 import { renameSync } from 'fs'
 import { nvm, exists, shell } from '../../src/api/nvm'

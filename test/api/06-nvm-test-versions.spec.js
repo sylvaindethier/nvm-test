@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 import expect from 'expect'
 import { nvmTestVersions } from '../../src/api/nvm-test-versions'
 import { shouldResolve } from './helpers/nvm.js'
@@ -38,7 +39,7 @@ describe('nvmTestVersions', function () {
   it('should execute others install and test commands', function (done) {
     return shouldResolve(nvmTestVersions([process.version], {
       install: 'nvm which $version > /dev/null',
-      test: 'npm --version > /dev/null',
+      test: 'npm --version > /dev/null'
     }, {}), done)
   })
 })

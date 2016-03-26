@@ -24,7 +24,7 @@ const defaults = {
   // test: just 'npm test'
   test: 'npm test',
   dryRun: false,
-  plugins: [],
+  plugins: []
 }
 
 const filepath = join(process.cwd(), filename)

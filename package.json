@@ -65,5 +65,9 @@
     "istanbul": "^1.0.0-alpha",
     "mocha": "^2.4.5",
     "rimraf": "^2.5.2"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": ["/lib", "/doc"]
   }
 }

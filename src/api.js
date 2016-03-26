@@ -6,5 +6,5 @@ export {
   nvmInstall,
   nvmTest,
   nvmTestVersion,
-  nvmTestVersions,
+  nvmTestVersions
 } from './api/'

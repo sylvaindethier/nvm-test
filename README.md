@@ -8,6 +8,7 @@ Configurable & Extensible `npm test` using differents Node versions with nvm.
 [![Build Status][build-image]][build-url]
 [![Code Climate][codeclimate-image]][codeclimate-url]
 [![Coverage Status][coverage-image]][coverage-url]  
+[![JS Style][js-style-image]][js-style-url]
 [![Dependencies][deps-image]][deps-url]
 [![Dev Dependencies][devDeps-image]][devDeps-url]
 
@@ -152,6 +153,8 @@ $ nvm-test --version
 [codeclimate-image]: https://img.shields.io/codeclimate/github/sylvaindethier/nvm-test.svg?style=flat-square
 [coverage-url]: https://codeclimate.com/github/sylvaindethier/nvm-test/coverage
 [coverage-image]: https://img.shields.io/codeclimate/coverage/github/sylvaindethier/nvm-test.svg?style=flat-square
+[js-style-url]: http://standardjs.com/
+[js-style-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [deps-url]: https://david-dm.org/sylvaindethier/nvm-test#info=dependencies
 [deps-image]: https://img.shields.io/david/sylvaindethier/nvm-test.svg?style=flat-square
 [devDeps-image]: https://img.shields.io/david/dev/sylvaindethier/nvm-test.svg?style=flat-square

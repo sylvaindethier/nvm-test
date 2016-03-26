@@ -20,9 +20,8 @@ yargs
 const plugins = config.plugins
 plugins.forEach((plugin) => {
   // resolve plugin path from running project
-  const path = resolveSync(`nvm-test-plugin-${plugin}`, {
-    basedir: process.cwd(),
-  })
+  const basedir = process.cwd()
+  const path = resolveSync(`nvm-test-plugin-${plugin}`, { basedir })
   // require command, patch and register
   yargs.command(patchCommand(require(path)))
 })

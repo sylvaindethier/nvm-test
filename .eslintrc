@@ -62,13 +62,10 @@
   extends: ['eslint:recommended', 'standard'],
 
   rules: {
-    'brace-style': [2, '1tbs', { allowSingleLine: true }],
-    'comma-dangle': [2, 'always-multiline'],
-    'object-curly-spacing': [2, 'always'],
-    'require-jsdoc': [2, { 'require': {
-      'FunctionDeclaration': true,
-      'MethodDefinition': true,
-      'ClassDeclaration': true,
+    'require-jsdoc': [2, { require: {
+      FunctionDeclaration: true,
+      MethodDefinition: true,
+      ClassDeclaration: true,
     } }],
     'valid-jsdoc': 2,
   },

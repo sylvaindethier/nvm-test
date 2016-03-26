@@ -8,7 +8,7 @@ const options = {
   cwd: process.cwd(),
   env: process.env,
   stdio: 'inherit',
-  shell: process.env.SHELL,
+  shell: process.env.SHELL
 }
 
 // 'shell' option introduced in Node v5.7.0
