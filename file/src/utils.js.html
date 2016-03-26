@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-y18n">y18n</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -46,40 +47,42 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/utils.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { name } from &apos;../package&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import y18n_init from &apos;y18n&apos;
+import { name } from &apos;../package&apos;
 
 /**
  * Build a usage string from a command
  * @private
- * @param  {Object} cmd               - A command
- * @param  {string} [prefix=Usage:\n] - A prefix string
+ * @param  {Object} cmd - A command
  * @return {string} - The usage string for the command
  */
-export function buildUsage (cmd, prefix = `Usage:\n  `) {
+export function buildUsage (cmd) {
   // get description from command
   const desc = cmd.desc || cmd.describe || cmd.description || &apos;&apos;
 
-  return `${prefix}${name} ${cmd.command} [options] \t ${desc}`
+  return `${name} ${cmd.command} [options] \t ${desc}`
 }
 
 /**
  * Patch a command - add usage
  * @private
- * @param  {Object} cmd - The command to patch
+ * @param  {Object} cmd        - A command to patch
+ * @param  {string} [usage=&apos;&apos;] - A string to prefix usage
  * @return {Object} - The patched command
  */
-export function patchCommand (cmd) {
+export function patchCommand (cmd, usage = &apos;&apos;) {
   // get builder from command if function
   // or build builder function from command
   const fnbuilder = (yargs) =&gt; (typeof cmd.builder === &apos;object&apos;
     ? yargs.options(cmd.builder) : yargs)
   const builder = typeof cmd.builder === &apos;function&apos; ? cmd.builder : fnbuilder
-  cmd.builder = (yargs) =&gt; (builder(yargs).usage(buildUsage(cmd)))
+  cmd.builder = (yargs) =&gt; (builder(yargs).usage(usage + buildUsage(cmd)))
 
   // patch handler to process.exit
   const handler = cmd.handler
@@ -89,6 +92,11 @@ export function patchCommand (cmd) {
 
   return cmd
 }
+
+// initialize y18n and get the translation functions
+const y18n = y18n_init()
+const { __, __n } = y18n
+export { y18n, __, __n }
 </code></pre>
 
 </div>

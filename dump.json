@@ -184,7 +184,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "const isFunction = (fn) => (typeof fn === 'function')\n\n/**\n * Hook\n * @public\n * @typedef {function} Hook\n */\n\n/**\n * Hooks\n * @public\n * @class Hooks\n */\nexport default class Hooks {\n  /**\n   * @constructs Hooks\n   * @param {Object<string, Hook>} [hooks] - Some hooks\n   */\n  constructor (hooks) {\n    // assign hooks to this\n    Object.assign(this, hooks)\n  }\n}\n\n/**\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n */\n\n/**\n * Makes a function hookable\n * @protected\n * @param  {function} fn - A function to make hookable\n * @throws {TypeError} - When argument is not a function\n * @return {Hookable}  - The Hookable function, {@link Hooks} as last arguments\n */\nexport function hookable (fn) {\n  if (!isFunction(fn)) throw new TypeError('Argument must be a function')\n\n  /**\n   * {@link Hookable} function\n   * @protected\n   * @param  {...arguments} [args]  - The function arguments\n   * @param  {Hooks}        [hooks] - {@link Hooks} (`pre`, `post`, `error`, ...Hooks)\n   * @throws {Error} - When error\n   * @return {*}     - The function return value\n   */\n  return async function hook (...args) {\n    // remove latest hooks from args if any\n    const latest = args[args.length - 1]\n    const hooks = latest instanceof Hooks ? args.pop() : new Hooks()\n    // get 'pre', 'post', 'error', and function hooks\n    const { pre, post, error, ...fnHooks } = hooks\n\n    try {\n      // pre hook\n      if (isFunction(pre)) pre(...args)\n\n      // await for function (call w/ function hooks)\n      const value = await fn(...args.concat(fnHooks))\n\n      // post hook\n      if (isFunction(post)) post(value, ...args)\n\n      // return value from function\n      return value\n    } catch (e) {\n      // error hook\n      if (isFunction(error)) error(e, ...args)\n\n      // re-throw\n      throw e\n    }\n  }\n}\n"
+    "content": "const isFunction = (fn) => (typeof fn === 'function')\n\n/**\n * Hook\n * @public\n * @typedef {function} Hook\n */\n\n/**\n * Hooks\n * @public\n * @class Hooks\n */\nclass Hooks {\n  /**\n   * Create a Hooks\n   * @param  {Object<string, Hook>} [hooks] - Some hooks\n   * @return {Hooks} - This Hooks\n   */\n  constructor (hooks) {\n    // assign hooks to this\n    Object.assign(this, hooks)\n  }\n}\nexport default Hooks\n\n/**\n * Hookable function, accepts a Hooks as last arguments\n * @public\n * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable\n */\n\n/**\n * Makes a function hookable\n * @protected\n * @param  {function} fn - A function to make hookable\n * @throws {TypeError} - When argument is not a function\n * @return {Hookable}  - The Hookable function, {@link Hooks} as last arguments\n */\nexport function hookable (fn) {\n  if (!isFunction(fn)) throw new TypeError('Argument must be a function')\n\n  /**\n   * {@link Hookable} function\n   * @protected\n   * @param  {...arguments} [args]  - The function arguments\n   * @param  {Hooks}        [hooks] - {@link Hooks} (`pre`, `post`, `error`, ...Hooks)\n   * @throws {Error} - When error\n   * @return {*}     - The function return value\n   */\n  return async function hook (...args) {\n    // remove latest hooks from args if any\n    const latest = args[args.length - 1]\n    const hooks = latest instanceof Hooks ? args.pop() : new Hooks()\n    // get 'pre', 'post', 'error', and function hooks\n    const { pre, post, error, ...fnHooks } = hooks\n\n    try {\n      // pre hook\n      if (isFunction(pre)) pre(...args)\n\n      // await for function (call w/ function hooks)\n      const value = await fn(...args.concat(fnHooks))\n\n      // post hook\n      if (isFunction(post)) post(value, ...args)\n\n      // return value from function\n      return value\n    } catch (e) {\n      // error hook\n      if (isFunction(error)) error(e, ...args)\n\n      // re-throw\n      throw e\n    }\n  }\n}\n"
   },
   {
     "__docId__": 7,
@@ -212,77 +212,6 @@
     "kind": "typedef",
     "static": true,
     "variation": null,
-    "name": "Hook",
-    "memberof": "src/api/hooks.js",
-    "longname": "src/api/hooks.js~Hook",
-    "access": "public",
-    "description": "Hook",
-    "type": {
-      "types": [
-        "function"
-      ],
-      "optional": false,
-      "name": "Hook"
-    }
-  },
-  {
-    "__docId__": 9,
-    "kind": "class",
-    "static": true,
-    "variation": null,
-    "name": "Hooks",
-    "memberof": "src/api/hooks.js",
-    "longname": "src/api/hooks.js~Hooks",
-    "access": "public",
-    "export": true,
-    "importPath": "nvm-test/src/api/hooks.js",
-    "importStyle": "Hooks",
-    "description": "Hooks",
-    "lineNumber": 14,
-    "unknown": [
-      {
-        "tagName": "@class",
-        "tagValue": "Hooks"
-      }
-    ],
-    "interface": false
-  },
-  {
-    "__docId__": 10,
-    "kind": "constructor",
-    "static": false,
-    "variation": null,
-    "name": "constructor",
-    "memberof": "src/api/hooks.js~Hooks",
-    "longname": "src/api/hooks.js~Hooks#constructor",
-    "access": null,
-    "description": "",
-    "lineNumber": 19,
-    "unknown": [
-      {
-        "tagName": "@constructs",
-        "tagValue": "Hooks"
-      }
-    ],
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "Object<string, Hook>"
-        ],
-        "spread": false,
-        "optional": true,
-        "name": "hooks",
-        "description": "Some hooks"
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 11,
-    "kind": "typedef",
-    "static": true,
-    "variation": null,
     "name": "Hookable",
     "memberof": "src/api/hooks.js",
     "longname": "src/api/hooks.js~Hookable",
@@ -297,7 +226,7 @@
     }
   },
   {
-    "__docId__": 12,
+    "__docId__": 9,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -309,7 +238,7 @@
     "importPath": "nvm-test/src/api/hooks.js",
     "importStyle": "{hookable}",
     "description": "Makes a function hookable",
-    "lineNumber": 38,
+    "lineNumber": 40,
     "params": [
       {
         "nullable": null,
@@ -341,7 +270,98 @@
     "generator": false
   },
   {
+    "__docId__": 10,
+    "kind": "typedef",
+    "static": true,
+    "variation": null,
+    "name": "Hook",
+    "memberof": "src/api/hooks.js",
+    "longname": "src/api/hooks.js~Hook",
+    "access": "public",
+    "description": "Hook",
+    "type": {
+      "types": [
+        "function"
+      ],
+      "optional": false,
+      "name": "Hook"
+    }
+  },
+  {
+    "__docId__": 11,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Hooks",
+    "memberof": "src/api/hooks.js",
+    "longname": "src/api/hooks.js~Hooks",
+    "access": "public",
+    "export": true,
+    "importPath": "nvm-test/src/api/hooks.js",
+    "importStyle": "Hooks",
+    "description": "Hooks",
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Hooks"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 12,
+    "kind": "typedef",
+    "static": true,
+    "variation": null,
+    "name": "Hookable",
+    "memberof": "src/api/hooks.js",
+    "longname": "src/api/hooks.js~Hookable",
+    "access": "public",
+    "description": "Hookable function, accepts a Hooks as last arguments",
+    "type": {
+      "types": [
+        "function(...args: arguments, hooks: Hooks): Promise"
+      ],
+      "optional": false,
+      "name": "Hookable"
+    }
+  },
+  {
     "__docId__": 13,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/api/hooks.js~Hooks",
+    "longname": "src/api/hooks.js~Hooks#constructor",
+    "access": null,
+    "description": "Create a Hooks",
+    "lineNumber": 20,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, Hook>"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "hooks",
+        "description": "Some hooks"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Hooks"
+      ],
+      "spread": false,
+      "description": "This Hooks"
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 14,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -354,7 +374,7 @@
     "content": "import { exists } from './nvm'\n\n// immediately check if exists, throw error otherwise\n/* istanbul ignore if */\nif (!exists()) throw new Error('Please install from http://nvm.sh')\n\nexport { default as config } from './config'\nexport { default as Hooks } from './hooks'\nexport { default as nvm } from './nvm'\nexport { default as nvmInstall } from './nvm-install'\nexport { default as nvmTest } from './nvm-test'\nexport { default as nvmTestVersion } from './nvm-test-version'\nexport { default as nvmTestVersions } from './nvm-test-versions'\n"
   },
   {
-    "__docId__": 14,
+    "__docId__": 15,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -367,7 +387,7 @@
     "content": "import nvm from './nvm'\nimport config from './config'\nimport { hookable } from './hooks'\n\n/**\n * Install a Node version with nvm if needed\n * @protected\n * @function nvmInstall\n * @param  {version}            [version='']                    - A Node version to install with nvm\n * @param  {Object}             [config]                        - A {@link config}\n * @param  {{install: command}} [config.install=config.install] - A {@link config} `install` command\n * @param  {Object}             [hooks]                         - An Object of {@link Hooks}\n * @param  {{nvmHooks: Hooks}}  [hooks.nvmHooks]                - {@link nvm} Hooks\n * @return {Promise} - The {@link nvm} Promise\n */\nexport function nvmInstall (\n  version = '',\n  { install = config.install } = {},\n  { nvmHooks } = {}\n) {\n  // raw command is install, replace $version\n  const command = install.replace(/\\$version/g, version)\n  return nvm(command, nvmHooks)\n}\n\n/**\n * {@link Hookable} nvmInstall\n * @public\n * @function nvmInstall\n * @param  {version}            [version='']                    - A Node version to install with nvm\n * @param  {Object}             [config]                        - A {@link config}\n * @param  {{install: command}} [config.install=config.install] - A {@link config} `install` command\n * @param  {Hooks}              [hooks]                         - A {@link nvmInstall} Hooks\n * @param  {{pre: Hook}}        [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}       [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}      [hooks.error]                   - A `error` hook\n * @param  {{nvmHooks: Hooks}}  [hooks.nvmHooks]                - A {@link nvm} Hooks\n * @return {Promise} - The {@link nvm} Promise\n */\nexport default hookable(nvmInstall)\n// exporting this will fail to document as function w/ esdoc\n"
   },
   {
-    "__docId__": 15,
+    "__docId__": 16,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -453,7 +473,7 @@
     "generator": false
   },
   {
-    "__docId__": 16,
+    "__docId__": 17,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -466,7 +486,7 @@
     "content": "import nvmInstall from './nvm-install'\nimport nvmTest from './nvm-test'\nimport config from './config'\nimport { hookable } from './hooks'\n\n/**\n * Run test using a Node version via nvm\n * @protected\n * @function nvmTestVersion\n * @param  {version}                  [version='']                    - A Node version to use with nvm\n * @param  {Object}                   [config]                        - A {@link config}\n * @param  {{install: command}}       [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}          [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}        [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Object}                   [hooks]                         - An Object of {@link Hooks}\n * @param  {{nvmInstallHooks: Hooks}} [hooks.nvmInstallHooks]         - {@link nvmInstall} Hooks\n * @param  {{nvmTestHooks: Hooks}}    [hooks.nvmTestHooks]            - {@link nvmTest} Hooks\n * @return {Promise} - The {@link nvmTest} Promise\n */\nexport async function nvmTestVersion (\n  version = '',\n  { install = config.install, test = config.test, dryRun = config.dryRun } = {},\n  { nvmInstallHooks, nvmTestHooks } = {}\n) {\n  // await for nvm install\n  await nvmInstall(version, { install }, nvmInstallHooks)\n\n  // await and return for nvm test\n  return await nvmTest(version, { test, dryRun }, nvmTestHooks)\n}\n\n/**\n * {@link Hookable} nvmTestVersion\n * @public\n * @function nvmTestVersion\n * @param  {version}                  [version='']                    - A Node version to use with nvm\n * @param  {Object}                   [config]                        - A {@link config}\n * @param  {{install: command}}       [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}          [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}        [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Hooks}                    [hooks]                         - A {@link nvmTestVersion} Hooks\n * @param  {{pre: Hook}}              [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}             [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}            [hooks.error]                   - A `error` hook\n * @param  {{nvmInstallHooks: Hooks}} [hooks.nvmInstallHooks]         - A {@link nvmInstall} Hooks\n * @param  {{nvmTestHooks: Hooks}}    [hooks.nvmTestHooks]            - A {@link nvmTest} Hooks\n * @return {Promise} - The {@link nvmTest} Promise\n */\nexport default hookable(nvmTestVersion)\n// exporting this will fail to document as function w/ esdoc\n"
   },
   {
-    "__docId__": 17,
+    "__docId__": 18,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -586,7 +606,7 @@
     "generator": false
   },
   {
-    "__docId__": 18,
+    "__docId__": 19,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -599,7 +619,7 @@
     "content": "import nvmTestVersion from './nvm-test-version'\nimport config from './config'\nimport { hookable } from './hooks'\n\n/**\n * Run test using a list of Node versions with nvm.\n * @protected\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=[]]                   - A list of Node versions to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Object}                       [hooks]                         - An Object of {@link Hooks}\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n */\nexport async function nvmTestVersions (\n  versions = [],\n  { install = config.install, test = config.test, dryRun = config.dryRun } = {},\n  { nvmTestVersionHooks } = {}\n) {\n  let code = 0\n  // empty version if no versions\n  if (!versions.length) versions.push(undefined)\n\n  // as we are using await we cant use .forEach\n  for (let i = 0, len = versions.length; i < len; ++i) {\n    let version = versions[i]\n    try {\n      // await for nvm test version\n      await nvmTestVersion(version, { install, test, dryRun }, nvmTestVersionHooks)\n    } catch (e) {\n      // set code to error\n      code = e\n    }\n  }\n\n  return code\n}\n\n/**\n * {@link Hookable} nvmTestVersions\n * @public\n * @function nvmTestVersions\n * @param  {version[]}                    [versions=['']]                 - A list of Node version to use with nvm\n * @param  {Object}                       [config]                        - A {@link config}\n * @param  {{install: command}}           [config.install=config.install] - A {@link config} `install` command\n * @param  {{test: command}}              [config.test=config.test]       - A {@link config} `test` command\n * @param  {{dryRun: boolean}}            [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Hooks}                        [hooks]                         - A {@link nvmTestVersions} Hooks\n * @param  {{pre: Hook}}                  [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}                 [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}                [hooks.error]                   - A `error` hook\n * @param  {{nvmTestVersionHooks: Hooks}} [hooks.nvmTestVersionHooks]     - A {@link nvmTestVersion} Hooks\n * @return {number} - The process exit code\n */\nexport default hookable(nvmTestVersions)\n// exporting this will fail to document as function w/ esdoc\n"
   },
   {
-    "__docId__": 19,
+    "__docId__": 20,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -709,7 +729,7 @@
     "generator": false
   },
   {
-    "__docId__": 20,
+    "__docId__": 21,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -722,7 +742,7 @@
     "content": "import nvm from './nvm'\nimport config from './config'\nimport { hookable } from './hooks'\n\n/**\n * Wrap a command to use a Node version before\n * @private\n * @function nvmUse\n * @param {command} command - The command to wrap\n * @return {command} - The wrapped command\n */\nconst nvmUse = (command) => (`nvm use $version && ( ${command} )`)\n\n/**\n * Test using a Node version with nvm\n * @protected\n * @function nvmTest\n * @param  {version}           [version='']                  - A Node version to use with nvm\n * @param  {Object}            [config]                      - A {@link config}\n * @param  {{test: command}}   [config.test=config.test]     - A {@link config} `test` command\n * @param  {{dryRun: boolean}} [config.dryRun=config.dryRun] - Wheter or not to dry run the test\n * @param  {Object}            [hooks]                       - An Object of {@link Hooks}\n * @param  {{nvmHooks: Hooks}} [hooks.nvmHooks]              - A {@link nvm} Hooks\n * @return {Promise} - The {@link nvm} Promise\n */\nexport function nvmTest (\n  version = '',\n  { test = config.test, dryRun = config.dryRun } = {},\n  { nvmHooks } = {}\n) {\n  // use the Node version\n  test = nvmUse(test)\n  // apply dryRun if required, just echo the command for now\n  if (dryRun) test = `echo \"Dry run: ${test}\"`\n\n  // raw command is test, replace $version\n  const command = test.replace(/\\$version/g, version)\n  return nvm(command, nvmHooks)\n}\n\n/**\n * {@link Hookable} nvmTest\n * @public\n * @function nvmTest\n * @param  {version}            [version='']                    - A Node version to use with nvm\n * @param  {Object}             [config]                        - A {@link config}\n * @param  {{test: command}}    [config.test=config.test]       - The {@link config} `test` command\n * @param  {{dryRun: boolean}}  [config.dryRun=config.dryRun]   - Wheter or not to dry run the test\n * @param  {Hooks}              [hooks]                         - {@link nvmTest} Hooks\n * @param  {{pre: Hook}}        [hooks.pre]                     - A `pre` hook\n * @param  {{post: Hook}}       [hooks.post]                    - A `post` hook\n * @param  {{error: Hook}}      [hooks.error]                   - A `error` hook\n * @param  {{nvmHooks: Hooks}}  [hooks.nvmHooks]                - {@link nvm} Hooks\n * @return {Promise} - The {@link nvm} Promise\n */\nexport default hookable(nvmTest)\n// exporting this will fail to document as function w/ esdoc\n"
   },
   {
-    "__docId__": 21,
+    "__docId__": 22,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -768,7 +788,7 @@
     }
   },
   {
-    "__docId__": 22,
+    "__docId__": 23,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -866,7 +886,7 @@
     "generator": false
   },
   {
-    "__docId__": 23,
+    "__docId__": 24,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -879,7 +899,7 @@
     "content": "import { spawn } from 'child_process'\nimport { statSync } from 'fs'\nimport semver from 'semver'\nimport { hookable } from './hooks'\n\nconst bin = process.env.NVM_DIR + '/nvm.sh'\nconst options = {\n  cwd: process.cwd(),\n  env: process.env,\n  stdio: 'inherit',\n  shell: process.env.SHELL,\n}\n\n// 'shell' option introduced in Node v5.7.0\nconst shellOption = semver.satisfies(process.version, '>=5.7.0')\n\n/**\n * Wether or not nvm exists.\n * @protected\n * @return {boolean} - Wether or not nvm exists\n */\nexport function exists () {\n  try {\n    return statSync(bin).isFile()\n  } catch (e) {\n    return false\n  }\n}\n\n/* !esdoc bug\n * The Node ChildProcess\n * @external ChildProcess\n * @see {@link https://nodejs.org/api/child_process.html#child_process_class_childprocess}\n */\n\n/* !esdoc bug\n * The Node EventEmitter, some Node versions do NOT expose the ChildProcess class\n * @external EventEmitter\n * @see {@link https://nodejs.org/api/events.html#events_class_eventemitter}\n */\n\n/**\n * Spawn a shell command with nvm shell.\n * @protected\n * @param  {command} [command=''] - A shell command to spawn\n * @return {(ChildProcess|EventEmitter)} - The spawned nvm command child process\n */\nexport function shell (command = '') {\n  // source (period command) nvm before running the command\n  const cmd = `. ${bin}` + (command ? ` && ${command}` : '')\n\n  // the hole command has to be quoted starting w/ shell option\n  /* istanbul ignore next: depends on process.version */\n  const shcmd = shellOption ? `'${cmd}'` : cmd\n\n  // invoke shell command (-c)\n  const args = ['-c', shcmd]\n  return spawn(process.env.SHELL, args, options)\n}\n\n/**\n * Process a nvm shell command as a Promise.\n * - It will resolve on 'close' code not equals 0.\n * - It will reject on 'error' and 'close' code equals 0.\n * @protected\n * @param  {command} [command=''] - A shell command\n * @return {Promise} - The nvm shell Promise\n */\nexport function nvm (command = '') {\n  return new Promise((resolve, reject) => {\n    shell(command)\n\n    /*\n     * 'error' event is emitted on spawn, kill, or send message Errors\n     * no solution found yet to unit test\n     */\n     // reject on error\n    .on('error', /* istanbul ignore next */ (error) => { reject(error.code || 1) })\n\n    // resolve if code is 0, reject otherwise\n    .on('close', (code) => { (code === 0 ? resolve : reject)(code) })\n  })\n}\n\n/**\n * {@link Hookable} nvm\n * @public\n * @function nvm\n * @param  {command}       [command='']  - A shell command\n * @param  {Hooks}         [hooks]       - {@link nvm} Hooks\n * @param  {{pre: Hook}}   [hooks.pre]   - A `pre` hook\n * @param  {{post: Hook}}  [hooks.post]  - A `post` hook\n * @param  {{error: Hook}} [hooks.error] - A `error` hook\n * @return {Promise} - The {@link nvm} Promise\n */\nexport default hookable(nvm)\n// exporting this will fail to document as function w/ esdoc\n"
   },
   {
-    "__docId__": 24,
+    "__docId__": 25,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -900,7 +920,7 @@
     }
   },
   {
-    "__docId__": 25,
+    "__docId__": 26,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -921,7 +941,7 @@
     }
   },
   {
-    "__docId__": 26,
+    "__docId__": 27,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -942,7 +962,7 @@
     }
   },
   {
-    "__docId__": 27,
+    "__docId__": 28,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -967,7 +987,7 @@
     "generator": false
   },
   {
-    "__docId__": 28,
+    "__docId__": 29,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1006,7 +1026,7 @@
     "generator": false
   },
   {
-    "__docId__": 29,
+    "__docId__": 30,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1044,7 +1064,7 @@
     "generator": false
   },
   {
-    "__docId__": 30,
+    "__docId__": 31,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1057,7 +1077,7 @@
     "content": "/** @namespace api */\nexport {\n  config,\n  Hooks,\n  nvm,\n  nvmInstall,\n  nvmTest,\n  nvmTestVersion,\n  nvmTestVersions,\n} from './api/'\n"
   },
   {
-    "__docId__": 31,
+    "__docId__": 32,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1067,10 +1087,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import yargs from 'yargs'\nimport { sync as resolveSync } from 'resolve'\nimport { config } from './api'\nimport { buildUsage, patchCommand } from './utils'\n\n// commands had to be required\nconst cmd = require('./command')\nconst usage = buildUsage(cmd) + buildUsage({\n  command: '<command>', desc: 'Execute external <command>',\n}, `\\n  `)\n\nyargs\n  // version from package\n  .version().alias('v', 'version')\n  .help('h').alias('h', 'help')\n  .usage(usage, cmd.options)\n  // all options are global\n  .global(Object.keys(cmd.options))\n  // set locale to 'en' for now, TODO: use y18n\n  .locale('en')\n\n// add config commands\nconst commands = config.commands\ncommands.forEach((command) => {\n  // resolve command path from running project\n  const path = resolveSync(`nvm-test-command-${command}`, { basedir: process.cwd() })\n  const cmd = require(path)\n  yargs.command(patchCommand(cmd))\n})\n\n// get argv from yargs\nconst argv = yargs.argv\n// handle if not command\nif (commands.indexOf(argv._[0]) === -1) cmd.handler(argv)\n"
+    "content": "import yargs from 'yargs'\nimport { sync as resolveSync } from 'resolve'\nimport { config } from './api'\nimport { buildUsage, patchCommand, __ } from './utils'\n\n// commands had to be required\nconst cmd = require('./command')\nconst usage = __('usage') + buildUsage(cmd) +\n  '\\n  ' + buildUsage({ command: '<command> ', desc: __('external') })\n\nyargs\n  // version from package\n  .version().alias('v', 'version')\n  .help('h').alias('h', 'help')\n  .usage(usage, cmd.options)\n  // all options are global\n  .global(Object.keys(cmd.options))\n\n// add config commands\nconst commands = config.commands\ncommands.forEach((command) => {\n  // resolve command path from running project\n  const path = resolveSync(`nvm-test-command-${command}`, { basedir: process.cwd() })\n  const cmd = require(path)\n  yargs.command(patchCommand(cmd, __('usage')))\n})\n\n// get argv from yargs\nconst argv = yargs.argv\n// handle if not command\nif (commands.indexOf(argv._[0]) === -1) cmd.handler(argv)\n"
   },
   {
-    "__docId__": 32,
+    "__docId__": 33,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1091,7 +1111,7 @@
     }
   },
   {
-    "__docId__": 33,
+    "__docId__": 34,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1112,7 +1132,7 @@
     }
   },
   {
-    "__docId__": 34,
+    "__docId__": 35,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1124,7 +1144,7 @@
     "importPath": "nvm-test/src/bin.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 20,
     "undocument": true,
     "type": {
       "types": [
@@ -1133,7 +1153,7 @@
     }
   },
   {
-    "__docId__": 35,
+    "__docId__": 36,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1145,7 +1165,7 @@
     "importPath": "nvm-test/src/bin.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 29,
     "undocument": true,
     "type": {
       "types": [
@@ -1154,7 +1174,7 @@
     }
   },
   {
-    "__docId__": 36,
+    "__docId__": 37,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1164,10 +1184,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { config, nvmTestVersions, Hooks } from './api'\nimport log from 'npmlog'\n\n// set default log level to 'silly' in development NODE_ENV\nif (process.env.NODE_ENV === 'development') log.level = 'silly'\n\n/** @private */\nconst command = '[versions]'\n/** @private */\nconst desc = 'Test using some Node versions'\n/** @private */\nconst builder = {\n  'i': {\n    alias: 'install',\n    desc: 'Specify the install command',\n    type: 'string',\n    default: config.install,\n  },\n  't': {\n    alias: 'test',\n    desc: 'Specify the test command',\n    type: 'string',\n    default: config.test,\n  },\n  'D': {\n    alias: 'dry-run',\n    desc: 'Dry run the test',\n    type: 'boolean',\n    default: false,\n  },\n  'L': {\n    alias: 'log-level',\n    desc: 'Set the log level',\n    type: 'string',\n    choices: Object.keys(log.levels),\n    default: log.level,\n  },\n}\n/**\n * Handler\n * @private\n * @param  {Object} argv - The yargs argv\n * @return {Promise} - The nvmTestVersions Promise\n */\nconst handler = (argv) => {\n  // get versions from argv._\n  const versions = argv._\n  // get options\n  const { install, test, dryRun, logLevel } = argv\n\n  // set log heading & level\n  log.heading = 'nvm-test'\n  log.level = logLevel\n\n  log.silly('command', 'argv:', argv)\n\n  // define hooks\n  const pre = (versions, { install, test, dryRun }) => {\n    // info the versions\n    log.info('nvm-test-versions', 'versions', versions.join(', '))\n    // verbose the options\n    log.verbose('nvm-test-versions', 'options', { install, test, dryRun })\n  }\n  const error = (code) => {\n    log.error('nvm-test-versions', 'error code %s', code)\n  }\n  const nvmInstallHooks = new Hooks({\n    pre: (version) => {\n      log.verbose('nvm-install', 'version', version)\n    },\n    error: (code, version) => {\n      log.error('nvm-install', 'error code %s for version', code, version)\n    },\n  })\n  const nvmTestHooks = new Hooks({\n    pre: (version) => {\n      log.verbose('nvm-test', 'version', version)\n    },\n    error: (code, version) => {\n      log.error('nvm-test', 'error code %s for version', code, version)\n    },\n  })\n  const nvmTestVersionHooks = new Hooks({\n    pre: (version) => {\n      // info the version\n      log.info('nvm-test-version', 'version', version)\n    },\n    error: (code, version) => {\n      log.verbose('nvm-test-version', 'error code %s for version', code, version)\n    },\n    nvmInstallHooks,\n    nvmTestHooks,\n  })\n  const hooks = new Hooks({\n    pre,\n    error,\n    nvmTestVersionHooks,\n  })\n\n  // nvm test versions\n  return nvmTestVersions(versions, { install, test, dryRun }, hooks)\n\n  // then exit with code on resolve and reject\n  .then(process.exit, process.exit)\n}\n\n/** @private */\nconst options = builder\nexport { command, desc, options, handler }\n"
+    "content": "import log from 'npmlog'\nimport { config, nvmTestVersions, Hooks } from './api'\nimport { __ } from './utils'\n\n// set default log level to 'silly' in development NODE_ENV\nif (process.env.NODE_ENV === 'development') log.level = 'silly'\n\n/** @private */\nconst command = '[versions]'\n\n/** @private */\nconst desc = __('desc')\n\n/** @private */\nconst builder = {\n  'i': {\n    alias: 'install',\n    desc: __('options.install'),\n    type: 'string',\n    default: config.install,\n  },\n  't': {\n    alias: 'test',\n    desc: __('options.test'),\n    type: 'string',\n    default: config.test,\n  },\n  'D': {\n    alias: 'dry-run',\n    desc: __('options.dryRun'),\n    type: 'boolean',\n    default: false,\n  },\n  'L': {\n    alias: 'log-level',\n    desc: __('options.logLevel'),\n    type: 'string',\n    choices: Object.keys(log.levels),\n    default: log.level,\n  },\n}\n\n/**\n * Handler\n * @private\n * @param  {Object} argv - The yargs argv\n * @return {Promise} - The nvmTestVersions Promise\n */\nconst handler = (argv) => {\n  // get versions from argv._\n  const versions = argv._\n  // get options\n  const { install, test, dryRun, logLevel } = argv\n\n  // set log heading & level\n  log.heading = 'nvm-test'\n  log.level = logLevel\n\n  log.silly('command', 'argv:', argv)\n\n  // define hooks\n  const pre = (versions, { install, test, dryRun }) => {\n    // info the versions\n    log.info('nvm-test-versions', 'versions', versions.join(', '))\n    // verbose the options\n    log.verbose('nvm-test-versions', 'options', { install, test, dryRun })\n  }\n  const error = (code) => {\n    log.error('nvm-test-versions', 'error code %s', code)\n  }\n  const nvmInstallHooks = new Hooks({\n    pre: (version) => {\n      log.verbose('nvm-install', 'version', version)\n    },\n    error: (code, version) => {\n      log.error('nvm-install', 'error code %s for version', code, version)\n    },\n  })\n  const nvmTestHooks = new Hooks({\n    pre: (version) => {\n      log.verbose('nvm-test', 'version', version)\n    },\n    error: (code, version) => {\n      log.error('nvm-test', 'error code %s for version', code, version)\n    },\n  })\n  const nvmTestVersionHooks = new Hooks({\n    pre: (version) => {\n      // info the version\n      log.info('nvm-test-version', 'version', version)\n    },\n    error: (code, version) => {\n      log.verbose('nvm-test-version', 'error code %s for version', code, version)\n    },\n    nvmInstallHooks,\n    nvmTestHooks,\n  })\n  const hooks = new Hooks({\n    pre,\n    error,\n    nvmTestVersionHooks,\n  })\n\n  // nvm test versions\n  return nvmTestVersions(versions, { install, test, dryRun }, hooks)\n\n  // then exit with code on resolve and reject\n  .then(process.exit, process.exit)\n}\n\n/** @private */\nconst options = builder\nexport { command, desc, options, handler }\n"
   },
   {
-    "__docId__": 37,
+    "__docId__": 38,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1179,7 +1199,7 @@
     "importPath": "nvm-test/src/command.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 15,
     "type": {
       "types": [
         "*"
@@ -1187,7 +1207,7 @@
     }
   },
   {
-    "__docId__": 38,
+    "__docId__": 39,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1199,27 +1219,7 @@
     "importPath": "nvm-test/src/command.js",
     "importStyle": "{command}",
     "description": null,
-    "lineNumber": 8,
-    "type": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
-    "__docId__": 39,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "desc",
-    "memberof": "src/command.js",
-    "longname": "src/command.js~desc",
-    "access": "private",
-    "export": true,
-    "importPath": "nvm-test/src/command.js",
-    "importStyle": "{desc}",
-    "description": null,
-    "lineNumber": 10,
+    "lineNumber": 9,
     "type": {
       "types": [
         "string"
@@ -1231,15 +1231,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "options",
+    "name": "desc",
     "memberof": "src/command.js",
-    "longname": "src/command.js~options",
+    "longname": "src/command.js~desc",
     "access": "private",
     "export": true,
     "importPath": "nvm-test/src/command.js",
-    "importStyle": "{options}",
+    "importStyle": "{desc}",
     "description": null,
-    "lineNumber": 108,
+    "lineNumber": 12,
     "type": {
       "types": [
         "*"
@@ -1251,6 +1251,26 @@
     "kind": "variable",
     "static": true,
     "variation": null,
+    "name": "options",
+    "memberof": "src/command.js",
+    "longname": "src/command.js~options",
+    "access": "private",
+    "export": true,
+    "importPath": "nvm-test/src/command.js",
+    "importStyle": "{options}",
+    "description": null,
+    "lineNumber": 112,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 42,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
     "name": "handler",
     "memberof": "src/command.js",
     "longname": "src/command.js~handler",
@@ -1259,7 +1279,7 @@
     "importPath": "nvm-test/src/command.js",
     "importStyle": "{handler}",
     "description": "Handler",
-    "lineNumber": 45,
+    "lineNumber": 49,
     "params": [
       {
         "nullable": null,
@@ -1287,7 +1307,7 @@
     }
   },
   {
-    "__docId__": 42,
+    "__docId__": 43,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1297,10 +1317,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { name } from '../package'\n\n/**\n * Build a usage string from a command\n * @private\n * @param  {Object} cmd               - A command\n * @param  {string} [prefix=Usage:\\n] - A prefix string\n * @return {string} - The usage string for the command\n */\nexport function buildUsage (cmd, prefix = `Usage:\\n  `) {\n  // get description from command\n  const desc = cmd.desc || cmd.describe || cmd.description || ''\n\n  return `${prefix}${name} ${cmd.command} [options] \\t ${desc}`\n}\n\n/**\n * Patch a command - add usage\n * @private\n * @param  {Object} cmd - The command to patch\n * @return {Object} - The patched command\n */\nexport function patchCommand (cmd) {\n  // get builder from command if function\n  // or build builder function from command\n  const fnbuilder = (yargs) => (typeof cmd.builder === 'object'\n    ? yargs.options(cmd.builder) : yargs)\n  const builder = typeof cmd.builder === 'function' ? cmd.builder : fnbuilder\n  cmd.builder = (yargs) => (builder(yargs).usage(buildUsage(cmd)))\n\n  // patch handler to process.exit\n  const handler = cmd.handler\n  cmd.handler = async function (argv) {\n    process.exit(await handler(argv))\n  }\n\n  return cmd\n}\n"
+    "content": "import y18n_init from 'y18n'\nimport { name } from '../package'\n\n/**\n * Build a usage string from a command\n * @private\n * @param  {Object} cmd - A command\n * @return {string} - The usage string for the command\n */\nexport function buildUsage (cmd) {\n  // get description from command\n  const desc = cmd.desc || cmd.describe || cmd.description || ''\n\n  return `${name} ${cmd.command} [options] \\t ${desc}`\n}\n\n/**\n * Patch a command - add usage\n * @private\n * @param  {Object} cmd        - A command to patch\n * @param  {string} [usage=''] - A string to prefix usage\n * @return {Object} - The patched command\n */\nexport function patchCommand (cmd, usage = '') {\n  // get builder from command if function\n  // or build builder function from command\n  const fnbuilder = (yargs) => (typeof cmd.builder === 'object'\n    ? yargs.options(cmd.builder) : yargs)\n  const builder = typeof cmd.builder === 'function' ? cmd.builder : fnbuilder\n  cmd.builder = (yargs) => (builder(yargs).usage(usage + buildUsage(cmd)))\n\n  // patch handler to process.exit\n  const handler = cmd.handler\n  cmd.handler = async function (argv) {\n    process.exit(await handler(argv))\n  }\n\n  return cmd\n}\n\n// initialize y18n and get the translation functions\nconst y18n = y18n_init()\nconst { __, __n } = y18n\nexport { y18n, __, __n }\n"
   },
   {
-    "__docId__": 43,
+    "__docId__": 44,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1323,18 +1343,6 @@
         "optional": false,
         "name": "cmd",
         "description": "A command"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "string"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "Usage:\\n",
-        "defaultRaw": "Usage:\\n",
-        "name": "prefix",
-        "description": "A prefix string"
       }
     ],
     "return": {
@@ -1348,7 +1356,7 @@
     "generator": false
   },
   {
-    "__docId__": 44,
+    "__docId__": 45,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1360,7 +1368,7 @@
     "importPath": "nvm-test/src/utils.js",
     "importStyle": "{patchCommand}",
     "description": "Patch a command - add usage",
-    "lineNumber": 23,
+    "lineNumber": 24,
     "params": [
       {
         "nullable": null,
@@ -1370,7 +1378,19 @@
         "spread": false,
         "optional": false,
         "name": "cmd",
-        "description": "The command to patch"
+        "description": "A command to patch"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "''",
+        "defaultRaw": "''",
+        "name": "usage",
+        "description": "A string to prefix usage"
       }
     ],
     "return": {
@@ -1385,6 +1405,48 @@
   },
   {
     "__docId__": 46,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "__",
+    "memberof": "src/utils.js",
+    "longname": "src/utils.js~__",
+    "access": null,
+    "export": false,
+    "importPath": "nvm-test/src/utils.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "y18n",
+    "memberof": "src/utils.js",
+    "longname": "src/utils.js~y18n",
+    "access": null,
+    "export": true,
+    "importPath": "nvm-test/src/utils.js",
+    "importStyle": "{y18n}",
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1397,7 +1459,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1410,7 +1472,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1423,7 +1485,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1436,7 +1498,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1449,7 +1511,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1462,7 +1524,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1475,7 +1537,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1488,7 +1550,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1501,7 +1563,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1514,7 +1576,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 59,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1527,7 +1589,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1540,7 +1602,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1553,7 +1615,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1566,7 +1628,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 60,
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1579,7 +1641,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 61,
+    "__docId__": 64,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1592,7 +1654,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 65,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1605,7 +1667,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1618,7 +1680,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1631,7 +1693,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 68,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1644,7 +1706,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 69,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1657,7 +1719,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1670,7 +1732,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 71,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1683,7 +1745,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 72,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1696,7 +1758,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 73,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1709,7 +1771,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 74,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1722,7 +1784,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 72,
+    "__docId__": 75,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1735,7 +1797,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 76,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1748,7 +1810,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 77,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1761,7 +1823,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 78,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1774,7 +1836,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 79,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1787,7 +1849,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 80,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1800,7 +1862,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 78,
+    "__docId__": 81,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1813,7 +1875,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 82,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1826,7 +1888,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 80,
+    "__docId__": 83,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1839,7 +1901,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 84,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1852,7 +1914,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 85,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1865,7 +1927,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 86,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1878,7 +1940,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 87,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1891,7 +1953,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 88,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1904,7 +1966,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 89,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1917,7 +1979,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 90,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1930,7 +1992,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 91,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1943,7 +2005,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 92,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1956,7 +2018,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 93,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1969,7 +2031,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 94,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1982,7 +2044,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 95,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1995,7 +2057,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 97,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2008,7 +2070,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 98,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2021,7 +2083,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 99,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2034,7 +2096,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 100,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2047,7 +2109,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 101,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2060,7 +2122,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 102,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2073,7 +2135,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 103,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2086,7 +2148,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 104,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2099,7 +2161,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 105,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -2112,7 +2174,7 @@
     "content": "import expect from 'expect'\nimport { renameSync, statSync } from 'fs'\n\n/** @test api */\ndescribe('api', function () {\n  it('sould fail to require if nvm does not exists', function () {\n    // move NVM_DIR\n    const tmp = process.env.NVM_DIR + '.bck'\n    renameSync(process.env.NVM_DIR, tmp)\n\n    expect(function () {\n      if (!statSync(tmp).isDir()) { return }\n      require('../../src/api')\n    }).toThrow()\n\n    // restablish NVM_DIR\n    renameSync(tmp, process.env.NVM_DIR)\n  })\n})\n"
   },
   {
-    "__docId__": 103,
+    "__docId__": 106,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2135,7 +2197,7 @@
     ]
   },
   {
-    "__docId__": 104,
+    "__docId__": 107,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2149,7 +2211,7 @@
     "lineNumber": 6
   },
   {
-    "__docId__": 105,
+    "__docId__": 108,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -2162,7 +2224,7 @@
     "content": "import expect from 'expect'\nimport Hooks, { hookable } from '../../src/api/hooks'\n\nconst fn = (...args) => (args)\nconst err = new Error()\nconst throws = () => { throw err }\n\n/** @test Hooks */\ndescribe('Hooks', function () {\n  it('should be call for new instance only', function () {\n    expect(function () { Hooks() }).toThrow()\n    expect(new Hooks()).toBeA(Hooks)\n  })\n\n  it('should have passed in properties', function () {\n    const hooks = new Hooks({ foo: 'foo', bar: 'bar' })\n    expect(Object.keys(hooks)).toEqual(['foo', 'bar'])\n    expect(hooks.foo).toEqual('foo')\n    expect(hooks.bar).toEqual('bar')\n  })\n})\n\n/** @test hookable */\ndescribe('hookable', function () {\n  it('should be a function', function () {\n    expect(hookable).toBeA('function')\n  })\n\n  it('should throw a TypeError if argument is not a function', function () {\n    expect(function () { hookable() }).toThrow(TypeError)\n  })\n\n  it('should return a function (1st level)', function () {\n    expect(hookable(fn)).toBeA('function')\n  })\n\n  it('should return a Promise (2nd level)', function (done) {\n    const p = hookable(fn)()\n    expect(p).toBeA(Promise)\n\n    return p.then(() => {\n      done()\n    })\n    .catch(done)\n  })\n\n  it('should execute a \"pre\" hook', function (done) {\n    const hooks = new Hooks({ pre: () => {} })\n    const spy = expect.spyOn(hooks, 'pre')\n\n    return hookable(fn)('foo', 'bar', hooks)\n    .then(() => {\n      expect(spy).toHaveBeenCalledWith('foo', 'bar')\n      expect.restoreSpies()\n      done()\n    })\n    .catch(done)\n  })\n\n  it('should execute a \"post\" hook', function (done) {\n    const hooks = new Hooks({ post: () => {} })\n    const spy = expect.spyOn(hooks, 'post')\n    const add = (a, b) => (a + b)\n\n    return hookable(add)('foo', 'bar', hooks)\n    .then(() => {\n      expect(spy).toHaveBeenCalledWith('foobar', 'foo', 'bar')\n      expect.restoreSpies()\n      done()\n    })\n    .catch(done)\n  })\n\n  it('should reject and execute an \"error\" hook on Error', function (done) {\n    const hooks = new Hooks({ error: () => {} })\n    const spy = expect.spyOn(hooks, 'error')\n\n    return hookable(throws)('foo', 'bar', hooks)\n    .then(() => {\n      // it should not be resolved on Error, terminate with error\n      done(err)\n    })\n    .catch(() => {\n      expect(spy).toHaveBeenCalledWith(err, 'foo', 'bar')\n      expect.restoreSpies()\n      done()\n    })\n  })\n})\n"
   },
   {
-    "__docId__": 106,
+    "__docId__": 109,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2185,7 +2247,7 @@
     ]
   },
   {
-    "__docId__": 107,
+    "__docId__": 110,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2199,7 +2261,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 108,
+    "__docId__": 111,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2213,7 +2275,7 @@
     "lineNumber": 15
   },
   {
-    "__docId__": 109,
+    "__docId__": 112,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2236,7 +2298,7 @@
     ]
   },
   {
-    "__docId__": 110,
+    "__docId__": 113,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2250,7 +2312,7 @@
     "lineNumber": 25
   },
   {
-    "__docId__": 111,
+    "__docId__": 114,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2264,7 +2326,7 @@
     "lineNumber": 29
   },
   {
-    "__docId__": 112,
+    "__docId__": 115,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2278,7 +2340,7 @@
     "lineNumber": 33
   },
   {
-    "__docId__": 113,
+    "__docId__": 116,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2292,7 +2354,7 @@
     "lineNumber": 37
   },
   {
-    "__docId__": 114,
+    "__docId__": 117,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2306,7 +2368,7 @@
     "lineNumber": 47
   },
   {
-    "__docId__": 115,
+    "__docId__": 118,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2320,7 +2382,7 @@
     "lineNumber": 60
   },
   {
-    "__docId__": 116,
+    "__docId__": 119,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2334,7 +2396,7 @@
     "lineNumber": 74
   },
   {
-    "__docId__": 117,
+    "__docId__": 120,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -2347,7 +2409,7 @@
     "content": "import expect from 'expect'\nimport { renameSync } from 'fs'\nimport { nvm, exists, shell } from '../../src/api/nvm'\nimport { shouldReject, shouldResolve } from './helpers/nvm.js'\n\n// ChildProcess class is not exposed under Node 0.12, use EventEmitter instead\nlet ChildProcess = require('child_process').ChildProcess\nif (ChildProcess === undefined) ChildProcess = require('events').EventEmitter\n\n/** @test exists */\ndescribe('exists', function () {\n  it('should be a function', function () {\n    expect(exists).toBeA('function')\n  })\n\n  it('should return false if nvm does not exists', function () {\n    // move NVM_DIR\n    const tmp = process.env.NVM_DIR + '.bck'\n    renameSync(process.env.NVM_DIR, tmp)\n    expect(exists()).toBe(false)\n    // restablish NVM_DIR\n    renameSync(tmp, process.env.NVM_DIR)\n  })\n\n  it('should return true if nvm exists', function () {\n    expect(exists()).toBe(true)\n  })\n})\n\n/** @test shell */\ndescribe('shell', function () {\n  it('should be a function', function () {\n    expect(shell).toBeA('function')\n  })\n\n  it('should return a ChildProcess', function (done) {\n    expect(shell()).toBeA(ChildProcess)\n    done()\n  })\n\n  it('should execute with success', function (done) {\n    shell('echo \"shell test\" > /dev/null')\n    .on('close', done)\n  })\n})\n\n/** @test nvm */\ndescribe('nvm', function () {\n  it('should be a function', function () {\n    expect(nvm).toBeA('function')\n  })\n\n  it('should reject the Promise on Error', function (done) {\n    return shouldReject(nvm('bad-command 2> /dev/null'), done)\n  })\n\n  it('should return and resolve the Promise', function (done) {\n    const p = nvm()\n    expect(p).toBeA(Promise)\n\n    return shouldResolve(p, done)\n  })\n})\n"
   },
   {
-    "__docId__": 118,
+    "__docId__": 121,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2370,7 +2432,7 @@
     ]
   },
   {
-    "__docId__": 119,
+    "__docId__": 122,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2384,7 +2446,7 @@
     "lineNumber": 12
   },
   {
-    "__docId__": 120,
+    "__docId__": 123,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2398,7 +2460,7 @@
     "lineNumber": 16
   },
   {
-    "__docId__": 121,
+    "__docId__": 124,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2412,7 +2474,7 @@
     "lineNumber": 25
   },
   {
-    "__docId__": 122,
+    "__docId__": 125,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2435,7 +2497,7 @@
     ]
   },
   {
-    "__docId__": 123,
+    "__docId__": 126,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2449,7 +2511,7 @@
     "lineNumber": 32
   },
   {
-    "__docId__": 124,
+    "__docId__": 127,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2463,7 +2525,7 @@
     "lineNumber": 36
   },
   {
-    "__docId__": 125,
+    "__docId__": 128,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2477,7 +2539,7 @@
     "lineNumber": 41
   },
   {
-    "__docId__": 126,
+    "__docId__": 129,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2500,7 +2562,7 @@
     ]
   },
   {
-    "__docId__": 127,
+    "__docId__": 130,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2514,7 +2576,7 @@
     "lineNumber": 49
   },
   {
-    "__docId__": 128,
+    "__docId__": 131,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2528,7 +2590,7 @@
     "lineNumber": 53
   },
   {
-    "__docId__": 129,
+    "__docId__": 132,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2542,7 +2604,7 @@
     "lineNumber": 57
   },
   {
-    "__docId__": 130,
+    "__docId__": 133,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -2552,10 +2614,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import expect from 'expect'\nimport { nvmInstall } from '../../src/api/nvm-install'\nimport { shouldReject, shouldResolve } from './helpers/nvm.js'\n\n/** @test nvmInstall */\ndescribe('nvmInstall', function () {\n  it('should be a function', function () {\n    expect(nvmInstall).toExist().toBeA('function')\n  })\n\n  it('should reject with no Node version', function (done) {\n    return shouldReject(nvmInstall(), done)\n  })\n\n  it('should reject with an invalid Node version', function (done) {\n    return shouldReject(nvmInstall('bad-version'), done)\n  })\n\n  it('should resolve with a valid Node version', function (done) {\n    return shouldResolve(nvmInstall(process.version), done)\n  })\n\n  it('should execute an other install command', function (done) {\n    const install = 'nvm which $version > /dev/null'\n    return shouldResolve(nvmInstall(process.version, { install }, {}), done)\n  })\n})\n"
+    "content": "import expect from 'expect'\nimport { nvmInstall } from '../../src/api/nvm-install'\nimport { shouldReject, shouldResolve } from './helpers/nvm.js'\n\n/** @test nvmInstall */\ndescribe('nvmInstall', function () {\n  it('should be a function', function () {\n    expect(nvmInstall).toExist().toBeA('function')\n  })\n\n  it('should reject with no Node version', function (done) {\n    return nvmInstall()\n    .then((code) => {\n      // weird: fails on TravisCI, nvmInstall w/ no Node version reject w/ code 0\n      if (code === 0) done()\n      else done(new Error(`Resolved with code ${code}, it sould NOT`))\n    })\n    .catch((code) => {\n      // exit code should NOT be 0 when Error\n      expect(code).toNotEqual(0)\n      done()\n    })\n  })\n\n  it('should reject with an invalid Node version', function (done) {\n    return shouldReject(nvmInstall('bad-version'), done)\n  })\n\n  it('should resolve with a valid Node version', function (done) {\n    return shouldResolve(nvmInstall(process.version), done)\n  })\n\n  it('should execute an other install command', function (done) {\n    const install = 'nvm which $version > /dev/null'\n    return shouldResolve(nvmInstall(process.version, { install }, {}), done)\n  })\n})\n"
   },
   {
-    "__docId__": 131,
+    "__docId__": 134,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2578,7 +2640,7 @@
     ]
   },
   {
-    "__docId__": 132,
+    "__docId__": 135,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2592,7 +2654,7 @@
     "lineNumber": 7
   },
   {
-    "__docId__": 133,
+    "__docId__": 136,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2606,7 +2668,7 @@
     "lineNumber": 11
   },
   {
-    "__docId__": 134,
+    "__docId__": 137,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2617,10 +2679,10 @@
     "longname": "test/api/03-nvm-install.spec.js~describe25.it28",
     "access": null,
     "description": "should reject with an invalid Node version",
-    "lineNumber": 15
+    "lineNumber": 25
   },
   {
-    "__docId__": 135,
+    "__docId__": 138,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2631,10 +2693,10 @@
     "longname": "test/api/03-nvm-install.spec.js~describe25.it29",
     "access": null,
     "description": "should resolve with a valid Node version",
-    "lineNumber": 19
+    "lineNumber": 29
   },
   {
-    "__docId__": 136,
+    "__docId__": 139,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2645,10 +2707,10 @@
     "longname": "test/api/03-nvm-install.spec.js~describe25.it30",
     "access": null,
     "description": "should execute an other install command",
-    "lineNumber": 23
+    "lineNumber": 33
   },
   {
-    "__docId__": 137,
+    "__docId__": 140,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -2661,7 +2723,7 @@
     "content": "import expect from 'expect'\nimport { nvmTest } from '../../src/api/nvm-test'\nimport { shouldReject, shouldResolve } from './helpers/nvm.js'\n\n/** @test nvmTest */\ndescribe('nvmTest', function () {\n  it('should be a function', function () {\n    expect(nvmTest).toExist().toBeA('function')\n  })\n\n  it('should reject with no Node version', function (done) {\n    return shouldReject(nvmTest(), done)\n  })\n\n  it('should reject with an invalid Node version', function (done) {\n    return shouldReject(nvmTest('bad-version'), done)\n  })\n\n  it('should resolve with a valid Node version', function (done) {\n    // need to dry run here, or endless loop\n    return shouldResolve(nvmTest(process.version, { dryRun: true }), done)\n  })\n\n  it('should execute an other test command', function (done) {\n    const test = 'npm --version > /dev/null'\n    return shouldResolve(nvmTest(process.version, { test }, {}), done)\n  })\n})\n"
   },
   {
-    "__docId__": 138,
+    "__docId__": 141,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2684,7 +2746,7 @@
     ]
   },
   {
-    "__docId__": 139,
+    "__docId__": 142,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2698,7 +2760,7 @@
     "lineNumber": 7
   },
   {
-    "__docId__": 140,
+    "__docId__": 143,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2712,7 +2774,7 @@
     "lineNumber": 11
   },
   {
-    "__docId__": 141,
+    "__docId__": 144,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2726,7 +2788,7 @@
     "lineNumber": 15
   },
   {
-    "__docId__": 142,
+    "__docId__": 145,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2740,7 +2802,7 @@
     "lineNumber": 19
   },
   {
-    "__docId__": 143,
+    "__docId__": 146,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2754,7 +2816,7 @@
     "lineNumber": 24
   },
   {
-    "__docId__": 144,
+    "__docId__": 147,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -2767,7 +2829,7 @@
     "content": "import expect from 'expect'\nimport { nvmTestVersion } from '../../src/api/nvm-test-version'\nimport { shouldReject, shouldResolve } from './helpers/nvm.js'\n\n/** @test nvmTestVersion */\ndescribe('nvmTestVersion', function () {\n  it('should be a function', function () {\n    expect(nvmTestVersion).toExist().toBeA('function')\n  })\n\n  it('should reject with no Node version', function (done) {\n    return shouldReject(nvmTestVersion(), done)\n  })\n\n  it('should resolve with a valid Node version', function (done) {\n    // need to dry run here, or endless loop\n    return shouldResolve(nvmTestVersion(process.version, { dryRun: true }), done)\n  })\n\n  it('should execute others install and test commands', function (done) {\n    // need to dry run here, or endless loop\n    return shouldResolve(nvmTestVersion(process.version, {\n      install: 'nvm which $version > /dev/null',\n      test: 'npm --version > /dev/null',\n    }, {}), done)\n  })\n})\n"
   },
   {
-    "__docId__": 145,
+    "__docId__": 148,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2790,7 +2852,7 @@
     ]
   },
   {
-    "__docId__": 146,
+    "__docId__": 149,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2804,7 +2866,7 @@
     "lineNumber": 7
   },
   {
-    "__docId__": 147,
+    "__docId__": 150,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2818,7 +2880,7 @@
     "lineNumber": 11
   },
   {
-    "__docId__": 148,
+    "__docId__": 151,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2832,7 +2894,7 @@
     "lineNumber": 15
   },
   {
-    "__docId__": 149,
+    "__docId__": 152,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2846,7 +2908,7 @@
     "lineNumber": 20
   },
   {
-    "__docId__": 150,
+    "__docId__": 153,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -2859,7 +2921,7 @@
     "content": "import expect from 'expect'\nimport { nvmTestVersions } from '../../src/api/nvm-test-versions'\nimport { shouldResolve } from './helpers/nvm.js'\n\n/** @test nvmTestVersions */\ndescribe('nvmTestVersions', function () {\n  it('should be a function', function () {\n    expect(nvmTestVersions).toExist().toBeA('function')\n  })\n\n  it('should return error code with no Node version', function (done) {\n    return nvmTestVersions()\n    .then((code) => {\n      expect(code).toNotEqual(0)\n      done()\n    })\n    .catch((code) => {\n      done(new Error(`Rejected with code ${code}`))\n    })\n  })\n\n  it('should return error code with an invalid Node version', function (done) {\n    return nvmTestVersions(['foo'])\n    .then((code) => {\n      expect(code).toNotEqual(0)\n      done()\n    })\n    .catch((code) => {\n      done(new Error(`Rejected with code ${code}`))\n    })\n  })\n\n  it('should resolve with a valid Node version', function (done) {\n    // need to dry run here, or endless loop\n    return shouldResolve(nvmTestVersions([process.version], { dryRun: true }), done)\n  })\n\n  it('should execute others install and test commands', function (done) {\n    return shouldResolve(nvmTestVersions([process.version], {\n      install: 'nvm which $version > /dev/null',\n      test: 'npm --version > /dev/null',\n    }, {}), done)\n  })\n})\n"
   },
   {
-    "__docId__": 151,
+    "__docId__": 154,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -2882,7 +2944,7 @@
     ]
   },
   {
-    "__docId__": 152,
+    "__docId__": 155,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2896,7 +2958,7 @@
     "lineNumber": 7
   },
   {
-    "__docId__": 153,
+    "__docId__": 156,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2910,7 +2972,7 @@
     "lineNumber": 11
   },
   {
-    "__docId__": 154,
+    "__docId__": 157,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2924,7 +2986,7 @@
     "lineNumber": 22
   },
   {
-    "__docId__": 155,
+    "__docId__": 158,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -2938,7 +3000,7 @@
     "lineNumber": 33
   },
   {
-    "__docId__": 156,
+    "__docId__": 159,
     "kind": "testIt",
     "static": true,
     "variation": null,

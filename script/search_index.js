@@ -60,6 +60,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "nvm-test/src/utils.js~y18n",
+    "variable/index.html#static-variable-y18n",
+    "<span>y18n</span> <span class=\"search-result-import-path\">nvm-test/src/utils.js</span>",
+    "variable"
+  ],
+  [
     "builtinexternal/ecmascriptexternal.js~array",
     "external/index.html",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -529,13 +535,13 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber23",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber33",
     "nvmInstall should execute an other install command",
     "test"
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber15",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber25",
     "nvmInstall should reject with an invalid Node version",
     "test"
   ],
@@ -547,7 +553,7 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber19",
+    "test-file/test/api/03-nvm-install.spec.js.html#lineNumber29",
     "nvmInstall should resolve with a valid Node version",
     "test"
   ],
@@ -711,6 +717,12 @@ window.esdocSearchIndex = [
     "src/api/hooks.js~hook",
     "typedef/index.html#static-typedef-Hook",
     "src/api/hooks.js~Hook",
+    "typedef"
+  ],
+  [
+    "src/api/hooks.js~hookable",
+    "typedef/index.html#static-typedef-Hookable",
+    "src/api/hooks.js~Hookable",
     "typedef"
   ],
   [

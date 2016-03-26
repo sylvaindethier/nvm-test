@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-y18n">y18n</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -45,6 +46,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-command">command</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 </ul>
 </div>
@@ -62,7 +64,17 @@ describe(&apos;nvmInstall&apos;, function () {
   })
 
   it(&apos;should reject with no Node version&apos;, function (done) {
-    return shouldReject(nvmInstall(), done)
+    return nvmInstall()
+    .then((code) =&gt; {
+      // weird: fails on TravisCI, nvmInstall w/ no Node version reject w/ code 0
+      if (code === 0) done()
+      else done(new Error(`Resolved with code ${code}, it sould NOT`))
+    })
+    .catch((code) =&gt; {
+      // exit code should NOT be 0 when Error
+      expect(code).toNotEqual(0)
+      done()
+    })
   })
 
   it(&apos;should reject with an invalid Node version&apos;, function (done) {

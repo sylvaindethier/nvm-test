@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-y18n">y18n</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -46,49 +47,54 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-version">version</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hook">Hook</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Hookable">Hookable</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/command.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { config, nvmTestVersions, Hooks } from &apos;./api&apos;
-import log from &apos;npmlog&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import log from &apos;npmlog&apos;
+import { config, nvmTestVersions, Hooks } from &apos;./api&apos;
+import { __ } from &apos;./utils&apos;
 
 // set default log level to &apos;silly&apos; in development NODE_ENV
 if (process.env.NODE_ENV === &apos;development&apos;) log.level = &apos;silly&apos;
 
 /** @private */
 const command = &apos;[versions]&apos;
+
 /** @private */
-const desc = &apos;Test using some Node versions&apos;
+const desc = __(&apos;desc&apos;)
+
 /** @private */
 const builder = {
   &apos;i&apos;: {
     alias: &apos;install&apos;,
-    desc: &apos;Specify the install command&apos;,
+    desc: __(&apos;options.install&apos;),
     type: &apos;string&apos;,
     default: config.install,
   },
   &apos;t&apos;: {
     alias: &apos;test&apos;,
-    desc: &apos;Specify the test command&apos;,
+    desc: __(&apos;options.test&apos;),
     type: &apos;string&apos;,
     default: config.test,
   },
   &apos;D&apos;: {
     alias: &apos;dry-run&apos;,
-    desc: &apos;Dry run the test&apos;,
+    desc: __(&apos;options.dryRun&apos;),
     type: &apos;boolean&apos;,
     default: false,
   },
   &apos;L&apos;: {
     alias: &apos;log-level&apos;,
-    desc: &apos;Set the log level&apos;,
+    desc: __(&apos;options.logLevel&apos;),
     type: &apos;string&apos;,
     choices: Object.keys(log.levels),
     default: log.level,
   },
 }
+
 /**
  * Handler
  * @private
