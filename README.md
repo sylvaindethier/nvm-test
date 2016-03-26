@@ -28,7 +28,7 @@ Options:
 
 By default it runs 2 (configurable) sub commands as Promises:
   * **install** command: `nvm which $version || nvm install $version`  
-  Which silently install the specified `$version` if required.
+  Which silently install the specified `$version` if needed.
 
   * **test** command: `npm test`  
   Which run the configured `test` npm scripts.  
@@ -96,7 +96,7 @@ $ nvm-test -t "npm test" [versions]
 $ nvm-test --test "npm test" [versions]
 ```
 Default: *`npm test`*  
-Just run the npm `test`
+Just run the npm `test` script.
 
 ### -D, --dry-run
 > Dry run the test  
