@@ -39,7 +39,7 @@ By default it runs 2 (configurable) sub commands as Promises:
 Prefer global install:  
 **`npm install nvm-test -g`**
 
-Or simply use as per project dev dependencies:  
+Or simply install as per project dev dependencies:  
 **`npm install --save-dev nvm-test`**
 
 ## CLI usage
