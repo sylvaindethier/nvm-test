@@ -1,6 +1,6 @@
 {
   "name": "nvm-test",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Test using differents Node versions with nvm",
   "main": "./lib/api.js",
   "bin": {
@@ -17,7 +17,7 @@
     "test:only": "mocha",
     "coverage": "rimraf coverage && istanbul cover _mocha -- -R spec",
     "preversion": "npm run build",
-    "prepublish": "npm run build:doc && npm run deploy:doc",
+    "postversion": "npm run build:doc && npm run deploy:doc",
     "deploy:doc": "gh-pages --dist ./doc --message 'doc(update): Auto build'"
   },
   "repository": {

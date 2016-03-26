@@ -75,7 +75,7 @@ Options:
 </code></pre>
 <p>By default it runs 2 (configurable) sub commands as Promises:</p>
 <ul>
-<li><p><strong>install</strong> command: <code>nvm which $version || nvm install $version</code><br>Which silently install the specified <code>$version</code> if required.</p>
+<li><p><strong>install</strong> command: <code>nvm which $version || nvm install $version</code><br>Which silently install the specified <code>$version</code> if needed.</p>
 </li>
 <li><p><strong>test</strong> command: <code>npm test</code><br>Which run the configured <code>test</code> npm scripts.<br>The command is always preceded by <code>nvm use $version</code> in order to make the Node
 <code>$version</code> used before the test.</p>
@@ -126,7 +126,7 @@ $ nvm-test --install &quot;nvm install $version&quot; [versions]</code>
 <pre><code class="lang-sh"><code class="source-code prettyprint">$ nvm-test -t &quot;npm test&quot; [versions]
 $ nvm-test --test &quot;npm test&quot; [versions]</code>
 </code></pre>
-<p>Default: <em><code>npm test</code></em><br>Just run the npm <code>test</code></p>
+<p>Default: <em><code>npm test</code></em><br>Just run the npm <code>test</code> script.</p>
 <h3 id="-d-dry-run">-D, --dry-run</h3>
 <blockquote>
 <p>Dry run the test<br>Just echoes the <code>test</code> command option for now</p>
@@ -163,10 +163,7 @@ $ nvm-test &lt;command&gt; --help</code>
 $ nvm-test --version</code>
 </code></pre>
 <h2 id="javascript-api-usage">JavaScript API usage</h2>
-<ul>
-<li>API documentation on <a href="https://sylvaindethier.github.io/nvm-test">GitHub</a></li>
-<li>API documentation on <a href="https://doc.esdoc.org/github.com/sylvaindethier/nvm-test">ESDoc</a></li>
-</ul>
+<p>See the API documentation on <a href="https://sylvaindethier.github.io/nvm-test">GitHub</a></p>
 </div>
 </div>
 
