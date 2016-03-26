@@ -16,16 +16,18 @@ yargs
   // all options are global
   .global(Object.keys(cmd.options))
 
-// add config commands
-const commands = config.commands
-commands.forEach((command) => {
-  // resolve command path from running project
-  const path = resolveSync(`nvm-test-command-${command}`, { basedir: process.cwd() })
-  const cmd = require(path)
-  yargs.command(patchCommand(cmd, __('usage')))
+// add config plugins
+const plugins = config.plugins
+plugins.forEach((plugin) => {
+  // resolve plugin path from running project
+  const path = resolveSync(`nvm-test-plugin-${plugin}`, {
+    basedir: process.cwd(),
+  })
+  // require command, patch and register
+  yargs.command(patchCommand(require(path)))
 })
 
 // get argv from yargs
 const argv = yargs.argv
-// handle if not command
-if (commands.indexOf(argv._[0]) === -1) cmd.handler(argv)
+// handle if not executing plugin
+if (plugins.indexOf(argv._[0]) === -1) cmd.handler(argv)
