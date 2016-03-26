@@ -1,0 +1,9 @@
+{
+  "usage": "Usage: \n  ",
+  "external": "Execute the external <command>",
+  "desc": "Test using some Node [versions]",
+  "options.install": "Specify the install command",
+  "options.test": "Specify the test command",
+  "options.dryRun": "Dry run the test",
+  "options.logLevel": "Set the log level"
+}
