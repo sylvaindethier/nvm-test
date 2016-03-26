@@ -1,41 +1,45 @@
-import { config, nvmTestVersions, Hooks } from './api'
 import log from 'npmlog'
+import { config, nvmTestVersions, Hooks } from './api'
+import { __ } from './utils'
 
 // set default log level to 'silly' in development NODE_ENV
 if (process.env.NODE_ENV === 'development') log.level = 'silly'
 
 /** @private */
 const command = '[versions]'
+
 /** @private */
-const desc = 'Test using some Node versions'
+const desc = __('desc')
+
 /** @private */
 const builder = {
   'i': {
     alias: 'install',
-    desc: 'Specify the install command',
+    desc: __('options.install'),
     type: 'string',
     default: config.install,
   },
   't': {
     alias: 'test',
-    desc: 'Specify the test command',
+    desc: __('options.test'),
     type: 'string',
     default: config.test,
   },
   'D': {
     alias: 'dry-run',
-    desc: 'Dry run the test',
+    desc: __('options.dryRun'),
     type: 'boolean',
     default: false,
   },
   'L': {
     alias: 'log-level',
-    desc: 'Set the log level',
+    desc: __('options.logLevel'),
     type: 'string',
     choices: Object.keys(log.levels),
     default: log.level,
   },
 }
+
 /**
  * Handler
  * @private
