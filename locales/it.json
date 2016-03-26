@@ -1,0 +1,9 @@
+{
+  "usage": "Uso: \n  ",
+  "desc": "Prueba utilizzando Node [versiones]",
+  "plugin": "Eseguire il <command> plug-in",
+  "options.install": "Specificare il comando di installazione",
+  "options.test": "Specificare il comando test",
+  "options.dryRun": "Stampa solo il comando di prova",
+  "options.logLevel": "Impostare il livello di registro"
+}

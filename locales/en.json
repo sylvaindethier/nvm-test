@@ -4,6 +4,6 @@
   "plugin": "Execute the <command> plugin",
   "options.install": "Specify the install command",
   "options.test": "Specify the test command",
-  "options.dryRun": "Dry run the test",
+  "options.dryRun": "Print the test command only",
   "options.logLevel": "Set the log level"
 }

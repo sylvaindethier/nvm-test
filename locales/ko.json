@@ -1,0 +1,9 @@
+{
+  "usage": "용법: \n  ",
+  "desc": "시험 Node를 [버전]을 사용하여",
+  "plugin": "의 <명령> 플러그인 실행",
+  "options.install": "설치 명령을 지정합니다",
+  "options.test": "테스트 명령을 지정합니다",
+  "options.dryRun": "만 테스트 명령을 인쇄",
+  "options.logLevel": "로그 수준을 설정"
+}

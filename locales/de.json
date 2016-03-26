@@ -1,0 +1,9 @@
+{
+  "usage": "Verwendung: \n  ",
+  "desc": "Test mit Node [Versionen]",
+  "plugin": "Führen Sie den <command> Plugin",
+  "options.install": "Geben Sie den Installationsbefehl",
+  "options.test": "Geben Sie den Testbefehl",
+  "options.dryRun": "Drucken Sie die Test Befehl nur",
+  "options.logLevel": "Stellen Sie die Protokollebene"
+}

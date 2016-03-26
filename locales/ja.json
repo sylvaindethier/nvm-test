@@ -1,0 +1,9 @@
+{
+  "usage": "使用法: \n  ",
+  "desc": "試験は、Nodeの[バージョン]を使用して、",
+  "plugin": "<コマンド>プラグインを実行します",
+  "options.install": "installコマンドを指定します",
+  "options.test": "テストコマンドを指定します",
+  "options.dryRun": "唯一のテストコマンドを印刷",
+  "options.logLevel": "ログレベルを設定します。"
+}

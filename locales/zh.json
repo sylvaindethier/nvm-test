@@ -1,0 +1,9 @@
+{
+  "usage": "用法: \n  ",
+  "desc": "测试使用Node的[版本]",
+  "plugin": "执行<命令>插件",
+  "options.install": "指定安装命令",
+  "options.test": "指定测试命令",
+  "options.dryRun": "只打印测试命令",
+  "options.logLevel": "设置日志级别"
+}
