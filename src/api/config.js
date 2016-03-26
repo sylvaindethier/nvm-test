@@ -24,7 +24,7 @@ const defaults = {
   // test: just 'npm test'
   test: 'npm test',
   dryRun: false,
-  commands: [],
+  plugins: [],
 }
 
 const filepath = join(process.cwd(), filename)
@@ -42,11 +42,11 @@ try {
  * @property  {command}  [install=]     - The `install` command.<br> `nvm which $version &> /dev/null || nvm install $version`
  * @property  {command}  [test=]        - The `test` command.<br> `npm test`
  * @property  {boolean}  [dryRun=false] - Whether or not to dry run the test. Echoes the `test` command if true.
- * @property  {string[]} [commands=[]]  - External commands
+ * @property  {string[]} [plugins=[]]   - External plugins
  * @example
  * {
  *   "test": "echo 'nvm-test version $version'; npm run lint && npm run test",
- *   "commands": ["travis"]
+ *   "plugins": ["travis"]
  * }
  */
 const config = Object.assign({}, defaults, rc)

@@ -14,7 +14,7 @@ Configurable & Extensible `npm test` using differents Node versions with nvm.
 ```sh
 Usage:
   nvm-test [versions] [options]  Test using some Node versions
-  nvm-test <command>  [options]  Execute external <command>
+  nvm-test <command>  [options]  Execute the <command> plugin
 
 Options:
   -h, --help       Show help                                          [boolean]
@@ -56,17 +56,17 @@ $ nvm-test
 ```
 
 ### nvm-test &lt;command&gt; [options]
-> Execute external &lt;command&gt;
+> Execute the &lt;command&gt; plugin
 
-Therefore the command must be available and installed in your project.  
-For example install the `travis` command:
+Therefore the plugin must be available and installed in your project.  
+For example install the `travis` plugin:
 ```sh
-$ npm install nvm-test-command-travis
+$ npm install nvm-test-plugin-travis
 ```
-Add the `travis` command in your `.nvmrc.test.json` file:
+Add the `travis` plugin in your `.nvmrc.test.json` file:
 ```json
 {
-  "commands": ["travis"]
+  "plugins": ["travis"]
 }
 ```
 And run the test using Node versions from your `.travis.yml` file:
@@ -123,7 +123,7 @@ $ nvm-test -h
 $ nvm-test --help
 ```
 
-> Show external &lt;command&gt; help
+> Show the &lt;command&gt; plugin help
 
 ```sh
 $ nvm-test <command> -h
