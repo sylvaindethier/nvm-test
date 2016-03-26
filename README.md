@@ -1,5 +1,5 @@
 # nvm-test
-> Test using different Node versions with nvm.
+> Test using differents Node versions with nvm.
 
 Configurable & Extensible `npm test` using differents Node versions with nvm.
 
@@ -13,7 +13,7 @@ Configurable & Extensible `npm test` using differents Node versions with nvm.
 
 ```sh
 Usage:
-  nvm-test [versions] [options]  Test using some Node versions
+  nvm-test [versions] [options]  Test using Node [versions]
   nvm-test <command>  [options]  Execute the <command> plugin
 
 Options:
@@ -31,7 +31,8 @@ By default it runs 2 (configurable) sub commands as Promises:
 
   * **test** command: `npm test`  
   Which run the configured `test` npm scripts.  
-  The command is always preceded by `nvm use $version` in order to make the Node `$version` in use before the test.
+  The command is always preceded by `nvm use $version` in order to make the Node
+  `$version` used before the test.
 
 ## Install
 Prefer global install:  
@@ -43,35 +44,35 @@ Or simply use as per project dev dependencies:
 ## CLI usage
 
 ### nvm-test [versions] [options]
-> Test using some Node versions
+> Test using Node [versions]
 
 Testing `stable` and `v4` Node versions:
 ```sh
-$ nvm-test stable v4
+$ nvm-test stable v4 [options]
 ```
 
 Test using *the* Node version from `.nvmrc` file (default nvm behavior):
 ```sh
-$ nvm-test
+$ nvm-test [options]
 ```
 
 ### nvm-test &lt;command&gt; [options]
 > Execute the &lt;command&gt; plugin
 
 Therefore the plugin must be available and installed in your project.  
-For example install the `travis` plugin:
+For example, install the `travis` plugin:
 ```sh
 $ npm install nvm-test-plugin-travis
 ```
-Add the `travis` plugin in your `.nvmrc.test.json` file:
+Add it to your `.nvmrc.test.json` project file:
 ```json
 {
   "plugins": ["travis"]
 }
 ```
-And run the test using Node versions from your `.travis.yml` file:
+Then run the test using the Node versions from your `.travis.yml` file:
 ```sh
-$ nvm-test travis
+$ nvm-test travis [options]
 ```
 
 ## CLI options
