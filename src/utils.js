@@ -53,6 +53,7 @@ patchCommand.handler = (cmd) => {
 }
 
 // initialize y18n and get the translation functions
+/** @private */
 const y18n = y18n_init()
 const { __, __n } = y18n
 export { y18n, __, __n }

@@ -7,6 +7,12 @@ const isFunction = (fn) => (typeof fn === 'function')
  */
 
 /**
+ * Hookable function, accepts a Hooks as last arguments
+ * @public
+ * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable
+ */
+
+/**
  * Hooks
  * @public
  * @class Hooks
@@ -23,12 +29,6 @@ class Hooks {
   }
 }
 export default Hooks
-
-/**
- * Hookable function, accepts a Hooks as last arguments
- * @public
- * @typedef {function(...args: arguments, hooks: Hooks): Promise} Hookable
- */
 
 /**
  * Makes a function hookable
