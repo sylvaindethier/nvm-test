@@ -1,7 +1,7 @@
 # nvm-test
 > Test using different Node versions with nvm.
 
-Configurable & Extensible `npm test` using different Node versions with nvm.
+Configurable & Extensible `npm test` using differents Node versions with nvm.
 
 [![NPM Package Stats][npm-image]][npm-url]  
 [![NPM Version][npm-version-image]][npm-url]
