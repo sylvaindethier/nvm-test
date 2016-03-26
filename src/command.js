@@ -59,6 +59,15 @@ export function handler (argv) {
   log.silly('command', 'argv:', argv)
 
   // define hooks
+  const logVersion = (prefix, fn = log.info) => {
+    return (version) => { fn(prefix, 'version', version) }
+  }
+  const logError = (prefix, fn = log.error) => {
+    return (code, version) => {
+      fn(prefix, 'error code %s for version', code, version)
+    }
+  }
+
   const pre = (versions, { install, test, dryRun }) => {
     // info the versions
     log.info('nvm-test-versions', 'versions', versions.join(', '))
@@ -69,29 +78,16 @@ export function handler (argv) {
     log.error('nvm-test-versions', 'error code %s', code)
   }
   const nvmInstallHooks = new Hooks({
-    pre: (version) => {
-      log.verbose('nvm-install', 'version', version)
-    },
-    error: (code, version) => {
-      log.error('nvm-install', 'error code %s for version', code, version)
-    }
+    pre: logVersion('nvm-install', log.verbose),
+    error: logError('nvm-install')
   })
   const nvmTestHooks = new Hooks({
-    pre: (version) => {
-      log.verbose('nvm-test', 'version', version)
-    },
-    error: (code, version) => {
-      log.error('nvm-test', 'error code %s for version', code, version)
-    }
+    pre: logVersion('nvm-test', log.verbose),
+    error: logError('nvm-test')
   })
   const nvmTestVersionHooks = new Hooks({
-    pre: (version) => {
-      // info the version
-      log.info('nvm-test-version', 'version', version)
-    },
-    error: (code, version) => {
-      log.verbose('nvm-test-version', 'error code %s for version', code, version)
-    },
+    pre: logVersion('nvm-test-version'),
+    error: logError('nvm-test-version'),
     nvmInstallHooks,
     nvmTestHooks
   })
