@@ -1,6 +1,6 @@
 {
   "name": "nvm-test",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Test using differents Node versions with nvm",
   "main": "./lib/api.js",
   "jsnext:main": "./src/api.js",
@@ -70,6 +70,9 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "ignore": ["/lib", "/doc"]
+    "ignore": [
+      "/lib",
+      "/doc"
+    ]
   }
 }
