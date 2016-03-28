@@ -1,6 +1,6 @@
 import log from 'npmlog'
 import { config, nvmTestVersions, Hooks } from './api'
-import { __ } from './utils'
+import { __, buildUsage } from './utils'
 
 // set default log level to 'silly' in development NODE_ENV
 if (process.env.NODE_ENV === 'development') log.level = 'silly'
@@ -10,6 +10,10 @@ export const command = '[versions]'
 
 /** @private */
 export const desc = __('desc')
+
+/** @private */
+export const usage = __('usage') + buildUsage({ command, desc }) +
+  '\n  ' + buildUsage({ command: '<command> ', desc: __('plugin') })
 
 /** @private */
 export const builder = {

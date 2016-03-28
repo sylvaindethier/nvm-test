@@ -1,18 +1,16 @@
 import yargs from 'yargs'
 import { sync as resolveSync } from 'resolve'
 import { config } from './api'
-import { buildUsage, patchCommand, __ } from './utils'
+import { patchCommand } from './utils'
 
 // require command and patch handler
 const command = patchCommand.handler(require('./command'))
-const usage = __('usage') + buildUsage(command) +
-  '\n  ' + buildUsage({ command: '<command> ', desc: __('plugin') })
 
 yargs
   // version from package
   .version().alias('v', 'version')
   .help('h').alias('h', 'help')
-  .usage(usage, command.builder)
+  .usage(command.usage, command.builder)
   // all options are global
   .global(Object.keys(command.builder))
 
