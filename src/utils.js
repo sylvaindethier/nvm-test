@@ -1,4 +1,6 @@
-import y18n_init from 'y18n'
+import { resolve } from 'path'
+import y18nCreate from 'y18n'
+import yargs from 'yargs'
 import { name } from '../package'
 
 /**
@@ -54,6 +56,9 @@ patchCommand.handler = (cmd) => {
 
 // initialize y18n and get the translation functions
 /** @private */
-const y18n = y18n_init()
+const y18n = y18nCreate({
+  directory: resolve(__dirname, '../locales'),
+  locale: yargs.locale()
+})
 const { __, __n } = y18n
 export { y18n, __, __n }
