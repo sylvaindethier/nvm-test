@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-handler">handler</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -54,18 +55,22 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import yargs from &apos;yargs&apos;
 import { sync as resolveSync } from &apos;resolve&apos;
 import { config } from &apos;./api&apos;
-import { buildUsage, patchCommand, __ } from &apos;./utils&apos;
+import { patchCommand, y18n } from &apos;./utils&apos;
+
+// force the locale to be &apos;en&apos;, do we really need i18n ?
+yargs.locale(&apos;en&apos;)
+
+// first set the locale
+y18n.setLocale(yargs.locale())
 
 // require command and patch handler
 const command = patchCommand.handler(require(&apos;./command&apos;))
-const usage = __(&apos;usage&apos;) + buildUsage(command) +
-  &apos;\n  &apos; + buildUsage({ command: &apos;&lt;command&gt; &apos;, desc: __(&apos;plugin&apos;) })
 
 yargs
   // version from package
   .version().alias(&apos;v&apos;, &apos;version&apos;)
   .help(&apos;h&apos;).alias(&apos;h&apos;, &apos;help&apos;)
-  .usage(usage, command.builder)
+  .usage(command.usage, command.builder)
   // all options are global
   .global(Object.keys(command.builder))
 

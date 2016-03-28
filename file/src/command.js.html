@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-handler">handler</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">api</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/api/hooks.js~Hooks.html">Hooks</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hookable">hookable</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmInstall">nvmInstall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nvmTestVersion">nvmTestVersion</a></span></span></li>
@@ -53,7 +54,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/command.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import log from &apos;npmlog&apos;
 import { config, nvmTestVersions, Hooks } from &apos;./api&apos;
-import { __ } from &apos;./utils&apos;
+import { __, buildUsage } from &apos;./utils&apos;
 
 // set default log level to &apos;silly&apos; in development NODE_ENV
 if (process.env.NODE_ENV === &apos;development&apos;) log.level = &apos;silly&apos;
@@ -63,6 +64,10 @@ export const command = &apos;[versions]&apos;
 
 /** @private */
 export const desc = __(&apos;desc&apos;)
+
+/** @private */
+export const usage = __(&apos;usage&apos;) + buildUsage({ command, desc }) +
+  &apos;\n  &apos; + buildUsage({ command: &apos;&lt;command&gt; &apos;, desc: __(&apos;plugin&apos;) })
 
 /** @private */
 export const builder = {
@@ -93,13 +98,7 @@ export const builder = {
   }
 }
 
-/**
- * Handler
- * @private
- * @param  {Object} argv - The yargs argv
- * @return {Promise} - The nvmTestVersions Promise
- */
-export function handler (argv) {
+export const handler = (argv) =&gt; {
   // get versions from argv._
   const versions = argv._
   // get options

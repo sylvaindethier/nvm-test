@@ -1,6 +1,6 @@
 {
-  "coverage": "100%",
-  "expectCount": 11,
+  "coverage": "91.66%",
+  "expectCount": 12,
   "actualCount": 11,
   "files": {
     "src/api/hooks.js": {
@@ -17,6 +17,13 @@
       "expectCount": 3,
       "actualCount": 3,
       "undocumentLines": []
+    },
+    "src/command.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        47
+      ]
     },
     "src/api/nvm-install.js": {
       "expectCount": 1,

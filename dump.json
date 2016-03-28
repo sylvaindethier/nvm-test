@@ -1069,7 +1069,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import yargs from 'yargs'\nimport { sync as resolveSync } from 'resolve'\nimport { config } from './api'\nimport { buildUsage, patchCommand, __ } from './utils'\n\n// require command and patch handler\nconst command = patchCommand.handler(require('./command'))\nconst usage = __('usage') + buildUsage(command) +\n  '\\n  ' + buildUsage({ command: '<command> ', desc: __('plugin') })\n\nyargs\n  // version from package\n  .version().alias('v', 'version')\n  .help('h').alias('h', 'help')\n  .usage(usage, command.builder)\n  // all options are global\n  .global(Object.keys(command.builder))\n\n// add config plugins\nconst plugins = config.plugins\nplugins.forEach((plugin) => {\n  // resolve plugin path from running project\n  const basedir = process.cwd()\n  const path = resolveSync(`nvm-test-plugin-${plugin}`, { basedir })\n  // require command, patch and register\n  yargs.command(patchCommand(require(path)))\n})\n\n// get argv from yargs\nconst argv = yargs.argv\n// handle if not executing plugin\nif (plugins.indexOf(argv._[0]) === -1) command.handler(argv)\n"
+    "content": "import yargs from 'yargs'\nimport { sync as resolveSync } from 'resolve'\nimport { config } from './api'\nimport { patchCommand, y18n } from './utils'\n\n// force the locale to be 'en', do we really need i18n ?\nyargs.locale('en')\n\n// first set the locale\ny18n.setLocale(yargs.locale())\n\n// require command and patch handler\nconst command = patchCommand.handler(require('./command'))\n\nyargs\n  // version from package\n  .version().alias('v', 'version')\n  .help('h').alias('h', 'help')\n  .usage(command.usage, command.builder)\n  // all options are global\n  .global(Object.keys(command.builder))\n\n// add config plugins\nconst plugins = config.plugins\nplugins.forEach((plugin) => {\n  // resolve plugin path from running project\n  const basedir = process.cwd()\n  const path = resolveSync(`nvm-test-plugin-${plugin}`, { basedir })\n  // require command, patch and register\n  yargs.command(patchCommand(require(path)))\n})\n\n// get argv from yargs\nconst argv = yargs.argv\n// handle if not executing plugin\nif (plugins.indexOf(argv._[0]) === -1) command.handler(argv)\n"
   },
   {
     "__docId__": 32,
@@ -1084,7 +1084,7 @@
     "importPath": "nvm-test/src/bin.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 13,
     "undocument": true,
     "type": {
       "types": [
@@ -1097,15 +1097,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "usage",
+    "name": "plugins",
     "memberof": "src/bin.js",
-    "longname": "src/bin.js~usage",
+    "longname": "src/bin.js~plugins",
     "access": null,
     "export": false,
     "importPath": "nvm-test/src/bin.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 24,
     "undocument": true,
     "type": {
       "types": [
@@ -1118,15 +1118,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "plugins",
+    "name": "argv",
     "memberof": "src/bin.js",
-    "longname": "src/bin.js~plugins",
+    "longname": "src/bin.js~argv",
     "access": null,
     "export": false,
     "importPath": "nvm-test/src/bin.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 34,
     "undocument": true,
     "type": {
       "types": [
@@ -1136,27 +1136,6 @@
   },
   {
     "__docId__": 35,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "argv",
-    "memberof": "src/bin.js",
-    "longname": "src/bin.js~argv",
-    "access": null,
-    "export": false,
-    "importPath": "nvm-test/src/bin.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 30,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 36,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1166,10 +1145,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import log from 'npmlog'\nimport { config, nvmTestVersions, Hooks } from './api'\nimport { __ } from './utils'\n\n// set default log level to 'silly' in development NODE_ENV\nif (process.env.NODE_ENV === 'development') log.level = 'silly'\n\n/** @private */\nexport const command = '[versions]'\n\n/** @private */\nexport const desc = __('desc')\n\n/** @private */\nexport const builder = {\n  'i': {\n    alias: 'install',\n    desc: __('options.install'),\n    type: 'string',\n    default: config.install\n  },\n  't': {\n    alias: 'test',\n    desc: __('options.test'),\n    type: 'string',\n    default: config.test\n  },\n  'D': {\n    alias: 'dry-run',\n    desc: __('options.dryRun'),\n    type: 'boolean',\n    default: false\n  },\n  'L': {\n    alias: 'log-level',\n    desc: __('options.logLevel'),\n    type: 'string',\n    choices: Object.keys(log.levels),\n    default: log.level\n  }\n}\n\n/**\n * Handler\n * @private\n * @param  {Object} argv - The yargs argv\n * @return {Promise} - The nvmTestVersions Promise\n */\nexport function handler (argv) {\n  // get versions from argv._\n  const versions = argv._\n  // get options\n  const { install, test, dryRun, logLevel } = argv\n\n  // set log heading & level\n  log.heading = 'nvm-test'\n  log.level = logLevel\n\n  log.silly('command', 'argv:', argv)\n\n  // define hooks\n  const logVersion = (prefix, fn = log.info) => {\n    return (version) => { fn(prefix, 'version', version) }\n  }\n  const logError = (prefix, fn = log.error) => {\n    return (code, version) => {\n      fn(prefix, 'error code %s for version', code, version)\n    }\n  }\n\n  const pre = (versions, { install, test, dryRun }) => {\n    // info the versions\n    log.info('nvm-test-versions', 'versions', versions.join(', '))\n    // verbose the options\n    log.verbose('nvm-test-versions', 'options', { install, test, dryRun })\n  }\n  const error = (code) => {\n    log.error('nvm-test-versions', 'error code %s', code)\n  }\n  const nvmInstallHooks = new Hooks({\n    pre: logVersion('nvm-install', log.verbose),\n    error: logError('nvm-install')\n  })\n  const nvmTestHooks = new Hooks({\n    pre: logVersion('nvm-test', log.verbose),\n    error: logError('nvm-test')\n  })\n  const nvmTestVersionHooks = new Hooks({\n    pre: logVersion('nvm-test-version'),\n    error: logError('nvm-test-version'),\n    nvmInstallHooks,\n    nvmTestHooks\n  })\n  const hooks = new Hooks({ pre, error, nvmTestVersionHooks })\n\n  // nvm test versions\n  return nvmTestVersions(versions, { install, test, dryRun }, hooks)\n}\n"
+    "content": "import log from 'npmlog'\nimport { config, nvmTestVersions, Hooks } from './api'\nimport { __, buildUsage } from './utils'\n\n// set default log level to 'silly' in development NODE_ENV\nif (process.env.NODE_ENV === 'development') log.level = 'silly'\n\n/** @private */\nexport const command = '[versions]'\n\n/** @private */\nexport const desc = __('desc')\n\n/** @private */\nexport const usage = __('usage') + buildUsage({ command, desc }) +\n  '\\n  ' + buildUsage({ command: '<command> ', desc: __('plugin') })\n\n/** @private */\nexport const builder = {\n  'i': {\n    alias: 'install',\n    desc: __('options.install'),\n    type: 'string',\n    default: config.install\n  },\n  't': {\n    alias: 'test',\n    desc: __('options.test'),\n    type: 'string',\n    default: config.test\n  },\n  'D': {\n    alias: 'dry-run',\n    desc: __('options.dryRun'),\n    type: 'boolean',\n    default: false\n  },\n  'L': {\n    alias: 'log-level',\n    desc: __('options.logLevel'),\n    type: 'string',\n    choices: Object.keys(log.levels),\n    default: log.level\n  }\n}\n\nexport const handler = (argv) => {\n  // get versions from argv._\n  const versions = argv._\n  // get options\n  const { install, test, dryRun, logLevel } = argv\n\n  // set log heading & level\n  log.heading = 'nvm-test'\n  log.level = logLevel\n\n  log.silly('command', 'argv:', argv)\n\n  // define hooks\n  const logVersion = (prefix, fn = log.info) => {\n    return (version) => { fn(prefix, 'version', version) }\n  }\n  const logError = (prefix, fn = log.error) => {\n    return (code, version) => {\n      fn(prefix, 'error code %s for version', code, version)\n    }\n  }\n\n  const pre = (versions, { install, test, dryRun }) => {\n    // info the versions\n    log.info('nvm-test-versions', 'versions', versions.join(', '))\n    // verbose the options\n    log.verbose('nvm-test-versions', 'options', { install, test, dryRun })\n  }\n  const error = (code) => {\n    log.error('nvm-test-versions', 'error code %s', code)\n  }\n  const nvmInstallHooks = new Hooks({\n    pre: logVersion('nvm-install', log.verbose),\n    error: logError('nvm-install')\n  })\n  const nvmTestHooks = new Hooks({\n    pre: logVersion('nvm-test', log.verbose),\n    error: logError('nvm-test')\n  })\n  const nvmTestVersionHooks = new Hooks({\n    pre: logVersion('nvm-test-version'),\n    error: logError('nvm-test-version'),\n    nvmInstallHooks,\n    nvmTestHooks\n  })\n  const hooks = new Hooks({ pre, error, nvmTestVersionHooks })\n\n  // nvm test versions\n  return nvmTestVersions(versions, { install, test, dryRun }, hooks)\n}\n"
   },
   {
-    "__docId__": 37,
+    "__docId__": 36,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1189,7 +1168,7 @@
     }
   },
   {
-    "__docId__": 38,
+    "__docId__": 37,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1209,6 +1188,26 @@
     }
   },
   {
+    "__docId__": 38,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "usage",
+    "memberof": "src/command.js",
+    "longname": "src/command.js~usage",
+    "access": "private",
+    "export": true,
+    "importPath": "nvm-test/src/command.js",
+    "importStyle": "{usage}",
+    "description": null,
+    "lineNumber": 15,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
     "__docId__": 39,
     "kind": "variable",
     "static": true,
@@ -1221,7 +1220,7 @@
     "importPath": "nvm-test/src/command.js",
     "importStyle": "{builder}",
     "description": null,
-    "lineNumber": 15,
+    "lineNumber": 19,
     "type": {
       "types": [
         "*"
@@ -1230,39 +1229,24 @@
   },
   {
     "__docId__": 40,
-    "kind": "function",
+    "kind": "variable",
     "static": true,
     "variation": null,
     "name": "handler",
     "memberof": "src/command.js",
     "longname": "src/command.js~handler",
-    "access": "private",
+    "access": null,
     "export": true,
     "importPath": "nvm-test/src/command.js",
     "importStyle": "{handler}",
-    "description": "Handler",
-    "lineNumber": 49,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "Object"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "argv",
-        "description": "The yargs argv"
-      }
-    ],
-    "return": {
-      "nullable": null,
+    "description": null,
+    "lineNumber": 47,
+    "undocument": true,
+    "type": {
       "types": [
-        "Promise"
-      ],
-      "spread": false,
-      "description": "The nvmTestVersions Promise"
-    },
-    "generator": false
+        "*"
+      ]
+    }
   },
   {
     "__docId__": 41,
@@ -1275,7 +1259,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import y18n_init from 'y18n'\nimport { name } from '../package'\n\n/**\n * Build a usage string from a command\n * @private\n * @param  {Object} cmd - A command\n * @return {string} - The usage string for the command\n */\nexport function buildUsage (cmd) {\n  // get description from command\n  const desc = cmd.desc || cmd.describe || cmd.description || ''\n\n  return `${name} ${cmd.command} [options] \\t ${desc}`\n}\n\n/**\n * Patch a command - add usage to builder, process exit to handler\n * @private\n * @param  {Object} cmd - A command to patch\n * @return {Object} - The patched command\n */\nexport function patchCommand (cmd) {\n  // patch the builder, patch the handler\n  return patchCommand.handler(patchCommand.builder(cmd))\n}\n/**\n * Patch a command builder to add usage\n * @param  {Object} cmd - The command to patch the builder\n * @return {Object} - The patched command\n */\npatchCommand.builder = (cmd) => {\n  // get builder from command if function\n  // or create builder function from command\n  const fnbuilder = (yargs) => (\n    typeof cmd.builder === 'object' ? yargs.options(cmd.builder) : yargs\n  )\n  const builder = typeof cmd.builder === 'function' ? cmd.builder : fnbuilder\n  cmd.builder = (yargs) => (builder(yargs).usage(__('usage') + buildUsage(cmd)))\n  return cmd\n}\n/**\n * Patch a command handler to process.exit\n * @private\n * @param  {Object} cmd - The command to patch the handler\n * @return {Object} - The patched command\n */\npatchCommand.handler = (cmd) => {\n  // patch handler to process.exit\n  const handler = cmd.handler\n  cmd.handler = async function (argv) { process.exit(await handler(argv)) }\n  return cmd\n}\n\n// initialize y18n and get the translation functions\n/** @private */\nconst y18n = y18n_init()\nconst { __, __n } = y18n\nexport { y18n, __, __n }\n"
+    "content": "import { resolve } from 'path'\nimport y18nCreate from 'y18n'\nimport { name } from '../package'\n\n/**\n * Build a usage string from a command\n * @private\n * @param  {Object} cmd - A command\n * @return {string} - The usage string for the command\n */\nexport function buildUsage (cmd) {\n  // get description from command\n  const desc = cmd.desc || cmd.describe || cmd.description || ''\n\n  return `${name} ${cmd.command} [options] \\t ${desc}`\n}\n\n/**\n * Patch a command - add usage to builder, process exit to handler\n * @private\n * @param  {Object} cmd - A command to patch\n * @return {Object} - The patched command\n */\nexport function patchCommand (cmd) {\n  // patch the builder, patch the handler\n  return patchCommand.handler(patchCommand.builder(cmd))\n}\n/**\n * Patch a command builder to add usage\n * @param  {Object} cmd - The command to patch the builder\n * @return {Object} - The patched command\n */\npatchCommand.builder = (cmd) => {\n  // get builder from command if function\n  // or create builder function from command\n  const fnbuilder = (yargs) => (\n    typeof cmd.builder === 'object' ? yargs.options(cmd.builder) : yargs\n  )\n  const builder = typeof cmd.builder === 'function' ? cmd.builder : fnbuilder\n  cmd.builder = (yargs) => (builder(yargs).usage(__('usage') + buildUsage(cmd)))\n  return cmd\n}\n/**\n * Patch a command handler to process.exit\n * @private\n * @param  {Object} cmd - The command to patch the handler\n * @return {Object} - The patched command\n */\npatchCommand.handler = (cmd) => {\n  // patch handler to process.exit\n  const handler = cmd.handler\n  cmd.handler = async function (argv) { process.exit(await handler(argv)) }\n  return cmd\n}\n\n// initialize y18n and get the translation functions\n/** @private */\nconst y18n = y18nCreate({ directory: resolve(__dirname, '../locales') })\nconst { __, __n } = y18n\nexport { y18n, __, __n }\n"
   },
   {
     "__docId__": 42,
@@ -1290,7 +1274,7 @@
     "importPath": "nvm-test/src/utils.js",
     "importStyle": "{buildUsage}",
     "description": "Build a usage string from a command",
-    "lineNumber": 10,
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
@@ -1326,7 +1310,7 @@
     "importPath": "nvm-test/src/utils.js",
     "importStyle": "{patchCommand}",
     "description": "Patch a command - add usage to builder, process exit to handler",
-    "lineNumber": 23,
+    "lineNumber": 24,
     "params": [
       {
         "nullable": null,
@@ -1362,7 +1346,7 @@
     "importPath": "nvm-test/src/utils.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 58,
+    "lineNumber": 59,
     "undocument": true,
     "type": {
       "types": [
@@ -1383,7 +1367,7 @@
     "importPath": "nvm-test/src/utils.js",
     "importStyle": "{y18n}",
     "description": null,
-    "lineNumber": 57,
+    "lineNumber": 58,
     "type": {
       "types": [
         "*"

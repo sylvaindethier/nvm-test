@@ -18,6 +18,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "nvm-test/src/command.js~handler",
+    "variable/index.html#static-variable-handler",
+    "<span>handler</span> <span class=\"search-result-import-path\">nvm-test/src/command.js</span>",
+    "variable"
+  ],
+  [
     "nvm-test/src/api/hooks.js~hookable",
     "function/index.html#static-function-hookable",
     "<span>hookable</span> <span class=\"search-result-import-path\">nvm-test/src/api/hooks.js</span>",
