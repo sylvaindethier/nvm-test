@@ -44,13 +44,7 @@ export const builder = {
   }
 }
 
-/**
- * Handler
- * @private
- * @param  {Object} argv - The yargs argv
- * @return {Promise} - The nvmTestVersions Promise
- */
-export function handler (argv) {
+export const handler = (argv) => {
   // get versions from argv._
   const versions = argv._
   // get options

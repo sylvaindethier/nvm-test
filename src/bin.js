@@ -1,7 +1,13 @@
 import yargs from 'yargs'
 import { sync as resolveSync } from 'resolve'
 import { config } from './api'
-import { patchCommand } from './utils'
+import { patchCommand, y18n } from './utils'
+
+// force the locale to be 'en', do we really need i18n ?
+yargs.locale('en')
+
+// first set the locale
+y18n.setLocale(yargs.locale())
 
 // require command and patch handler
 const command = patchCommand.handler(require('./command'))
